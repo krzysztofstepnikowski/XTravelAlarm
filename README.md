@@ -4,6 +4,39 @@ Version 1.0
 
 Copyright ⓒ 2017 Krzysztof Stepnikowski
 
-Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin</b> z wykorzystaniem frameworka Prism.
+Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin</b> z wykorzystaniem frameworka Prism. 
 
-Wszelkie prawa zastrzeżone.
+<br/>
+
+<b>Główne funkcjonalności: </b>
+
+<ul>
+<li>Ustawienie budzika w zależności od odległości od miejsca docelowego</li>
+<br/>
+<li>Możliwość zapamiętywania alarmów (dodawanie/usuwanie do/z ulubionych)</li>
+<br/>
+<li>Wybór i ustawienie dźwięku alarmu</li>
+<br/>
+<li>Wyszukiwanie miejsc</li>
+<br/>
+<li>Podpowiadanie punktów zainteresowań</li>
+<br/>
+<li>Praca w trybie offline</li>
+</ul>
+<br/>
+
+<b>Może być również dodatkowo:</b><br/>
+<ul>
+<li>Ustawienie poziomu głośności dźwieku</li>
+<br/>
+<li>Ustawienie wibracji</li>
+<br />
+<li>Ustawienie odpowiedniej jednostki (kilometry/metry)</li>
+</ul>
+<br/>
+
+<i>Wszelkie prawa zastrzeżone.</i>
+
+
+
+
