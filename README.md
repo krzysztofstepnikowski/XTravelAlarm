@@ -1,4 +1,4 @@
-# <b> XTravel Alarm </b> ![alt tag](https://www.freeonlinephotoeditor.com/tmp/img-58b525115c2e7/step0000.png?1488266529322) <br />
+# <b> XTravel Alarm </b> ![alt tag](https://i1.wp.com/krzysztofstepnikowski.files.wordpress.com/2017/03/logo.png?ssl=1&w=450) <br />
 
 Version 1.0
 
