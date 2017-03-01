@@ -8,6 +8,12 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 
 <br/>
 
+[![DajSiePoznac2017 Logo](https://i2.wp.com/krzysztofstepnikowski.files.wordpress.com/2017/03/dsp2017-1.png?ssl=1&w=450)](http://dajsiepoznac.pl/)
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+
+<br />
+
 <b>Główne funkcjonalności: </b>
 
 <ul>
