@@ -1,0 +1,2 @@
+#Ignore Android Manifest
+Android Manifest.xml
