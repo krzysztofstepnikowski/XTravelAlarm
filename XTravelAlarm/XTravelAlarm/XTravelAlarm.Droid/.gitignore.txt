@@ -1,2 +1,2 @@
 #Ignore Android Manifest
-AndroidManifest.xml
+./Properties/AndroidManifest.xml
