@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
@@ -6,14 +7,22 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.MainPage"
              Title="XTravel Alarm">
-    
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20,10,20,10">
-   
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20,10,20,10" Orientation="Vertical">
+
+        <Button Text="Pobierz lokalizacje"
+                Clicked="GetLocalizationClicked" />
         <maps:Map WidthRequest="320" HeightRequest="200"
-            x:Name="MyMap"
-            IsShowingUser="true"
-            MapType="Hybrid"
-        />
+                  x:Name="MyMap"
+                  IsShowingUser="true"
+                  MapType="Street" />
+
+
+        <Label x:Name="LatitudeLabel"
+               FontSize="17" />
+        <Label x:Name="LongitudeLabel"
+               FontSize="17" />
+
 
     </StackLayout>
 </ContentPage>

@@ -20,5 +20,7 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
         }
+
+      
     }
 }
