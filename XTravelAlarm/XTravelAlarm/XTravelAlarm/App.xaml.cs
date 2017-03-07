@@ -1,5 +1,7 @@
-﻿using Prism.Unity;
+﻿using Microsoft.Practices.Unity;
+using Prism.Unity;
 using Xamarin.Forms;
+using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 
 namespace XTravelAlarm
@@ -12,13 +14,15 @@ namespace XTravelAlarm
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainPage?title=Hello%20from%20Xamarin.Forms");
+            NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
+
+           
         }
 
       

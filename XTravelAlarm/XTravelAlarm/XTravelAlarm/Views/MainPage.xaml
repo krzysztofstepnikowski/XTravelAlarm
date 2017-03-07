@@ -12,16 +12,24 @@
 
         <Button Text="Pobierz lokalizacje"
                 Clicked="GetLocalizationClicked" />
+              
         <maps:Map WidthRequest="320" HeightRequest="200"
                   x:Name="MyMap"
                   IsShowingUser="true"
                   MapType="Street" />
 
-
-        <Label x:Name="LatitudeLabel"
-               FontSize="17" />
-        <Label x:Name="LongitudeLabel"
-               FontSize="17" />
+        <StackLayout HorizontalOptions="Start" VerticalOptions="Start"  Orientation="Horizontal" Margin="0,15,0,5">
+            <Label Text="Latitude:"
+                   FontSize="17" />
+            <Label Text="{Binding Latitude}"
+                   FontSize="17" />
+        </StackLayout>
+        <StackLayout HorizontalOptions="Start" VerticalOptions="Start" Orientation="Horizontal">
+            <Label Text="Longitude:"
+                   FontSize="17" />
+            <Label Text="{Binding Longitude}"
+                   FontSize="17" />
+        </StackLayout>
 
 
     </StackLayout>
