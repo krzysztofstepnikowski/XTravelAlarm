@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -11,8 +12,8 @@ namespace XTravelAlarm.ViewModels
     {
         public MainPageViewModel()
         {
-            GetLocationCommand = new DelegateCommand(async () => await RetreiveLocation());
             Map = new Map();
+            GetLocationCommand = new DelegateCommand(async () => await RetreiveLocation());
         }
 
         public async Task RetreiveLocation()

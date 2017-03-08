@@ -4,21 +4,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.MainPage"
              Title="XTravel Alarm">
 
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel />
+    </ContentPage.BindingContext>
+
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20,10,20,10" Orientation="Vertical">
 
         <Button Text="Pobierz lokalizacje"
-                Clicked="GetLocalizationClicked" />
-              
+                Command="{Binding GetLocationCommand}"
+                CommandParameter="{Binding .}" />
+
         <maps:Map WidthRequest="320" HeightRequest="200"
                   x:Name="MyMap"
                   IsShowingUser="true"
                   MapType="Street" />
 
-        <StackLayout HorizontalOptions="Start" VerticalOptions="Start"  Orientation="Horizontal" Margin="0,15,0,5">
+        <StackLayout HorizontalOptions="Start" VerticalOptions="Start" Orientation="Horizontal" Margin="0,15,0,5">
             <Label Text="Latitude:"
                    FontSize="17" />
             <Label Text="{Binding Latitude}"
