@@ -10,5 +10,11 @@ namespace XTravelAlarm.Views
             InitializeComponent();
             MyMap = (BindingContext as MainPageViewModel)?.Map;
         }
+
+        private void SliderOnValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            var distance = (int) DistanceSlider.Value;
+            DistanceLabel.Text = distance.ToString();
+        }
     }
 }

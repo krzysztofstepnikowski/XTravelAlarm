@@ -9,22 +9,22 @@ namespace XTravelAlarm.ViewModels
 {
     public partial class MainPageViewModel
     {
-        private string _latitude;
-
-        public string Latitude
-        {
-            get { return _latitude; }
-
-            set { SetProperty(ref _latitude, value); }
-        }
-
-        private string _longitude;
-
-        public string Longitude
-        {
-            get { return _longitude; }
-            set { SetProperty(ref _longitude, value); }
-        }
+//        private string _latitude;
+//
+//        public string Latitude
+//        {
+//            get { return _latitude; }
+//
+//            set { SetProperty(ref _latitude, value); }
+//        }
+//
+//        private string _longitude;
+//
+//        public string Longitude
+//        {
+//            get { return _longitude; }
+//            set { SetProperty(ref _longitude, value); }
+//        }
 
         private Map _map;
 

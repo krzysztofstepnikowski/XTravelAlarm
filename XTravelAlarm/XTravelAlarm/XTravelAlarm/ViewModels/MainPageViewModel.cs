@@ -22,10 +22,6 @@ namespace XTravelAlarm.ViewModels
             locator.DesiredAccuracy = 20;
 
             var position = await locator.GetPositionAsync(timeoutMilliseconds: 100000);
-
-            Latitude = $"{position.Latitude}";
-            Longitude = $"{position.Longitude}";
-
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(position.Latitude, position.Longitude),
                 Distance.FromMeters(1)));
         }

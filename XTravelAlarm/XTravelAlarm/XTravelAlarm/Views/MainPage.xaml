@@ -13,28 +13,53 @@
         <viewModels:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20,10,20,10" Orientation="Vertical">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Zapisz"
+                     Order="Primary" />
 
-        <Button Text="Pobierz lokalizacje"
-                Command="{Binding GetLocationCommand}"
-                CommandParameter="{Binding .}" />
+        <ToolbarItem Text="Ustawienia"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
 
-        <maps:Map WidthRequest="320" HeightRequest="200"
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            
+            <Image Source="ic_map_marker.png" />
+
+            <Entry Placeholder="Podaj miejsce docelowe, np. Warszawa"
+                   PlaceholderColor="Gray"
+                   FontSize="18"
+                   FontAttributes="Italic"
+                   Margin="5,15,0,15" />
+        </StackLayout>
+
+        <maps:Map WidthRequest="350" HeightRequest="220"
                   x:Name="MyMap"
                   IsShowingUser="true"
                   MapType="Street" />
 
-        <StackLayout HorizontalOptions="Start" VerticalOptions="Start" Orientation="Horizontal" Margin="0,15,0,5">
-            <Label Text="Latitude:"
-                   FontSize="17" />
-            <Label Text="{Binding Latitude}"
-                   FontSize="17" />
-        </StackLayout>
-        <StackLayout HorizontalOptions="Start" VerticalOptions="Start" Orientation="Horizontal">
-            <Label Text="Longitude:"
-                   FontSize="17" />
-            <Label Text="{Binding Longitude}"
-                   FontSize="17" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start"
+                     Padding="5,40,5,20">
+            <Image Source="ic_map_marker_radius.png" />
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+
+                <Label x:Name="DistanceLabel"
+                       FontSize="24"
+                       HorizontalOptions="Center" />
+
+                <Slider Minimum="0"
+                        Maximum="50"
+                        ValueChanged="SliderOnValueChanged"
+                        x:Name="DistanceSlider" />
+
+
+            </StackLayout>
+            <Button Image="ic_redo_variant.png"
+                    WidthRequest="48"
+                    HeightRequest="48"
+                    BackgroundColor="Transparent"
+                   />
         </StackLayout>
 
 

@@ -200,6 +200,24 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_map_marker.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_map_marker.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_map_marker.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_map_marker.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_map_marker.png" />
+    <AndroidResource Include="Resources\drawable\ic_map_marker.png" />
+    <AndroidResource Include="Resources\drawable\ic_map_marker_radius.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_map_marker_radius.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_map_marker_radius.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_map_marker_radius.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_map_marker_radius.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_map_marker_radius.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_redo_variant.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_redo_variant.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_redo_variant.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_redo_variant.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_redo_variant.png" />
+    <AndroidResource Include="Resources\drawable\ic_redo_variant.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XTravelAlarm\XTravelAlarm.csproj">
