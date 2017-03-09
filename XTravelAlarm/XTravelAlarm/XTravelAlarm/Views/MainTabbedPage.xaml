@@ -8,5 +8,5 @@
             Title="XTravel Alarm">
     <!--Pages can be added as references or inline-->
     <main:MainPage />
-    <alarmPage:MyAlarmsPage />
+    <alarmPage:AlarmsPage />
 </TabbedPage>

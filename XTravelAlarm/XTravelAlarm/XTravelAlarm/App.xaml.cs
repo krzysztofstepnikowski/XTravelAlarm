@@ -26,7 +26,7 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
-            Container.RegisterTypeForNavigation<MyAlarmsPage, AlarmPageViewModel>();
+            Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
             Container.RegisterType<IAlarmPageFeatures, AlarmPageFeatureFacade>();
 
             Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(new AlarmListProvider()));

@@ -14,8 +14,9 @@ namespace XTravelAlarm.ViewModels
 
         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
         {
-            _alarmPageFeatures = alarmPageFeatures;
             OnResume();
+            _alarmPageFeatures = alarmPageFeatures;
+            
         }
 
         public void OnResume()
