@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.MainPage"
-             Title="XTravel Alarm">
+             Title="Budzik">
 
     <ContentPage.BindingContext>
         <viewModels:MainPageViewModel />
@@ -24,7 +24,7 @@
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            
+
             <Image Source="ic_map_marker.png" />
 
             <Entry Placeholder="Podaj miejsce docelowe, np. Warszawa"
@@ -58,8 +58,7 @@
             <Button Image="ic_redo_variant.png"
                     WidthRequest="48"
                     HeightRequest="48"
-                    BackgroundColor="Transparent"
-                   />
+                    BackgroundColor="Transparent" />
         </StackLayout>
 
 

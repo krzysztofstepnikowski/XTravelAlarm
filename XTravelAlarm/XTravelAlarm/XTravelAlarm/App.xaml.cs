@@ -14,15 +14,16 @@ namespace XTravelAlarm
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainPage");
+            NavigationService.NavigateAsync("NavigationPage/TabsPage");
         }
 
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
+            Container.RegisterTypeForNavigation<TabsPage>();
 
-           
+
         }
 
       
