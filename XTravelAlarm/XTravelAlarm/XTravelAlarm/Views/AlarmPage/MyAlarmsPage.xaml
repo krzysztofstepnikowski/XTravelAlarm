@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XTravelAlarm.Views.AlarmPage.MyAlarmsPage"
+             Title="Moje alarmy">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ustawienia"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Orientation="Vertical" Padding="8,20,8,10">
+        <ListView x:Name="AlarmsListView"
+                  SeparatorColor="Silver"
+                  ItemsSource="{Binding Alarms}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}"
+                                   FontSize="18"
+                                   TextColor="Black"
+                                   Margin="5" />
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

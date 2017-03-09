@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Prism.Commands;
@@ -25,6 +27,7 @@ namespace XTravelAlarm.ViewModels
             Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(position.Latitude, position.Longitude),
                 Distance.FromMeters(1)));
         }
+
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {

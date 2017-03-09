@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 using XTravelAlarm.ViewModels;
 
-namespace XTravelAlarm.Views
+namespace XTravelAlarm.Views.Main
 {
     public partial class MainPage : ContentPage
     {

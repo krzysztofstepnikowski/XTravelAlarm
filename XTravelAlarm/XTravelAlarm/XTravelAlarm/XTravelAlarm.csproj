@@ -35,16 +35,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
+    <Compile Include="Features\AlarmList\Alarm.cs" />
+    <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AlarmPageViewModel.cs" />
+    <Compile Include="ViewModels\AlarmPageViewModel.Properties.cs">
+      <DependentUpon>AlarmPageViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainPageViewModel.Commands.cs">
       <DependentUpon>MainPageViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Views\MyAlarmsPage.xaml.cs">
+    <Compile Include="Views\AlarmPage\IAlarmPageFeatures.cs" />
+    <Compile Include="Views\AlarmPage\MyAlarmsPage.xaml.cs">
       <DependentUpon>MyAlarmsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TabsPage.xaml.cs">
-      <DependentUpon>TabsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -57,14 +62,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MainPage.xaml">
+    <EmbeddedResource Include="Views\Main\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="ViewModels\MainPageViewModel.Properties.cs">
       <DependentUpon>MainPageViewModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
+    <Compile Include="Views\MainTabbedPage.xaml.cs">
+      <DependentUpon>MainTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -117,13 +125,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\TabsPage.xaml">
+    <EmbeddedResource Include="Views\AlarmPage\MyAlarmsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MyAlarmsPage.xaml">
+    <EmbeddedResource Include="Views\MainTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

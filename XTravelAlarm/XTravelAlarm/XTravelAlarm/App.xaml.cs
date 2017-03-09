@@ -1,8 +1,12 @@
 ﻿using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Xamarin.Forms;
+using XTravelAlarm.Adapters.Features;
+using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
+using XTravelAlarm.Views.AlarmPage;
+using XTravelAlarm.Views.Main;
 
 namespace XTravelAlarm
 {
@@ -14,14 +18,18 @@ namespace XTravelAlarm
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/TabsPage");
+            NavigationService.NavigateAsync("NavigationPage/MainTabbedPage");
         }
 
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
+            Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
-            Container.RegisterTypeForNavigation<TabsPage>();
+            Container.RegisterTypeForNavigation<MyAlarmsPage, AlarmPageViewModel>();
+            Container.RegisterType<IAlarmPageFeatures, AlarmPageFeatureFacade>();
+
+            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(new AlarmListProvider()));
 
 
         }

@@ -6,7 +6,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="XTravelAlarm.Views.MainPage"
+             x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
 
     <ContentPage.BindingContext>
@@ -38,9 +38,16 @@
                   x:Name="MyMap"
                   IsShowingUser="true"
                   MapType="Street" />
+        
+        <Label Text="Ustaw odległość od miejsca docelowego"
+               FontSize="18"
+               FontAttributes="Italic"
+               Margin="5"
+               HorizontalTextAlignment="Center"
+               />
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start"
-                     Padding="5,40,5,20">
+                     Padding="5,20,5,20">
             <Image Source="ic_map_marker_radius.png" />
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
 
@@ -55,10 +62,6 @@
 
 
             </StackLayout>
-            <Button Image="ic_redo_variant.png"
-                    WidthRequest="48"
-                    HeightRequest="48"
-                    BackgroundColor="Transparent" />
         </StackLayout>
 
 
