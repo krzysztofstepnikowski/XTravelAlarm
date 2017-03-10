@@ -178,12 +178,6 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\tabs.xml" />
     <AndroidResource Include="Resources\layout\toolbar.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -196,28 +190,34 @@
     </Content>
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_map_marker.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_map_marker.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_map_marker.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_map_marker.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_map_marker.png" />
-    <AndroidResource Include="Resources\drawable\ic_map_marker.png" />
-    <AndroidResource Include="Resources\drawable\ic_map_marker_radius.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_map_marker_radius.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_map_marker_radius.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_map_marker_radius.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_map_marker_radius.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_map_marker_radius.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_redo_variant.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_redo_variant.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_redo_variant.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_redo_variant.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_redo_variant.png" />
-    <AndroidResource Include="Resources\drawable\ic_redo_variant.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_room.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_room.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_room.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room.png" />
+    <AndroidResource Include="Resources\drawable\ic_room.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_room.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_notifications_active.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_notifications_active.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_notifications_active.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_notifications_active.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_notifications_active.png" />
+    <AndroidResource Include="Resources\drawable\ic_notifications_active.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_alarm.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_alarm.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_alarm.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_alarm.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_alarm.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_alarm_add.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_alarm_add.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_alarm_add.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_alarm_add.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_alarm_add.png" />
+    <AndroidResource Include="Resources\drawable\ic_alarm.png" />
+    <AndroidResource Include="Resources\drawable\ic_alarm_add.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XTravelAlarm\XTravelAlarm.csproj">

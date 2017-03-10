@@ -3,7 +3,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XTravelAlarm.Views.AlarmPage.AlarmsPage"
-             Title="Moje alarmy">
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Moje alarmy"
+             Icon="ic_alarm_add.png">
+
+<!--    <ContentPage.BindingContext>-->
+<!--        <viewModels:AlarmPageViewModel />-->
+<!--    </ContentPage.BindingContext>-->
 
 
     <ContentPage.ToolbarItems>

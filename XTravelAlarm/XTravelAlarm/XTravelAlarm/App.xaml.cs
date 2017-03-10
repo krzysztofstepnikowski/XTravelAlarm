@@ -23,10 +23,13 @@ namespace XTravelAlarm
 
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
+            Container.RegisterTypeForNavigation<MainTabbedPage>();
+            Container.RegisterTypeForNavigation<NavigationPage>();
+           
+            
+            
             Container.RegisterType<IAlarmPageFeatures, AlarmPageFeatureFacade>();
 
             Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(new AlarmListProvider()));

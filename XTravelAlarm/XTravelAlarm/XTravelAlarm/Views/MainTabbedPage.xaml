@@ -3,10 +3,18 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="XTravelAlarm.Views.MainTabbedPage"
-            xmlns:alarmPage="clr-namespace:XTravelAlarm.Views.AlarmPage;assembly=XTravelAlarm"
+            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            prism:ViewModelLocator.AutowireViewModel="True"
             xmlns:main="clr-namespace:XTravelAlarm.Views.Main;assembly=XTravelAlarm"
+            xmlns:alarmPage="clr-namespace:XTravelAlarm.Views.AlarmPage;assembly=XTravelAlarm"
             Title="XTravel Alarm">
     <!--Pages can be added as references or inline-->
+
+    
     <main:MainPage />
+
+
     <alarmPage:AlarmsPage />
+
+
 </TabbedPage>

@@ -7,11 +7,12 @@
              xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
-             Title="Budzik">
-
-    <ContentPage.BindingContext>
-        <viewModels:MainPageViewModel />
-    </ContentPage.BindingContext>
+             Title="Budzik"
+             Icon="ic_alarm.png">
+    <!---->
+    <!--    <ContentPage.BindingContext>-->
+    <!--        <viewModels:MainPageViewModel />-->
+    <!--    </ContentPage.BindingContext>-->
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zapisz"
@@ -21,49 +22,58 @@
                      Order="Secondary" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
+    <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
 
-            <Image Source="ic_map_marker.png" />
+                <Image Source="ic_room.png" />
 
-            <Entry Placeholder="Podaj miejsce docelowe, np. Warszawa"
-                   PlaceholderColor="Gray"
+                <Entry Placeholder="Podaj miejsce docelowe, np. Warszawa"
+                       PlaceholderColor="Gray"
+                       FontSize="18"
+                       FontAttributes="Italic"
+                       Margin="5,15,0,15" />
+            </StackLayout>
+
+            <maps:Map WidthRequest="350" HeightRequest="220"
+                      x:Name="MyMap"
+                      IsShowingUser="true"
+                      MapType="Street" />
+
+            <Label Text="Ustaw odległość od miejsca docelowego"
                    FontSize="18"
                    FontAttributes="Italic"
-                   Margin="5,15,0,15" />
-        </StackLayout>
+                   Margin="5"
+                   HorizontalTextAlignment="Center" />
 
-        <maps:Map WidthRequest="350" HeightRequest="220"
-                  x:Name="MyMap"
-                  IsShowingUser="true"
-                  MapType="Street" />
-        
-        <Label Text="Ustaw odległość od miejsca docelowego"
-               FontSize="18"
-               FontAttributes="Italic"
-               Margin="5"
-               HorizontalTextAlignment="Center"
-               />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start"
+                         Padding="5,20,5,20">
+                <Image Source="ic_notifications_active.png" />
+                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start"
-                     Padding="5,20,5,20">
-            <Image Source="ic_map_marker_radius.png" />
-            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label x:Name="DistanceLabel"
+                               FontSize="24"
+                               HorizontalOptions="Center" />
 
-                <Label x:Name="DistanceLabel"
-                       FontSize="24"
-                       HorizontalOptions="Center" />
-
-                <Slider Minimum="0"
-                        Maximum="50"
-                        ValueChanged="SliderOnValueChanged"
-                        x:Name="DistanceSlider" />
+                        <Label Text="Km"
+                               FontAttributes="Bold"
+                               FontSize="24"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
 
 
+                    <Slider Minimum="0"
+                            Maximum="50"
+                            ValueChanged="SliderOnValueChanged"
+                            x:Name="DistanceSlider" />
+
+
+                </StackLayout>
             </StackLayout>
+
+
         </StackLayout>
-
-
-    </StackLayout>
+    </ScrollView>
 </ContentPage>
