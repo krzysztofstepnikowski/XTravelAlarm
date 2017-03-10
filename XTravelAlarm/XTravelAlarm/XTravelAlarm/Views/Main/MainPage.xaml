@@ -8,7 +8,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik"
-             Icon="ic_alarm.png">
+             >
     <!---->
     <!--    <ContentPage.BindingContext>-->
     <!--        <viewModels:MainPageViewModel />-->

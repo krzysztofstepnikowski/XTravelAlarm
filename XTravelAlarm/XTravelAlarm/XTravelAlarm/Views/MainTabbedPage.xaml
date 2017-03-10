@@ -11,10 +11,22 @@
     <!--Pages can be added as references or inline-->
 
     
-    <main:MainPage />
+    <main:MainPage>
+        <main:MainPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource"
+                        Android=""
+                        iOS="ic_alarm_add.png" />
+        </main:MainPage.Icon>
+    </main:MainPage>
 
 
-    <alarmPage:AlarmsPage />
+    <alarmPage:AlarmsPage>
+        <alarmPage:AlarmsPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource"
+                        Android=""
+                        iOS="ic_alarm.png" />
+        </alarmPage:AlarmsPage.Icon>
+    </alarmPage:AlarmsPage>
 
 
 </TabbedPage>
