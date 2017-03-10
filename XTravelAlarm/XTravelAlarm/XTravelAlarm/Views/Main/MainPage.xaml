@@ -27,13 +27,11 @@
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
 
-                <Image Source="ic_room.png" />
-
-                <Entry Placeholder="Podaj miejsce docelowe, np. Warszawa"
+                <SearchBar Placeholder="Podaj miejsce docelowe, np. Warszawa"
                        PlaceholderColor="Gray"
                        FontSize="18"
                        FontAttributes="Italic"
-                       Margin="5,15,0,15" />
+                       />
             </StackLayout>
 
             <maps:Map WidthRequest="350" HeightRequest="220"
