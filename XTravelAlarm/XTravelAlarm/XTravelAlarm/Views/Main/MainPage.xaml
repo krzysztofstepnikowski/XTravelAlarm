@@ -7,8 +7,7 @@
              xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
-             Title="Budzik"
-             >
+             Title="Budzik">
     <!---->
     <!--    <ContentPage.BindingContext>-->
     <!--        <viewModels:MainPageViewModel />-->
@@ -23,55 +22,52 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Orientation="Vertical">
+    <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
 
-                <SearchBar Placeholder="Podaj miejsce docelowe, np. Warszawa"
+        <SearchBar Placeholder="Podaj miejsce docelowe"
                        PlaceholderColor="Gray"
                        FontSize="18"
-                       FontAttributes="Italic"
-                       />
-            </StackLayout>
+                       FontAttributes="Italic" />
 
-            <maps:Map WidthRequest="350" HeightRequest="220"
+
+        <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"
                       IsShowingUser="true"
                       MapType="Street" />
 
-            <Label Text="Ustaw odległość od miejsca docelowego"
+        <Label Text="Ustaw odległość od miejsca docelowego"
                    FontSize="18"
                    FontAttributes="Italic"
                    Margin="5"
                    HorizontalTextAlignment="Center" />
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start"
-                         Padding="5,20,5,20">
-                <Image Source="ic_notifications_active.png" />
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Image Source="ic_notifications_active.png" />
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
 
-                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                        <Label x:Name="DistanceLabel"
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                    <Label x:Name="DistanceLabel"
                                FontSize="24"
                                HorizontalOptions="Center" />
 
-                        <Label Text="Km"
+                    <Label Text="Km"
                                FontAttributes="Bold"
                                FontSize="24"
                                HorizontalOptions="Center" />
-                    </StackLayout>
+                </StackLayout>
 
 
-                    <Slider Minimum="0"
+                <Slider Minimum="0"
                             Maximum="50"
                             ValueChanged="SliderOnValueChanged"
                             x:Name="DistanceSlider" />
 
 
-                </StackLayout>
             </StackLayout>
-
-
         </StackLayout>
+
+
+    </StackLayout>
     </ScrollView>
 </ContentPage>
