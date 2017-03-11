@@ -19,7 +19,7 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 <ul>
 <li>Ustawienie budzika w zależności od odległości od miejsca docelowego</li>
 <br/>
-<li>Możliwość zapamiętywania alarmów (dodawanie/usuwanie do/z ulubionych)</li>
+<li>Możliwość zapamiętywania alarmów (dodawanie/usuwanie)</li>
 <br/>
 <li>Wybór i ustawienie dźwięku alarmu</li>
 <br/>
