@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using XTravelAlarm.Views.AlarmPage;
+using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmList
 {

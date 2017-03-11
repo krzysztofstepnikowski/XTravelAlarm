@@ -47,8 +47,8 @@
       <DependentUpon>MainPageViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Views\AlarmPage\IAlarmPageFeatures.cs" />
-    <Compile Include="Views\AlarmPage\AlarmsPage.xaml.cs">
+    <Compile Include="Views\Alarms\IAlarmPageFeatures.cs" />
+    <Compile Include="Views\Alarms\AlarmsPage.xaml.cs">
       <DependentUpon>AlarmsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -125,7 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\AlarmPage\AlarmsPage.xaml">
+    <EmbeddedResource Include="Views\Alarms\AlarmsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

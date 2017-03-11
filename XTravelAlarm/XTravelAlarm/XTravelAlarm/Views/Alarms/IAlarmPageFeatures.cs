@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using XTravelAlarm.Features.AlarmList;
 
-namespace XTravelAlarm.Views.AlarmPage
+namespace XTravelAlarm.Views.Alarms
 {
     public interface IAlarmPageFeatures
     {

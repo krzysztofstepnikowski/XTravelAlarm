@@ -5,7 +5,7 @@ using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
-using XTravelAlarm.Views.AlarmPage;
+using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Views.Main;
 
 namespace XTravelAlarm

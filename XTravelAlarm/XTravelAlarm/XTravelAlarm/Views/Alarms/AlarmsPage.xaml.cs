@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace XTravelAlarm.Views.AlarmPage
+namespace XTravelAlarm.Views.Alarms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AlarmsPage : ContentPage

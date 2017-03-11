@@ -4,7 +4,7 @@ using System.Diagnostics;
 using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Features.AlarmList;
-using XTravelAlarm.Views.AlarmPage;
+using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.ViewModels
 {
