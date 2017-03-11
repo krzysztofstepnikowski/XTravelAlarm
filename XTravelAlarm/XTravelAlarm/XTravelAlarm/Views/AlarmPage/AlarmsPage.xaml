@@ -4,14 +4,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XTravelAlarm.Views.AlarmPage.AlarmsPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
-             Title="Moje alarmy"
-             >
+             Title="Moje alarmy">
 
-<!--    <ContentPage.BindingContext>-->
-<!--        <viewModels:AlarmPageViewModel />-->
-<!--    </ContentPage.BindingContext>-->
+    <!--    <ContentPage.BindingContext>-->
+    <!--        <viewModels:AlarmPageViewModel />-->
+    <!--    </ContentPage.BindingContext>-->
 
 
     <ContentPage.ToolbarItems>
@@ -21,8 +19,14 @@
 
     <StackLayout Orientation="Vertical" Padding="8,20,8,10">
         <ListView x:Name="AlarmsListView"
-                  SeparatorColor="Silver"
+                  HasUnevenRows="True"
                   ItemsSource="{Binding Alarms}">
+
+            <ListView.SeparatorColor>
+                <OnPlatform x:TypeArguments="Color"
+                            iOS="Transparent"
+                            Android="Silver" />
+            </ListView.SeparatorColor>
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -33,6 +37,7 @@
                                    FontSize="18"
                                    TextColor="Black"
                                    Margin="5" />
+                            <Switch IsToggled="True" HorizontalOptions="End" />
 
                         </StackLayout>
                     </ViewCell>
