@@ -1,0 +1,179 @@
+diff --git a/XTravelAlarm/XTravelAlarm/XTravelAlarm/Utils/MultipageNavigationBehavior.cs b/XTravelAlarm/XTravelAlarm/XTravelAlarm/Utils/MultipageNavigationBehavior.cs
+new file mode 100644
+index 0000000..309c339
+--- /dev/null
++++ b/XTravelAlarm/XTravelAlarm/XTravelAlarm/Utils/MultipageNavigationBehavior.cs
+@@ -0,0 +1,50 @@
++﻿using Prism.Navigation;
++using System;
++using Xamarin.Forms;
++
++namespace XTravelAlarm.Utils
++{
++    public interface IMultiPageNavigationAware
++    {
++        void OnInternalNavigatedFrom(NavigationParameters navParams);
++        void OnInternalNavigatedTo(NavigationParameters navParams);
++    }
++
++    public class MultipageNavigationBehavior : Behavior<MultiPage<Page>>
++    {
++        private Page _lastSelectedPage;
++        private MultiPage<Page> _associatedObject;
++
++        protected override void OnAttachedTo(MultiPage<Page> bindable)
++        {
++            _associatedObject = bindable;
++            _associatedObject.CurrentPageChanged += CurrentPageChangedHandler;
++        }
++
++        protected override void OnDetachingFrom(MultiPage<Page> bindable)
++        {
++            _associatedObject.CurrentPageChanged -= CurrentPageChangedHandler;
++        }
++
++        private void CurrentPageChangedHandler(object sender, EventArgs e)
++        {
++            NavigationParameters navParams = new NavigationParameters();
++            if (_lastSelectedPage != null)
++            {
++                IMultiPageNavigationAware lastPageAware = _lastSelectedPage.BindingContext as IMultiPageNavigationAware;
++                if (lastPageAware != null)
++                {
++                    lastPageAware.OnInternalNavigatedFrom(navParams);
++                }
++
++                IMultiPageNavigationAware newPageAware = _associatedObject.CurrentPage.BindingContext as IMultiPageNavigationAware;
++                if (newPageAware != null)
++                {
++                    newPageAware.OnInternalNavigatedTo(navParams);
++                }
++            }
++
++            _lastSelectedPage = _associatedObject.CurrentPage;
++        }
++    }
++}
+diff --git a/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/AlarmPageViewModel.cs b/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/AlarmPageViewModel.cs
+index 7b61b64..f160801 100644
+--- a/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/AlarmPageViewModel.cs
++++ b/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/AlarmPageViewModel.cs
+@@ -5,25 +5,20 @@ using Prism.Mvvm;
+ using Prism.Navigation;
+ using XTravelAlarm.Features.AlarmList;
+ using XTravelAlarm.Views.Alarms;
++using XTravelAlarm.Utils;
+ 
+ namespace XTravelAlarm.ViewModels
+ {
+-    public partial class AlarmPageViewModel : BindableBase, INavigationAware
++    public partial class AlarmPageViewModel : BindableBase, INavigationAware, IMultiPageNavigationAware
+     {
+         private readonly IAlarmPageFeatures _alarmPageFeatures;
+ 
+         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
+         {
+-//            OnResume();
+             _alarmPageFeatures = alarmPageFeatures;
+             
+         }
+ 
+-        public AlarmPageViewModel()
+-        {
+-            
+-        }
+-
+         public void OnResume()
+         {
+             try
+@@ -41,12 +36,20 @@ namespace XTravelAlarm.ViewModels
+ 
+         public void OnNavigatedFrom(NavigationParameters parameters)
+         {
+-            
+         }
+ 
+         public void OnNavigatedTo(NavigationParameters parameters)
+         {
+-            
++            OnResume();
++        }
++
++        public void OnInternalNavigatedFrom(NavigationParameters navParams)
++        {
++        }
++
++        public void OnInternalNavigatedTo(NavigationParameters navParams)
++        {
++            OnResume();
+         }
+     }
+ }
+diff --git a/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/MainPageViewModel.cs b/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/MainPageViewModel.cs
+index 7b62a27..2a58abf 100644
+--- a/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/MainPageViewModel.cs
++++ b/XTravelAlarm/XTravelAlarm/XTravelAlarm/ViewModels/MainPageViewModel.cs
+@@ -28,7 +28,6 @@ namespace XTravelAlarm.ViewModels
+                 Distance.FromMeters(1)));
+         }
+ 
+-
+         public void OnNavigatedFrom(NavigationParameters parameters)
+         {
+         }
+diff --git a/XTravelAlarm/XTravelAlarm/XTravelAlarm/Views/MainTabbedPage.xaml b/XTravelAlarm/XTravelAlarm/XTravelAlarm/Views/MainTabbedPage.xaml
+index f343d0c..1148eb1 100644
+--- a/XTravelAlarm/XTravelAlarm/XTravelAlarm/Views/MainTabbedPage.xaml
++++ b/XTravelAlarm/XTravelAlarm/XTravelAlarm/Views/MainTabbedPage.xaml
+@@ -2,25 +2,24 @@
+ 
+ <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
++            xmlns:u="clr-namespace:XTravelAlarm.Utils;assembly=XTravelAlarm"
+             x:Class="XTravelAlarm.Views.MainTabbedPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:main="clr-namespace:XTravelAlarm.Views.Main;assembly=XTravelAlarm"
+             xmlns:alarmPage="clr-namespace:XTravelAlarm.Views.Alarms;assembly=XTravelAlarm"
+             Title="XTravel Alarm">
+-    <!--Pages can be added as references or inline-->
+-
+-    
++    <TabbedPage.Behaviors>
++      <u:MultipageNavigationBehavior />
++    </TabbedPage.Behaviors>
++  
+     <main:MainPage>
+         <main:MainPage.Icon>
+             <OnPlatform x:TypeArguments="FileImageSource"
+                         Android=""
+                         iOS="ic_alarm_add.png" />
+-        </main:MainPage.Icon>
+-       
++        </main:MainPage.Icon>       
+     </main:MainPage>
+-
+-
+     <alarmPage:AlarmsPage>
+         <alarmPage:AlarmsPage.Icon>
+             <OnPlatform x:TypeArguments="FileImageSource"
+@@ -28,6 +27,4 @@
+                         iOS="ic_alarm.png" />
+         </alarmPage:AlarmsPage.Icon>
+     </alarmPage:AlarmsPage>
+-
+-
+ </TabbedPage>
+\ No newline at end of file
+diff --git a/XTravelAlarm/XTravelAlarm/XTravelAlarm/XTravelAlarm.csproj b/XTravelAlarm/XTravelAlarm/XTravelAlarm/XTravelAlarm.csproj
+index 3b684af..4bad4c9 100644
+--- a/XTravelAlarm/XTravelAlarm/XTravelAlarm/XTravelAlarm.csproj
++++ b/XTravelAlarm/XTravelAlarm/XTravelAlarm/XTravelAlarm.csproj
+@@ -39,6 +39,7 @@
+     <Compile Include="Features\AlarmList\Alarm.cs" />
+     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
+     <Compile Include="Properties\AssemblyInfo.cs" />
++    <Compile Include="Utils\MultipageNavigationBehavior.cs" />
+     <Compile Include="ViewModels\AlarmPageViewModel.cs" />
+     <Compile Include="ViewModels\AlarmPageViewModel.Properties.cs">
+       <DependentUpon>AlarmPageViewModel.cs</DependentUpon>
