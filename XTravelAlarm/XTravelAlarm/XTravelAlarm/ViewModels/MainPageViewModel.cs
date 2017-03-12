@@ -28,7 +28,6 @@ namespace XTravelAlarm.ViewModels
                 Distance.FromMeters(1)));
         }
 
-
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
         }

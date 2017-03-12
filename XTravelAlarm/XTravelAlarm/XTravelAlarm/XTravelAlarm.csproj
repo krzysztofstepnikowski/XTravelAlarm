@@ -39,6 +39,7 @@
     <Compile Include="Features\AlarmList\Alarm.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\MultipageNavigationBehavior.cs" />
     <Compile Include="ViewModels\AlarmPageViewModel.cs" />
     <Compile Include="ViewModels\AlarmPageViewModel.Properties.cs">
       <DependentUpon>AlarmPageViewModel.cs</DependentUpon>

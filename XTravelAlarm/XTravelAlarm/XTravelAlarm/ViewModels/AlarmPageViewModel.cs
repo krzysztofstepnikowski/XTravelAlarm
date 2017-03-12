@@ -5,22 +5,17 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.Views.Alarms;
+using XTravelAlarm.Utils;
 
 namespace XTravelAlarm.ViewModels
 {
-    public partial class AlarmPageViewModel : BindableBase, INavigationAware
+    public partial class AlarmPageViewModel : BindableBase, INavigationAware, IMultiPageNavigationAware
     {
         private readonly IAlarmPageFeatures _alarmPageFeatures;
 
         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
         {
-//            OnResume();
             _alarmPageFeatures = alarmPageFeatures;
-            
-        }
-
-        public AlarmPageViewModel()
-        {
             
         }
 
@@ -41,12 +36,20 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
-            
         }
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            
+            OnResume();
+        }
+
+        public void OnInternalNavigatedFrom(NavigationParameters navParams)
+        {
+        }
+
+        public void OnInternalNavigatedTo(NavigationParameters navParams)
+        {
+            OnResume();
         }
     }
 }
