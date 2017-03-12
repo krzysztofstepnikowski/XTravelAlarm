@@ -17,9 +17,9 @@
                      Order="Secondary" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Orientation="Vertical" Padding="8,20,8,10">
+    <StackLayout Orientation="Vertical" Padding="8,8,8,0">
         <ListView x:Name="AlarmsListView"
-                  HasUnevenRows="True"
+                  RowHeight="50"
                   ItemsSource="{Binding Alarms}">
 
             <ListView.SeparatorColor>
@@ -36,8 +36,8 @@
                             <Label Text="{Binding Name}"
                                    FontSize="18"
                                    TextColor="Black"
-                                   Margin="5" />
-                            <Switch IsToggled="True" HorizontalOptions="End" />
+                                   Margin="8" />
+                            <Switch IsToggled="True" HorizontalOptions="EndAndExpand"/>
 
                         </StackLayout>
                     </ViewCell>
