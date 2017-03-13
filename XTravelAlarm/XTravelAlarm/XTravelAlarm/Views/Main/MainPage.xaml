@@ -4,18 +4,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik"
             >
-    <!---->
-    <!--    <ContentPage.BindingContext>-->
-    <!--        <viewModels:MainPageViewModel />-->
-    <!--    </ContentPage.BindingContext>-->
+    
+        <ContentPage.BindingContext>
+            <viewModels:MainPageViewModel />
+        </ContentPage.BindingContext>
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zapisz"
-                     Order="Primary" />
+                     Order="Primary"
+                     Command="{Binding SaveAlarmCommand}"/>
 
         <ToolbarItem Text="Ustawienia"
                      Order="Secondary" />
