@@ -2,7 +2,6 @@
 
 namespace XTravelAlarm.Features.AlarmRinging
 {
-    //Decyzja czy budzik ma zadzwonic!!!
     public class AlarmCaller
     {
         private readonly Position alarmPosition;
@@ -17,7 +16,7 @@ namespace XTravelAlarm.Features.AlarmRinging
         }
 
 
-        public double calculateDistance(Position position, Position alarmPosition)
+        public double CalculateDistance(Position position, Position alarmPosition)
         {
             var currentLatitude = position.Latitude;
             var currentLongitude = position.Longitude;
@@ -32,7 +31,7 @@ namespace XTravelAlarm.Features.AlarmRinging
 
         public void UpdatePosition(Position position)
         {
-            var currentDistance = calculateDistance(position, alarmPosition);
+            var currentDistance = CalculateDistance(position, alarmPosition);
 
             if (currentDistance <= alarmDistance)
             {

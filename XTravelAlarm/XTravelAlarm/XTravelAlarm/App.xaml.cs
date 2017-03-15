@@ -1,7 +1,9 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Collections.Generic;
+using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Adapters.Features;
+using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
@@ -12,7 +14,9 @@ namespace XTravelAlarm
 {
     public partial class App : PrismApplication
     {
-        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        public App(IPlatformInitializer initializer = null) : base(initializer)
+        {
+        }
 
         protected override void OnInitialized()
         {
@@ -23,20 +27,16 @@ namespace XTravelAlarm
 
         protected override void RegisterTypes()
         {
+            var alarmRepository = new HashSet<Location>();
+
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
-           
-            
-            
-            Container.RegisterType<IAlarmPageFeatures, AlarmPageFeatureFacade>();
-
-            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(new AlarmListProvider()));
 
 
+            Container.RegisterInstance<IMainPageFeatures>(new MainPageFeatureFacade(null, null));
+            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(null));
         }
-
-      
     }
 }

@@ -7,10 +7,6 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="Moje alarmy">
 
-    <!--    <ContentPage.BindingContext>-->
-    <!--        <viewModels:AlarmPageViewModel />-->
-    <!--    </ContentPage.BindingContext>-->
-
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Ustawienia"

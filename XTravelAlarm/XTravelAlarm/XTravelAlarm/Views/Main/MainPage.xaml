@@ -4,73 +4,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             xmlns:viewModels="clr-namespace:XTravelAlarm.ViewModels;assembly=XTravelAlarm"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
-             Title="Budzik"
-            >
-    
-        <ContentPage.BindingContext>
-            <viewModels:MainPageViewModel />
-        </ContentPage.BindingContext>
-    
+             Title="Budzik">
+
+  
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zapisz"
                      Order="Primary"
-                     Command="{Binding SaveAlarmCommand}"/>
+                     Command="{Binding SaveAlarmCommand}" />
 
         <ToolbarItem Text="Ustawienia"
                      Order="Secondary" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-    <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
 
 
-        <SearchBar Placeholder="Podaj miejsce docelowe"
+            <SearchBar Placeholder="Podaj miejsce docelowe"
                        PlaceholderColor="Gray"
                        FontSize="18"
-                       FontAttributes="Italic" />
+                       FontAttributes="Italic"
+                       Text="{Binding Name}" />
 
 
-        <maps:Map WidthRequest="350" HeightRequest="220"
+            <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"
                       IsShowingUser="true"
                       MapType="Street" />
 
-        <Label Text="Ustaw odległość od miejsca docelowego"
+            <Label Text="Ustaw odległość od miejsca docelowego"
                    FontSize="18"
                    FontAttributes="Italic"
                    Margin="5"
                    HorizontalTextAlignment="Center" />
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Image Source="ic_notifications_active.png" />
-            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Image Source="ic_notifications_active.png" />
+                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
 
-                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                    <Label x:Name="DistanceLabel"
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label x:Name="DistanceLabel"
                                FontSize="24"
                                HorizontalOptions="Center"
-                            Text="0"/>
+                               Text="0" />
 
-                    <Label Text="Km"
+                        <Label Text="Km"
                                FontAttributes="Bold"
                                FontSize="24"
                                HorizontalOptions="Center" />
-                </StackLayout>
+                    </StackLayout>
 
 
-                <Slider Minimum="0"
+                    <Slider Minimum="0"
                             Maximum="50"
                             ValueChanged="SliderOnValueChanged"
                             x:Name="DistanceSlider" />
 
 
+                </StackLayout>
             </StackLayout>
+
+
         </StackLayout>
-
-
-    </StackLayout>
     </ScrollView>
 </ContentPage>

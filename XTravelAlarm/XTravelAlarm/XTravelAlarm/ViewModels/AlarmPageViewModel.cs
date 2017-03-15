@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Prism.Mvvm;
 using Prism.Navigation;
-using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Utils;
 
@@ -25,7 +25,7 @@ namespace XTravelAlarm.ViewModels
             {
                 var alarms = _alarmPageFeatures.GetAlarms();
 
-                Alarms = new ObservableCollection<Alarm>(alarms);
+                Alarms = new ObservableCollection<Location>(alarms);
             }
             catch (Exception ex)
             {

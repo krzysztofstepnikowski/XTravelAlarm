@@ -37,10 +37,12 @@
   <ItemGroup>
     <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
     <Compile Include="Adapters\Features\MainPageFeatureFacade.cs" />
-    <Compile Include="Features\AlarmList\Alarm.cs" />
+    <Compile Include="Adapters\Features\MainPageViewFacade.cs" />
+    <Compile Include="Features\AlarmRepository\AlarmRepository.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />
+    <Compile Include="Features\Location.cs" />
     <Compile Include="Features\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\MultipageNavigationBehavior.cs" />
@@ -56,6 +58,8 @@
     <Compile Include="Views\Alarms\AlarmsPage.xaml.cs">
       <DependentUpon>AlarmsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Main\IMainPageView.cs" />
+    <Compile Include="Views\Main\MapController.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

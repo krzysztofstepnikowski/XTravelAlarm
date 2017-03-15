@@ -4,14 +4,21 @@ using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmList
 {
-   public class AlarmListProvider : IAlarmPageFeatures
-   {
-        public IEnumerable<Alarm> GetAlarms()
+    public class AlarmListProvider : IAlarmPageFeatures
+    {
+        private readonly HashSet<Location> alarms;
+
+        public AlarmListProvider(HashSet<Location> alarms)
         {
-            return Enumerable.Range(0, 5)
-                .Select(i => new Alarm()
+            this.alarms = alarms;
+        }
+
+        public IEnumerable<Location> GetAlarms()
+        {
+            return Enumerable.Range(0, alarms.Count)
+                .Select(i => new Location()
                 {
-                    Name = "Alarm " + i
+                    Name = i.ToString()
                 }).ToList();
         }
     }

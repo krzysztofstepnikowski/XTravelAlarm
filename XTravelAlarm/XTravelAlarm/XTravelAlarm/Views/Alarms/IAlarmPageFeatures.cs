@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features;
 
 namespace XTravelAlarm.Views.Alarms
 {
     public interface IAlarmPageFeatures
     {
-        IEnumerable<Alarm> GetAlarms();
+        IEnumerable<Location> GetAlarms();
     }
 }

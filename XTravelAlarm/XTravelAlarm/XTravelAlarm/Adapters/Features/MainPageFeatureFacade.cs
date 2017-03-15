@@ -1,4 +1,5 @@
 ﻿using XTravelAlarm.Features;
+using XTravelAlarm.Features.AlarmRepository;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Main;
 
@@ -7,21 +8,18 @@ namespace XTravelAlarm.Adapters.Features
     public class MainPageFeatureFacade : IMainPageFeatures
     {
         private readonly AlarmCaller alarmCaller;
+        private readonly AlarmRepository alarmRepository;
 
-        public MainPageFeatureFacade(AlarmCaller alarmCaller)
+
+        public MainPageFeatureFacade(AlarmCaller alarmCaller, AlarmRepository alarmRepository)
         {
             this.alarmCaller = alarmCaller;
+            this.alarmRepository = alarmRepository;
         }
 
-        public void SaveAlarm(Position targetPosition, double Distance)
+        public void AddAlarm(Location targetLocation)
         {
-            //Sprawdzanie alarmu
-            var targetLatitude = targetPosition.Latitude;
-            var targetLongitude = targetPosition.Longitude;
-
-            targetPosition = new Position(targetLatitude,targetLongitude);
+            alarmRepository.AddAlarm(targetLocation);
         }
-
-
     }
 }
