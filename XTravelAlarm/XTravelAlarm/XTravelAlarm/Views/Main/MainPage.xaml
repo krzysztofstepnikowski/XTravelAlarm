@@ -45,10 +45,10 @@
                 <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
 
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-                        <Label x:Name="DistanceLabel"
-                               FontSize="24"
-                               HorizontalOptions="Center"
-                               Text="{Binding Distance}" />
+                        <Label
+                            FontSize="24"
+                            HorizontalOptions="Center"
+                            Text="{Binding Distance}" />
 
                         <Label Text="Km"
                                FontAttributes="Bold"

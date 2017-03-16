@@ -1,5 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Plugin.Geolocator;
 using Prism.Commands;
 using Prism.Events;
@@ -29,11 +30,13 @@ namespace XTravelAlarm.ViewModels
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
                 eventAggregator.GetEvent<SaveAlarmEvent>().Publish(newLocationAlarm);
+                UserDialogs.Instance.Toast("Zapisano alarm", TimeSpan.MaxValue);
             }
 
-            Debug.WriteLine("Nie mozna zapisac alarmu");
-
-            
+            else
+            {
+                UserDialogs.Instance.Toast("Nie można zapisać alarmu", TimeSpan.MaxValue);
+            }
         }
 
 
