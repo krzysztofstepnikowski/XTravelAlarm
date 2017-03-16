@@ -6,15 +6,18 @@
 
         public Position Position { get; set; }
 
+        public double Distance { get; set; }
+
         public Location(string name, Position position)
         {
             Name = name;
             Position = position;
         }
 
-        public Location(string name)
+        public Location(string name, double distance)
         {
             Name = name;
+            Distance = distance;
         }
 
         public Location()

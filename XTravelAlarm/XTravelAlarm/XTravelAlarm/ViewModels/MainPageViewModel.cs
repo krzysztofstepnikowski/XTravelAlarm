@@ -1,39 +1,39 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using Prism.Navigation;
 using XTravelAlarm.Events;
 using XTravelAlarm.Features;
 
 namespace XTravelAlarm.ViewModels
 {
-    public partial class MainPageViewModel : BindableBase, INavigationAware
+    public partial class MainPageViewModel : BindableBase
     {
-
         private readonly IEventAggregator eventAggregator;
-        private readonly INavigationService navigationService;
         //private readonly IMainPageView mainPageView;
 
-        public MainPageViewModel(IEventAggregator eventAggregator, INavigationService navigationService)
+        public MainPageViewModel(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
-            this.navigationService = navigationService;
 
             GetLocationCommand = new DelegateCommand(async () => await GetLocationAsync());
             SaveAlarmCommand = new DelegateCommand(SaveAlarm);
-
         }
 
         private void SaveAlarm()
         {
-            var newLocationAlarm = new Location(Name);
+            var newLocationAlarm = new Location(Name, Distance);
 
-            eventAggregator.GetEvent<SaveAlarmEvent>().Publish(newLocationAlarm);
+            if (!string.IsNullOrEmpty(Name) && Distance > 0)
+            {
+                eventAggregator.GetEvent<SaveAlarmEvent>().Publish(newLocationAlarm);
+            }
 
-            navigationService.NavigateAsync("AlarmsPage");
+            Debug.WriteLine("Nie mozna zapisac alarmu");
 
+            
         }
 
 
@@ -44,14 +44,6 @@ namespace XTravelAlarm.ViewModels
 
             var position = await locator.GetPositionAsync(timeoutMilliseconds: 100000);
             //mainPageView.MoveMap(new Features.Position(position.Latitude, position.Longitude));
-        }
-
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
-        {
         }
     }
 }

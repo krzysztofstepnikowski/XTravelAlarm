@@ -15,7 +15,7 @@
 
     <StackLayout Orientation="Vertical" Padding="8,8,8,0">
         <ListView x:Name="AlarmsListView"
-                  RowHeight="50"
+                  RowHeight="80"
                   ItemsSource="{Binding Alarms}">
 
             <ListView.SeparatorColor>
@@ -28,12 +28,29 @@
                 <DataTemplate>
 
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Name}"
-                                   FontSize="18"
-                                   TextColor="Black"
-                                   Margin="8" />
-                            <Switch IsToggled="True" HorizontalOptions="EndAndExpand"/>
+                        <StackLayout Orientation="Vertical" Padding="8,8,8,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       TextColor="Black" />
+                                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" />
+
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="12,0,12,5">
+
+                                <Label Text="Dystans:"
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                                <Label Text="{Binding Distance}"
+                                       FontSize="14"
+                                       TextColor="Gray"
+                                       Margin="0" />
+
+                                <Label Text="km"
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                            </StackLayout>
 
                         </StackLayout>
                     </ViewCell>

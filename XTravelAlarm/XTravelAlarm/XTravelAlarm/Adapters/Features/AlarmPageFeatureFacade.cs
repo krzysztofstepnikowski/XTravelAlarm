@@ -19,7 +19,8 @@ namespace XTravelAlarm.Adapters.Features
         {
             return _alarmListProvider.GetAll().Select(alarm => new Location()
             {
-                Name = alarm.Name
+                Name = alarm.Name,
+                Distance = alarm.Distance
             }).ToList();
         }
 

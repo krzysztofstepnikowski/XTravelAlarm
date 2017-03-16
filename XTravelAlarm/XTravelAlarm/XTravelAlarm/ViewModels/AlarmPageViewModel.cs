@@ -55,7 +55,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
-            GetAlarms();
+           
         }
     }
 }

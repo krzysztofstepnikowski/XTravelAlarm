@@ -13,12 +13,23 @@ namespace XTravelAlarm.ViewModels
             set { SetProperty(ref _map, value); }
         }
 
-        public string Name { get; set; }
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
 
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
-        public double Distance { get; set; }
-     
+        private int _distance;
+
+        public int Distance
+        {
+            get { return _distance; }
+            set { SetProperty(ref _distance, value); }
+        }
     }
 }

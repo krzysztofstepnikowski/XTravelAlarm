@@ -15,11 +15,11 @@ namespace XTravelAlarm.Features.AlarmList
 
         public IEnumerable<Location> GetAll()
         {
-            return Enumerable.Range(0, alarms.Count)
-                .Select(i => new Location()
-                {
-                    Name = i.ToString()
-                }).ToList();
+            return alarms.Select(x => new Location
+            {
+                Name = x.Name,
+                Distance = x.Distance
+            }).ToList();
         }
 
         public void Add(Location alarmLocation)

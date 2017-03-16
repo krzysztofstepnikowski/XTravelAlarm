@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmList;
-using XTravelAlarm.Features.AlarmRepository;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -29,6 +28,7 @@ namespace XTravelAlarm
         protected override void RegisterTypes()
         {
             var alarmRepository = new HashSet<Location>();
+            var alarmListProvider = new AlarmListProvider(alarmRepository);
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
@@ -36,8 +36,8 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<NavigationPage>();
 
 
-//            Container.RegisterInstance<IMainPageFeatures>(new MainPageFeatureFacade(null, null));
-            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmRepository(alarmRepository));
+//            Container.RegisterInstance<IMainPageFeatures>(new MainPageFeatureFacade(null));
+            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(alarmListProvider));
         }
     }
 }

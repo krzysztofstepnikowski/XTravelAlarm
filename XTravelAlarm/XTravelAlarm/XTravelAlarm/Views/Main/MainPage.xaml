@@ -8,7 +8,6 @@
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
 
-  
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zapisz"
@@ -49,7 +48,7 @@
                         <Label x:Name="DistanceLabel"
                                FontSize="24"
                                HorizontalOptions="Center"
-                               Text="0" />
+                               Text="{Binding Distance}" />
 
                         <Label Text="Km"
                                FontAttributes="Bold"
@@ -60,8 +59,7 @@
 
                     <Slider Minimum="0"
                             Maximum="50"
-                            ValueChanged="SliderOnValueChanged"
-                            x:Name="DistanceSlider" />
+                            Value="{Binding Distance}" />
 
 
                 </StackLayout>

@@ -1,7 +1,4 @@
-﻿using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmRepository;
-using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.Views.Main;
+﻿using XTravelAlarm.Features.AlarmRinging;
 
 namespace XTravelAlarm.Adapters.Features
 {
