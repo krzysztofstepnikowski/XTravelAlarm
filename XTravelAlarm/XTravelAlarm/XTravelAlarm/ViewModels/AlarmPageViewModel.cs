@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
+using XTravelAlarm.Events;
 using XTravelAlarm.Features;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Utils;
@@ -11,25 +13,29 @@ namespace XTravelAlarm.ViewModels
 {
     public partial class AlarmPageViewModel : BindableBase, INavigationAware, IMultiPageNavigationAware
     {
-        private readonly IAlarmPageFeatures _alarmPageFeatures;
+        private readonly IAlarmPageFeatures alarmPageFeatures;
 
-        public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
+
+        public AlarmPageViewModel(IEventAggregator eventAggregator, IAlarmPageFeatures alarmPageFeatures)
         {
-            _alarmPageFeatures = alarmPageFeatures;
-            
+            this.alarmPageFeatures = alarmPageFeatures;
+            eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(obj =>
+            {
+                alarmPageFeatures.Add(obj);
+                GetAlarms();
+            },true);
         }
 
-        public void OnResume()
+        public void GetAlarms()
         {
             try
             {
-                var alarms = _alarmPageFeatures.GetAlarms();
+                var alarms = alarmPageFeatures.GetAll();
 
                 Alarms = new ObservableCollection<Location>(alarms);
             }
             catch (Exception ex)
             {
-                
                 Debug.WriteLine(ex.Message);
             }
         }
@@ -40,7 +46,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            OnResume();
+            GetAlarms();
         }
 
         public void OnInternalNavigatedFrom(NavigationParameters navParams)
@@ -49,7 +55,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
-            OnResume();
+            GetAlarms();
         }
     }
 }

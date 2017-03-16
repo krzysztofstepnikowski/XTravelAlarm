@@ -15,12 +15,17 @@ namespace XTravelAlarm.Adapters.Features
             _alarmListProvider = alarmListProvider;
         }
 
-        public IEnumerable<Location> GetAlarms()
+        public IEnumerable<Location> GetAll()
         {
-            return _alarmListProvider.GetAlarms().Select(alarm => new Location()
+            return _alarmListProvider.GetAll().Select(alarm => new Location()
             {
                 Name = alarm.Name
             }).ToList();
+        }
+
+        public void Add(Location alarmLocation)
+        {
+            _alarmListProvider.Add(alarmLocation);
         }
     }
 }

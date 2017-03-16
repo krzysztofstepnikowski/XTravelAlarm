@@ -38,6 +38,7 @@
     <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
     <Compile Include="Adapters\Features\MainPageFeatureFacade.cs" />
     <Compile Include="Adapters\Features\MainPageViewFacade.cs" />
+    <Compile Include="Events\SaveAlarmEvent.cs" />
     <Compile Include="Features\AlarmRepository\AlarmRepository.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />

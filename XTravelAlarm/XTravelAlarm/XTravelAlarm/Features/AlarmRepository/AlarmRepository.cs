@@ -1,20 +1,29 @@
 ﻿using System.Collections.Generic;
-using XTravelAlarm.Views.Main;
+using System.Linq;
+using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmRepository
 {
-   public class AlarmRepository : IMainPageFeatures
+   public class AlarmRepository : IAlarmPageFeatures
    {
-       private readonly HashSet<string> alarms;
+       private readonly HashSet<Location> alarms;
 
-       public AlarmRepository(HashSet<string> alarms)
+       public AlarmRepository(HashSet<Location> alarms)
        {
            this.alarms = alarms;
        }
 
-       public void AddAlarm(Location targetLocation)
+       public IEnumerable<Location> GetAll()
        {
-           alarms.Add(targetLocation.Name);
+           return alarms.Select(x => new Location
+           {
+               Name = x.Name
+           }).ToList();
        }
-    }
+
+       public void Add(Location alarmLocation)
+       {
+           alarms.Add(alarmLocation);
+       }
+   }
 }
