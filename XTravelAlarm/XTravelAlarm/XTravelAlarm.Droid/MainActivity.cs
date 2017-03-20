@@ -29,7 +29,7 @@ namespace XTravelAlarm.Droid
     {
         public void RegisterTypes(IUnityContainer container)
         {
-
+            
         }
     }
 }

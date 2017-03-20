@@ -13,14 +13,17 @@ namespace XTravelAlarm.ViewModels
     public partial class MainPageViewModel : BindableBase
     {
         private readonly IEventAggregator eventAggregator;
+        private readonly IRinger ringerService;
         //private readonly IMainPageView mainPageView;
 
-        public MainPageViewModel(IEventAggregator eventAggregator)
+        public MainPageViewModel(IEventAggregator eventAggregator, IRinger ringerService)
         {
             this.eventAggregator = eventAggregator;
+            this.ringerService = ringerService;
 
             GetLocationCommand = new DelegateCommand(async () => await GetLocationAsync());
             SaveAlarmCommand = new DelegateCommand(SaveAlarm);
+            ringerService.Ring();
         }
 
         private void SaveAlarm()
@@ -31,6 +34,7 @@ namespace XTravelAlarm.ViewModels
             {
                 eventAggregator.GetEvent<SaveAlarmEvent>().Publish(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.MinValue);
+
             }
 
             else

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Practices.Unity;
+using Prism.Modularity;
 using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -28,16 +30,28 @@ namespace XTravelAlarm
         protected override void RegisterTypes()
         {
             var alarmRepository = new HashSet<Location>();
-            var alarmListProvider = new AlarmListProvider(alarmRepository);
+           
+
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
+            Container.RegisterType<IRinger>();
+//            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository));
+
+            var ringerService = DependencyService.Get<IRinger>();
+            Container.RegisterInstance(ringerService);
+
+            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmListProvider(alarmRepository, ringerService));
+
+            
+
 
 
 //            Container.RegisterInstance<IMainPageFeatures>(new MainPageFeatureFacade(null));
-            Container.RegisterInstance<IAlarmPageFeatures>(new AlarmPageFeatureFacade(alarmListProvider));
         }
+
+      
     }
 }
