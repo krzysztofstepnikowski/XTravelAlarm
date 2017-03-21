@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using XTravelAlarm.Features;
+using XTravelAlarm.Droid.Services;
 
 namespace XTravelAlarm.Droid
 {
@@ -29,7 +31,7 @@ namespace XTravelAlarm.Droid
     {
         public void RegisterTypes(IUnityContainer container)
         {
-            
+            container.RegisterType<IRinger, DroidAlarmRinger>();
         }
     }
 }

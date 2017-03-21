@@ -4,8 +4,6 @@ using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features;
 
-[assembly: Dependency(typeof(DroidAlarmRinger))]
-
 namespace XTravelAlarm.Droid.Services
 {
     public class DroidAlarmRinger : IRinger
