@@ -8,11 +8,6 @@
 
         public double Distance { get; set; }
 
-        public Location(string name, Position position)
-        {
-            Name = name;
-            Position = position;
-        }
 
         public Location(string name, double distance)
         {
