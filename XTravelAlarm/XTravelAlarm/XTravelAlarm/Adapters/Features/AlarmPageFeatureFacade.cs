@@ -26,7 +26,7 @@ namespace XTravelAlarm.Adapters.Features
 
         public void Add(Location alarmLocation)
         {
-            _alarmListProvider.Add(alarmLocation);
+             _alarmListProvider.Add(alarmLocation);
         }
     }
 }

@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Plugin.Geolocator;
+using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Alarms;
 
@@ -33,6 +37,9 @@ namespace XTravelAlarm.Features.AlarmList
 
             alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
 
+            CrossGeolocator.Current.StartListeningAsync(minTime: TimeSpan.MinValue.Milliseconds,
+                minDistance: alarmLocation.Distance, includeHeading: true);
+
             CrossGeolocator.Current.PositionChanged += CurrentPositionChanged;
         }
 
@@ -41,6 +48,10 @@ namespace XTravelAlarm.Features.AlarmList
             var position = e.Position;
 
             alarmCaller.UpdatePosition(new Position(position.Latitude, position.Longitude));
+
+            Debug.WriteLine($"Full: Lat: {position.Latitude}, {position.Longitude}");
+            Debug.WriteLine($"Time: {position.Timestamp}");
+            Debug.WriteLine($"Accurancy {position.Accuracy}");
         }
     }
 }

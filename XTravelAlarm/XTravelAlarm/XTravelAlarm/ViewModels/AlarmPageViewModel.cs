@@ -23,7 +23,7 @@ namespace XTravelAlarm.ViewModels
             {
                 alarmPageFeatures.Add(obj);
                 GetAlarms();
-            },true);
+            }, true);
         }
 
         public void GetAlarms()
@@ -55,7 +55,6 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
-           
         }
     }
 }
