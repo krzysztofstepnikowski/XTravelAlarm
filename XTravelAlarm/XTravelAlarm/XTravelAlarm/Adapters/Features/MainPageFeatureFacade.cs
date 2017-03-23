@@ -2,7 +2,7 @@
 
 namespace XTravelAlarm.Adapters.Features
 {
-    public class MainPageFeatureFacade 
+    public class MainPageFeatureFacade
     {
         private readonly AlarmCaller alarmCaller;
 
@@ -11,7 +11,5 @@ namespace XTravelAlarm.Adapters.Features
         {
             this.alarmCaller = alarmCaller;
         }
-
-       
     }
 }

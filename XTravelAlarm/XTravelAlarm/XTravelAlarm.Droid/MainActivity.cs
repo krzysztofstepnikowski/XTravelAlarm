@@ -4,6 +4,7 @@ using Android.Content.PM;
 using Android.OS;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using Plugin.Permissions;
 using XTravelAlarm.Features;
 using XTravelAlarm.Droid.Services;
 
@@ -24,6 +25,12 @@ namespace XTravelAlarm.Droid
             Xamarin.FormsMaps.Init(this, bundle);
             UserDialogs.Init(this);
             LoadApplication(new App(new AndroidInitializer()));
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

@@ -7,6 +7,7 @@ using Prism.Events;
 using Prism.Mvvm;
 using XTravelAlarm.Events;
 using XTravelAlarm.Features;
+using Position = Plugin.Geolocator.Abstractions.Position;
 
 namespace XTravelAlarm.ViewModels
 {
@@ -21,9 +22,7 @@ namespace XTravelAlarm.ViewModels
             this.eventAggregator = eventAggregator;
             this.ringerService = ringerService;
 
-            GetLocationCommand = new DelegateCommand(async () => await GetLocationAsync());
             SaveAlarmCommand = new DelegateCommand(SaveAlarm);
-            ringerService.Ring();
         }
 
         private void SaveAlarm()
@@ -34,7 +33,6 @@ namespace XTravelAlarm.ViewModels
             {
                 eventAggregator.GetEvent<SaveAlarmEvent>().Publish(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.MinValue);
-
             }
 
             else
@@ -44,12 +42,14 @@ namespace XTravelAlarm.ViewModels
         }
 
 
-        public async Task GetLocationAsync()
+        public async Task<Position> GetLocation()
         {
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 20;
 
-            var position = await locator.GetPositionAsync(timeoutMilliseconds: 100000);
+
+            return await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+
             //mainPageView.MoveMap(new Features.Position(position.Latitude, position.Longitude));
         }
     }
