@@ -31,16 +31,17 @@ namespace XTravelAlarm.Features.AlarmList
             }).ToList();
         }
 
-        public void Add(Location alarmLocation)
+        public async void Add(Location alarmLocation)
         {
             alarms.Add(alarmLocation);
 
             alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
 
-            CrossGeolocator.Current.StartListeningAsync(minTime: TimeSpan.MinValue.Milliseconds,
-                minDistance: alarmLocation.Distance, includeHeading: true);
-
+          
             CrossGeolocator.Current.PositionChanged += CurrentPositionChanged;
+
+            await CrossGeolocator.Current.StartListeningAsync(minTime: Int32.MaxValue, 
+              minDistance: alarmLocation.Distance, includeHeading: true);
         }
 
         private void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
