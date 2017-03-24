@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
@@ -41,18 +40,14 @@ namespace XTravelAlarm.Features.AlarmList
 
 
             await CrossGeolocator.Current.StartListeningAsync(minTime: 1000,
-                minDistance: alarmLocation.Distance * 1000);
+                minDistance: 1000);
         }
 
         private void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
             var position = e.Position;
 
-            alarmCaller.UpdatePosition(new Position(position.Latitude,position.Longitude));
-
-            Debug.WriteLine($"Full: Lat: {position.Latitude}, {position.Longitude}");
-            Debug.WriteLine($"Time: {position.Timestamp}");
-            Debug.WriteLine($"Accurancy {position.Accuracy}");
+            alarmCaller.UpdatePosition(new Position(position.Latitude, position.Longitude));
         }
     }
 }

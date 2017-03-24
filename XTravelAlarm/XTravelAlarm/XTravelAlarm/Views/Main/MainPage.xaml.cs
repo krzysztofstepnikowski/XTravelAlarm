@@ -10,7 +10,6 @@ namespace XTravelAlarm.Views.Main
         public MainPage()
         {
             InitializeComponent();
-            MyMap = (BindingContext as MainPageViewModel)?.Map;
         }
 
      
