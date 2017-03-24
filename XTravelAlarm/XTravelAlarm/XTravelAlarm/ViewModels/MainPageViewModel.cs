@@ -11,7 +11,6 @@ namespace XTravelAlarm.ViewModels
     public partial class MainPageViewModel : BindableBase
     {
         private readonly IEventAggregator eventAggregator;
-        //private readonly IMainPageView mainPageView;
 
         public MainPageViewModel(IEventAggregator eventAggregator)
         {
@@ -22,7 +21,7 @@ namespace XTravelAlarm.ViewModels
 
         private void SaveAlarm()
         {
-            var newLocationAlarm = new Location(Name, Distance);
+            var newLocationAlarm = new Location(Name, Distance,new Position(50.054067, 21.996808999999985));
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {

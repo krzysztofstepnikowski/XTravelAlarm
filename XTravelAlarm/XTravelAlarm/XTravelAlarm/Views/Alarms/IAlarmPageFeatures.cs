@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using XTravelAlarm.Features;
 
 namespace XTravelAlarm.Views.Alarms
@@ -6,7 +7,7 @@ namespace XTravelAlarm.Views.Alarms
     public interface IAlarmPageFeatures
     {
         IEnumerable<Location> GetAll();
-        void Add(Location alarmLocation);
+        Task Add(Location alarmLocation);
 
     }
 }

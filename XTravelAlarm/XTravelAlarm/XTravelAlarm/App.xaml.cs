@@ -33,17 +33,9 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
-            //Container.RegisterType<IRinger>();
-//            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository));
-
-            //var ringerService = DependencyService.Get<IRinger>();
-            //Container.RegisterInstance(ringerService);
 
             Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,
                 new ResolvedParameter<IRinger>()));
-
-
-//            Container.RegisterInstance<IMainPageFeatures>(new MainPageFeatureFacade(null));
         }
     }
 }

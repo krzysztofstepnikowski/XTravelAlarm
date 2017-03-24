@@ -1,14 +1,23 @@
-﻿namespace XTravelAlarm.Features
+﻿using Prism.Mvvm;
+
+namespace XTravelAlarm.Features
 {
-    public class Position
+    public class Position : BindableBase
     {
-        public double Latitude { get; set; } = 50.025725;
-        public double Longitude { get; set; } = 22.031078;
+        public double Latitude { get; set; }
+
+
+        public double Longitude { get; set; }
+
 
         public Position(double latitude, double longitude)
         {
             Latitude = latitude;
             Longitude = longitude;
+        }
+
+        public Position()
+        {
         }
     }
 }

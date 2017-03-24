@@ -9,10 +9,11 @@
         public double Distance { get; set; }
 
 
-        public Location(string name, double distance)
+        public Location(string name, double distance, Position position)
         {
             Name = name;
             Distance = distance;
+            Position = position;
         }
 
         public Location()

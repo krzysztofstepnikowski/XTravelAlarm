@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Plugin.Geolocator;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Alarms;
@@ -29,25 +29,26 @@ namespace XTravelAlarm.Features.AlarmList
             }).ToList();
         }
 
-        public async void Add(Location alarmLocation)
+        public async Task Add(Location alarmLocation)
         {
-            alarmLocation.Position = new Position(50.037676, 22.016108);
             alarms.Add(alarmLocation);
+
 
             alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
 
-          
+
             CrossGeolocator.Current.PositionChanged += CurrentPositionChanged;
 
-            await CrossGeolocator.Current.StartListeningAsync(minTime: 5, 
-              minDistance: alarmLocation.Distance);
+
+            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000,
+                minDistance: alarmLocation.Distance * 1000);
         }
 
         private void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
             var position = e.Position;
 
-            alarmCaller.UpdatePosition(new Position(position.Latitude, position.Longitude));
+            alarmCaller.UpdatePosition(new Position(position.Latitude,position.Longitude));
 
             Debug.WriteLine($"Full: Lat: {position.Latitude}, {position.Longitude}");
             Debug.WriteLine($"Time: {position.Timestamp}");

@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
-    <Compile Include="Adapters\Features\MainPageFeatureFacade.cs" />
-    <Compile Include="Adapters\Features\MainPageViewFacade.cs" />
     <Compile Include="Events\SaveAlarmEvent.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
@@ -58,8 +55,6 @@
     <Compile Include="Views\Alarms\AlarmsPage.xaml.cs">
       <DependentUpon>AlarmsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\IMainPageView.cs" />
-    <Compile Include="Views\Main\MapController.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -81,7 +76,6 @@
     <Compile Include="Views\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\IMainPageFeatures.cs" />
     <Compile Include="Views\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
