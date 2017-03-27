@@ -1,6 +1,5 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XTravelAlarm.ViewModels;
 
 namespace XTravelAlarm.Views.Main
 {
@@ -11,7 +10,5 @@ namespace XTravelAlarm.Views.Main
         {
             InitializeComponent();
         }
-
-     
     }
 }

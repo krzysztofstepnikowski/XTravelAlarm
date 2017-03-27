@@ -37,7 +37,8 @@ namespace XTravelAlarm.Utils
                     lastPageAware.OnInternalNavigatedFrom(navParams);
                 }
 
-                IMultiPageNavigationAware newPageAware = _associatedObject.CurrentPage.BindingContext as IMultiPageNavigationAware;
+                IMultiPageNavigationAware newPageAware =
+                    _associatedObject.CurrentPage.BindingContext as IMultiPageNavigationAware;
                 if (newPageAware != null)
                 {
                     newPageAware.OnInternalNavigatedTo(navParams);

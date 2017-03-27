@@ -2,6 +2,8 @@
 using UIKit;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using Plugin.Geolocator;
+using Xamarin;
 using XTravelAlarm.Features;
 using XTravelAlarm.iOS.Services;
 
@@ -23,10 +25,22 @@ namespace XTravelAlarm.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            Xamarin.FormsMaps.Init();
+            FormsMaps.Init();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override async void OnActivated(UIApplication uiApplication)
+        {
+            base.OnActivated(uiApplication);
+            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
+        }
+
+        public override async void DidEnterBackground(UIApplication uiApplication)
+        {
+            base.DidEnterBackground(uiApplication);
+            await CrossGeolocator.Current.StopListeningAsync();
         }
     }
 

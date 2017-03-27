@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Practices.Unity;
+using Plugin.Geolocator;
 using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Features;
@@ -37,5 +38,7 @@ namespace XTravelAlarm
             Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,
                 new ResolvedParameter<IRinger>()));
         }
+
+      
     }
 }

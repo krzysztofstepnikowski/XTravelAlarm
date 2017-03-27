@@ -10,15 +10,15 @@
             xmlns:alarmPage="clr-namespace:XTravelAlarm.Views.Alarms;assembly=XTravelAlarm"
             Title="XTravel Alarm">
     <TabbedPage.Behaviors>
-      <u:MultipageNavigationBehavior />
+        <u:MultipageNavigationBehavior />
     </TabbedPage.Behaviors>
-  
+
     <main:MainPage>
         <main:MainPage.Icon>
             <OnPlatform x:TypeArguments="FileImageSource"
                         Android=""
                         iOS="ic_alarm_add.png" />
-        </main:MainPage.Icon>       
+        </main:MainPage.Icon>
     </main:MainPage>
     <alarmPage:AlarmsPage>
         <alarmPage:AlarmsPage.Icon>

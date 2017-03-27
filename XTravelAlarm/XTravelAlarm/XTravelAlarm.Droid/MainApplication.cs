@@ -4,6 +4,7 @@ using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
+using Plugin.Geolocator;
 
 namespace XTravelAlarm.Droid
 {
@@ -50,13 +51,17 @@ namespace XTravelAlarm.Droid
         {
         }
 
-        public void OnActivityStarted(Activity activity)
+        public async void OnActivityStarted(Activity activity)
         {
             CrossCurrentActivity.Current.Activity = activity;
+            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
         }
 
-        public void OnActivityStopped(Activity activity)
+        public async void OnActivityStopped(Activity activity)
         {
+            CrossCurrentActivity.Current.Activity = activity;
+            await CrossGeolocator.Current.StopListeningAsync();
         }
+
     }
 }

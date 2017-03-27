@@ -19,14 +19,14 @@ namespace XTravelAlarm.ViewModels
         public AlarmPageViewModel(IEventAggregator eventAggregator, IAlarmPageFeatures alarmPageFeatures)
         {
             this.alarmPageFeatures = alarmPageFeatures;
-            eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(async obj =>
+            eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(location =>
             {
-                await alarmPageFeatures.Add(obj);
+                alarmPageFeatures.Add(location);
                 GetAlarms();
             }, true);
         }
 
-        public void GetAlarms()
+        private void GetAlarms()
         {
             try
             {

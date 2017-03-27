@@ -6,6 +6,7 @@ namespace XTravelAlarm.Events
     /**
      * Umożliwia wymianę informacji między viewmodelami
      */
+
     public class SaveAlarmEvent : PubSubEvent<Location>
     {
     }

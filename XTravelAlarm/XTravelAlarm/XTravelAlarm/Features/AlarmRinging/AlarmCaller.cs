@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace XTravelAlarm.Features.AlarmRinging
 {
@@ -17,7 +16,7 @@ namespace XTravelAlarm.Features.AlarmRinging
         }
 
 
-        public double CalculateDistance(Position position, Position alarmPosition)
+        private double CalculateDistance(Position position, Position alarmPosition)
         {
             var R = 6371d;
             var currentLatitude = position.Latitude;
@@ -51,7 +50,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             var currentDistance = CalculateDistance(position, alarmPosition);
 
 
-            if (currentDistance <= Math.Pow(alarmDistance, 2))
+            if (currentDistance <= alarmDistance)
             {
                 ringer.Ring();
             }
