@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="XTravelAlarm.Views.Main.MainPage"
+             Title="Budzik">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Zapisz"
+                     Order="Primary"
+                     Command="{Binding SaveAlarmCommand}" />
+
+        <ToolbarItem Text="Ustawienia"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
+
+
+            <SearchBar Placeholder="Podaj miejsce docelowe"
+                       PlaceholderColor="Gray"
+                       FontSize="18"
+                       FontAttributes="Italic"
+                       Text="{Binding Name}" />
+
+
+            <maps:Map WidthRequest="350" HeightRequest="220"
+                      x:Name="MyMap"
+                      IsShowingUser="true"
+                      MapType="Street" />
+
+            <Label Text="Ustaw odległość od miejsca docelowego"
+                   FontSize="18"
+                   FontAttributes="Italic"
+                   Margin="5"
+                   HorizontalTextAlignment="Center" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Image Source="ic_notifications_active.png" />
+                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                        <Label
+                            FontSize="24"
+                            HorizontalOptions="Center"
+                            Text="{Binding Distance}" />
+
+                        <Label Text="Km"
+                               FontAttributes="Bold"
+                               FontSize="24"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+
+
+                    <Slider Minimum="0"
+                            Maximum="50"
+                            Value="{Binding Distance}" />
+
+
+                </StackLayout>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

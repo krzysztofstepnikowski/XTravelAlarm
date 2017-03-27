@@ -1,10 +1,11 @@
 ﻿using Xamarin.Forms;
 
+
 namespace XTravelAlarm.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainTabbedPage : TabbedPage
     {
-        public MainPage()
+        public MainTabbedPage()
         {
             InitializeComponent();
         }

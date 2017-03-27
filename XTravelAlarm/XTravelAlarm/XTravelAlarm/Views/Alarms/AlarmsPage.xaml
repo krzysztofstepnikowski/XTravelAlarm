@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XTravelAlarm.Views.Alarms.AlarmsPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Moje alarmy">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ustawienia"
+                     Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Orientation="Vertical" Padding="8,8,8,0">
+        <ListView x:Name="AlarmsListView"
+                  RowHeight="80"
+                  ItemsSource="{Binding Alarms}">
+
+            <ListView.SeparatorColor>
+                <OnPlatform x:TypeArguments="Color"
+                            iOS="Transparent"
+                            Android="Silver" />
+            </ListView.SeparatorColor>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Padding="8,8,8,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       TextColor="Black" />
+                                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" />
+
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="12,0,12,5">
+
+                                <Label Text="Dystans:"
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                                <Label Text="{Binding Distance}"
+                                       FontSize="14"
+                                       TextColor="Gray"
+                                       Margin="0" />
+
+                                <Label Text="km"
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

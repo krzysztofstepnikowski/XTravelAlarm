@@ -1,7 +1,5 @@
 ﻿using System.Resources;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Xamarin.Forms.Xaml;
 
 // General Information about an assembly is controlled through the following 
@@ -12,7 +10,7 @@ using Xamarin.Forms.Xaml;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XTravelAlarm")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Krzysztof Stępnikowski")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
