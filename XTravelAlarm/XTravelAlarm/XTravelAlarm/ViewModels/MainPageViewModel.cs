@@ -26,12 +26,12 @@ namespace XTravelAlarm.ViewModels
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
                 eventAggregator.GetEvent<SaveAlarmEvent>().Publish(newLocationAlarm);
-                UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.MinValue);
+                UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
             }
 
             else
             {
-                UserDialogs.Instance.Toast("Nie można zapisać alarmu.", TimeSpan.MinValue);
+                UserDialogs.Instance.Toast("Nie można zapisać alarmu.", TimeSpan.FromSeconds(3.0));
             }
         }
     }

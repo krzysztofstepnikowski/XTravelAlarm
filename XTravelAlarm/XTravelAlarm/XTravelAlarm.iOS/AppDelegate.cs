@@ -2,6 +2,8 @@
 using UIKit;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using XTravelAlarm.Features;
+using XTravelAlarm.iOS.Services;
 
 namespace XTravelAlarm.iOS
 {
@@ -32,7 +34,7 @@ namespace XTravelAlarm.iOS
     {
         public void RegisterTypes(IUnityContainer container)
         {
-
+            container.RegisterType<IRinger,iOSAlarmRinger>();
         }
     }
 

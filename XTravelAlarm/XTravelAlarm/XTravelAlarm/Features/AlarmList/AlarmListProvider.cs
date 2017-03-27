@@ -41,6 +41,7 @@ namespace XTravelAlarm.Features.AlarmList
 
             await CrossGeolocator.Current.StartListeningAsync(minTime: 1000,
                 minDistance: 1000);
+
         }
 
         private void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
