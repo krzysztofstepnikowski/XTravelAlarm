@@ -17,7 +17,7 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 <b>Główne funkcjonalności: </b>
 
 <ul>
-<li>Ustawienie budzika w zależności od odległości od miejsca docelowego</li>![alt tag](https://icons8.com/web-app/13115/Ok)
+<li>Ustawienie budzika w zależności od odległości od miejsca docelowego</li>
 <br/>
 <li>Możliwość zapamiętywania alarmów (dodawanie/usuwanie)</li>
 <br/>
