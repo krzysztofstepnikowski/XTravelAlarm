@@ -1,6 +1,6 @@
 ﻿namespace XTravelAlarm.Features
 {
-    public class Location
+    public class AlarmLocation
     {
         public string Name { get; set; }
 
@@ -8,15 +8,18 @@
 
         public double Distance { get; set; }
 
+        public bool IsRunning { get; set; }
 
-        public Location(string name, double distance, Position position)
+
+        public AlarmLocation(string name, double distance, Position position, bool isRunning=true)
         {
             Name = name;
             Distance = distance;
             Position = position;
+            IsRunning = isRunning;
         }
 
-        public Location()
+        public AlarmLocation()
         {
         }
     }

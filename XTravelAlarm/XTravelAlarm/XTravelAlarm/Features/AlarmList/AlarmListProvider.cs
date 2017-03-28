@@ -2,31 +2,31 @@
 using System.Linq;
 using Plugin.Geolocator;
 using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmList
 {
-    public class AlarmListProvider : IAlarmPageFeatures
+    public class AlarmListProvider
     {
-        private readonly HashSet<Location> alarms;
+        private readonly HashSet<AlarmLocation> alarms;
         private readonly IRinger ringer;
 
-        public AlarmListProvider(HashSet<Location> alarms, IRinger ringer)
+        public AlarmListProvider(HashSet<AlarmLocation> alarms, IRinger ringer)
         {
             this.alarms = alarms;
             this.ringer = ringer;
         }
 
-        public IEnumerable<Location> GetAll()
+        public IEnumerable<AlarmLocation> GetAll()
         {
-            return alarms.Select(x => new Location
+            return alarms.Select(x => new AlarmLocation
             {
                 Name = x.Name,
-                Distance = x.Distance
+                Distance = x.Distance,
+                IsRunning = x.IsRunning
             }).ToList();
         }
 
-        public void Add(Location alarmLocation)
+        public void Add(AlarmLocation alarmLocation)
         {
             alarms.Add(alarmLocation);
             var alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
@@ -39,5 +39,7 @@ namespace XTravelAlarm.Features.AlarmList
 
             alarm.UpdatePosition(new Position(position.Latitude, position.Longitude));
         }
+
+       
     }
 }

@@ -31,14 +31,14 @@ namespace XTravelAlarm.ViewModels
             try
             {
                 var alarms = alarmPageFeatures.GetAll();
-
-                Alarms = new ObservableCollection<Location>(alarms);
+                Alarms = new ObservableCollection<AlarmLocation>(alarms);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
+
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {

@@ -33,7 +33,7 @@
                                 <Label Text="{Binding Name}"
                                        FontSize="18"
                                        TextColor="Black" />
-                                <Switch IsToggled="True" HorizontalOptions="EndAndExpand" />
+                                <Switch IsToggled="{Binding IsRunning, Mode=TwoWay}"  HorizontalOptions="EndAndExpand" />
 
                             </StackLayout>
 

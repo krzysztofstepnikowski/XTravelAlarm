@@ -5,13 +5,19 @@ namespace XTravelAlarm.ViewModels
 {
      partial class AlarmPageViewModel
     {
-        private ObservableCollection<Location> _alarms;
+        private ObservableCollection<AlarmLocation> _alarms;
 
-        public ObservableCollection<Location> Alarms
+        public ObservableCollection<AlarmLocation> Alarms
         {
             get { return _alarms; }
 
-            set { SetProperty(ref _alarms, value); }
+            set
+            {
+                SetProperty(ref _alarms, value); 
+               
+            }
         }
+
+       
     }
 }

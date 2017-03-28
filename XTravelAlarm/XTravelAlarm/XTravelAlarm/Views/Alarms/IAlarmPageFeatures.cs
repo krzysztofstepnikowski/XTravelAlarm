@@ -5,7 +5,11 @@ namespace XTravelAlarm.Views.Alarms
 {
     public interface IAlarmPageFeatures
     {
-        IEnumerable<Location> GetAll();
-        void Add(Location alarmLocation);
+        IEnumerable<AlarmLocation> GetAll();
+        void Add(AlarmLocation alarmLocation);
+        void SetAsAlarmRunning(AlarmLocation alarmLocation);
+        void RemoveFromAlarmsRunning(AlarmLocation alarmLocation);
+
+
     }
 }
