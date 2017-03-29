@@ -9,7 +9,15 @@ namespace XTravelAlarm.ViewModels
 
         public ObservableCollection<AlarmLocation> Alarms
         {
-            get { return _alarms; }
+            get
+            {
+                if (_alarms == null)
+                {
+                    _alarms = new ObservableCollection<AlarmLocation>();
+                }
+
+                return _alarms;
+            }
 
             set
             {

@@ -11,7 +11,7 @@ namespace XTravelAlarm.Features
 
         public double Distance { get; set; }
 
-        private bool _isRunning = true;
+        private bool _isRunning;
 
         public bool IsRunning
         {
@@ -24,7 +24,7 @@ namespace XTravelAlarm.Features
         }
 
 
-        public AlarmLocation(string name, double distance, Position position, bool isRunning=true)
+        public AlarmLocation(string name, double distance, Position position, bool isRunning)
         {
             Name = name;
             Distance = distance;

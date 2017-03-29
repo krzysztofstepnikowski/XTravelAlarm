@@ -21,7 +21,7 @@ namespace XTravelAlarm.ViewModels
 
         private void SaveAlarm()
         {
-            var newLocationAlarm = new AlarmLocation(Name, Distance, new Position(50.054067, 21.996808999999985));
+            var newLocationAlarm = new AlarmLocation(Name, Distance, new Position(50.054067, 21.996808999999985),true);
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
