@@ -18,7 +18,6 @@ namespace XTravelAlarm.Features.AlarmList
             this.alarms = alarms;
             this.ringer = ringer;
             this.gpsListener = gpsListener;
-
         }
 
         public IEnumerable<AlarmLocation> GetAll()
@@ -35,18 +34,9 @@ namespace XTravelAlarm.Features.AlarmList
         {
             alarms.Add(alarmLocation);
 
-            if (alarmLocation.IsRunning)
-            {
-                gpsListener.AddObserver(alarmLocation);
-                var alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
-                CrossGeolocator.Current.PositionChanged += (s, e) => CurrentPositionChanged(e, alarmCaller);
-            }
 
-            else
-            {
-                gpsListener.RemoveObserver(alarmLocation);
-                CrossGeolocator.Current.StopListeningAsync();
-            }
+            var alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
+            CrossGeolocator.Current.PositionChanged += (s, e) => CurrentPositionChanged(e, alarmCaller);
         }
 
         private void CurrentPositionChanged(Plugin.Geolocator.Abstractions.PositionEventArgs e, AlarmCaller alarm)
@@ -55,7 +45,5 @@ namespace XTravelAlarm.Features.AlarmList
 
             alarm.UpdatePosition(new Position(position.Latitude, position.Longitude));
         }
-
-      
     }
 }

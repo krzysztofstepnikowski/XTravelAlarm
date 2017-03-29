@@ -28,6 +28,7 @@ namespace XTravelAlarm
         protected override void RegisterTypes()
         {
             var alarmRepository = new HashSet<AlarmLocation>();
+            var gpsListener = new GPSListener(alarmRepository);
 
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
@@ -35,8 +36,9 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 
-            Container.RegisterInstance<IGPSListener>(new GPSListener(alarmRepository));
-            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,new ResolvedParameter<IRinger>()));
+            Container.RegisterType<IGPSListener,GPSListener>(new InjectionConstructor(alarmRepository));
+            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,new ResolvedParameter<IRinger>(),gpsListener));
+            
 
 
 

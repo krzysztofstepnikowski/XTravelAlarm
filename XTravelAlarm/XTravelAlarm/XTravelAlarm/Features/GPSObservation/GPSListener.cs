@@ -15,13 +15,11 @@ namespace XTravelAlarm.Features.GPSobservation
         public void AddObserver(AlarmLocation alarmLocation)
         {
             gpsObservers.Add(alarmLocation);
-            alarmLocation.IsRunning = true;
         }
 
         public void RemoveObserver(AlarmLocation alarmLocation)
         {
             gpsObservers.Remove(alarmLocation);
-            alarmLocation.IsRunning = false;
         }
     }
 }
