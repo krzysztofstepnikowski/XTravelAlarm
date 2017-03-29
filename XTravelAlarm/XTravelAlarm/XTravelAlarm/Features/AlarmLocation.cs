@@ -1,6 +1,9 @@
-﻿namespace XTravelAlarm.Features
+﻿using System.Diagnostics;
+using Prism.Mvvm;
+
+namespace XTravelAlarm.Features
 {
-    public class AlarmLocation
+    public class AlarmLocation : BindableBase
     {
         public string Name { get; set; }
 
@@ -8,7 +11,17 @@
 
         public double Distance { get; set; }
 
-        public bool IsRunning { get; set; }
+        private bool _isRunning = true;
+
+        public bool IsRunning
+        {
+            get { return _isRunning; }
+            set
+            {
+                SetProperty(ref _isRunning, value);
+                Debug.WriteLine($"Current value= {_isRunning}");
+            }
+        }
 
 
         public AlarmLocation(string name, double distance, Position position, bool isRunning=true)

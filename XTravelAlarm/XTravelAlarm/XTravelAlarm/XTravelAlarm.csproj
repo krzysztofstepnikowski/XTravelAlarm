@@ -35,13 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
     <Compile Include="Events\SaveAlarmEvent.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />
     <Compile Include="Features\AlarmLocation.cs" />
-    <Compile Include="Features\AlarmRunning\AlarmRunningManager.cs" />
     <Compile Include="Features\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\MultipageNavigationBehavior.cs" />

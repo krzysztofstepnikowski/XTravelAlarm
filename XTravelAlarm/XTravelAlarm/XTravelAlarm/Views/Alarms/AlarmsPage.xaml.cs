@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XTravelAlarm.ViewModels;
 
 namespace XTravelAlarm.Views.Alarms
 {
@@ -11,5 +12,7 @@ namespace XTravelAlarm.Views.Alarms
             InitializeComponent();
             AlarmsListView.ItemSelected += (sender, e) => AlarmsListView.SelectedItem = null;
         }
+
+       
     }
 }

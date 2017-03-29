@@ -2,10 +2,11 @@
 using System.Linq;
 using Plugin.Geolocator;
 using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmList
 {
-    public class AlarmListProvider
+    public class AlarmListProvider : IAlarmPageFeatures
     {
         private readonly HashSet<AlarmLocation> alarms;
         private readonly IRinger ringer;
