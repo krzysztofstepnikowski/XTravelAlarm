@@ -7,5 +7,7 @@ namespace XTravelAlarm.Views.Alarms
     {
         IEnumerable<AlarmLocation> GetAll();
         void Add(AlarmLocation alarmLocation);
+      
+
     }
 }

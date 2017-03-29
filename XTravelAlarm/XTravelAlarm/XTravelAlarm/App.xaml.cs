@@ -4,6 +4,7 @@ using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -34,7 +35,7 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 
-           
+            Container.RegisterInstance<IGPSListener>(new GPSListener(alarmRepository));
             Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,new ResolvedParameter<IRinger>()));
 
 

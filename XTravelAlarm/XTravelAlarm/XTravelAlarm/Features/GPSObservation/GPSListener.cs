@@ -2,7 +2,7 @@
 
 namespace XTravelAlarm.Features.GPSobservation
 {
-    public class GPSListener
+    public class GPSListener : IGPSListener
     {
         private readonly HashSet<AlarmLocation> gpsObservers;
 
@@ -15,11 +15,13 @@ namespace XTravelAlarm.Features.GPSobservation
         public void AddObserver(AlarmLocation alarmLocation)
         {
             gpsObservers.Add(alarmLocation);
+            alarmLocation.IsRunning = true;
         }
 
         public void RemoveObserver(AlarmLocation alarmLocation)
         {
             gpsObservers.Remove(alarmLocation);
+            alarmLocation.IsRunning = false;
         }
     }
 }
