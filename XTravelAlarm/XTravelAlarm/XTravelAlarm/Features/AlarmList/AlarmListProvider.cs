@@ -41,6 +41,6 @@ namespace XTravelAlarm.Features.AlarmList
             alarm.UpdatePosition(new Position(position.Latitude, position.Longitude));
         }
 
-       
+      
     }
 }

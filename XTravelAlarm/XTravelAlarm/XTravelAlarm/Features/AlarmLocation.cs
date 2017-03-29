@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 
 namespace XTravelAlarm.Features
 {
@@ -19,7 +18,6 @@ namespace XTravelAlarm.Features
             set
             {
                 SetProperty(ref _isRunning, value);
-                Debug.WriteLine($"Current value= {_isRunning}");
             }
         }
 

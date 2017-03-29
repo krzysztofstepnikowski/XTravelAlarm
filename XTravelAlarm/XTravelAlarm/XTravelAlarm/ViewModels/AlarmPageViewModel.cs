@@ -1,4 +1,6 @@
-﻿using Prism.Events;
+﻿using System.Diagnostics;
+using Plugin.Geolocator;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Events;
@@ -18,6 +20,24 @@ namespace XTravelAlarm.ViewModels
             }, true);
 
             alarmPageFeatures.GetAll();
+        }
+
+        private void CheckIsAlarmRunning()
+        {
+            foreach (var location in Alarms)
+            {
+                if (location.IsRunning)
+                {
+                    CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
+                    Debug.WriteLine("GPS is running");
+                }
+
+                else
+                {
+                    CrossGeolocator.Current.StopListeningAsync();
+                    Debug.WriteLine("GPS is stopped");
+                }
+            }
         }
 
 
