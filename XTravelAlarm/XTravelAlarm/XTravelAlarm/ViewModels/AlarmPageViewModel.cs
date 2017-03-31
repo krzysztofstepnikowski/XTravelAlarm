@@ -13,11 +13,21 @@ namespace XTravelAlarm.ViewModels
         {
             eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(location =>
             {
+//                location.RunningStatusChanged = new DelegateCommand<bool>(isRunning =>
+//                {
+//                    if (isRunning)
+//                    {
+//                        alarmPageFeatures.Enable(location);
+//                    }
+//
+//                    else
+//                    {
+//                        alarmPageFeatures.Disable(location);
+//                    }
+//                });
                 alarmPageFeatures.Add(location);
                 Alarms.Add(location);
             }, true);
-
-            alarmPageFeatures.GetAll();
         }
 
 

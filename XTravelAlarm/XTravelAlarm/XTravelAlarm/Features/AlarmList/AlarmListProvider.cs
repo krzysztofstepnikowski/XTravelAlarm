@@ -10,13 +10,11 @@ namespace XTravelAlarm.Features.AlarmList
     public class AlarmListProvider : IAlarmPageFeatures
     {
         private readonly HashSet<AlarmLocation> alarms;
-        private readonly IRinger ringer;
         private readonly IGPSListener gpsListener;
 
-        public AlarmListProvider(HashSet<AlarmLocation> alarms, IRinger ringer, IGPSListener gpsListener)
+        public AlarmListProvider(HashSet<AlarmLocation> alarms,IGPSListener gpsListener)
         {
             this.alarms = alarms;
-            this.ringer = ringer;
             this.gpsListener = gpsListener;
         }
 
@@ -35,15 +33,18 @@ namespace XTravelAlarm.Features.AlarmList
             alarms.Add(alarmLocation);
 
 
-            var alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
-            CrossGeolocator.Current.PositionChanged += (s, e) => CurrentPositionChanged(e, alarmCaller);
+            Enable(alarmLocation);
         }
 
-        private void CurrentPositionChanged(Plugin.Geolocator.Abstractions.PositionEventArgs e, AlarmCaller alarm)
-        {
-            var position = e.Position;
 
-            alarm.UpdatePosition(new Position(position.Latitude, position.Longitude));
+        public void Enable(AlarmLocation alarmLocation)
+        {
+            gpsListener.AddObserver(alarmLocation);
+        }
+
+        public void Disable(AlarmLocation alarmLocation)
+        {
+            gpsListener.RemoveObserver(alarmLocation);
         }
     }
 }

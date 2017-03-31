@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using System.Windows.Input;
+using Prism.Mvvm;
 
 namespace XTravelAlarm.Features
 {
@@ -18,8 +19,11 @@ namespace XTravelAlarm.Features
             set
             {
                 SetProperty(ref _isRunning, value);
+                RunningStatusChanged?.Execute(value);
             }
         }
+
+        public ICommand RunningStatusChanged { get; set; }
 
 
         public AlarmLocation(string name, double distance, Position position, bool isRunning)
