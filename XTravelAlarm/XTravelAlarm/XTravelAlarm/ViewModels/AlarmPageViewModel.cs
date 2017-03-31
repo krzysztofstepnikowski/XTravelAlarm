@@ -1,4 +1,5 @@
-﻿using Prism.Events;
+﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Events;
@@ -13,19 +14,25 @@ namespace XTravelAlarm.ViewModels
         {
             eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(location =>
             {
-//                location.RunningStatusChanged = new DelegateCommand<bool>(isRunning =>
-//                {
-//                    if (isRunning)
-//                    {
-//                        alarmPageFeatures.Enable(location);
-//                    }
-//
-//                    else
-//                    {
-//                        alarmPageFeatures.Disable(location);
-//                    }
-//                });
-                alarmPageFeatures.Add(location);
+                location.RunningStatusChanged = new DelegateCommand<bool?>(isRunning =>
+                {
+                    
+                    if (!isRunning.HasValue)
+                    {
+                        return;
+                    }
+
+                    if (isRunning.Value)
+                    {
+                        alarmPageFeatures.Enable(location);
+                    }
+
+                    else
+                    {
+                        alarmPageFeatures.Disable(location);
+                    }
+                });
+                alarmPageFeatures.Add(location); //dysk
                 Alarms.Add(location);
             }, true);
         }

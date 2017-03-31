@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Plugin.Geolocator;
-using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Views.Alarms;
 
