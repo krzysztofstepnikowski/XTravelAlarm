@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using System;
+using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -25,11 +27,13 @@ namespace XTravelAlarm.ViewModels
                     if (isRunning.Value)
                     {
                         alarmPageFeatures.Enable(location);
+                        UserDialogs.Instance.Toast("Alarm włączony", TimeSpan.FromSeconds(3));
                     }
 
                     else
                     {
                         alarmPageFeatures.Disable(location);
+                        UserDialogs.Instance.Toast("Alarm wyłączony", TimeSpan.FromSeconds(3));
                     }
                 });
                 alarmPageFeatures.Add(location); //dysk
