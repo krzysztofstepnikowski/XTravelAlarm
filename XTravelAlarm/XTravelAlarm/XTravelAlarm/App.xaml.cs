@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Practices.Unity;
-using Plugin.Geolocator;
 using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -27,7 +27,7 @@ namespace XTravelAlarm
 
         protected override void RegisterTypes()
         {
-            var alarmRepository = new HashSet<Location>();
+            var alarmRepository = new HashSet<AlarmLocation>();
 
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
@@ -35,10 +35,11 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 
-            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,
-                new ResolvedParameter<IRinger>()));
-        }
 
-      
+            Container.RegisterType<IGPSListener, GPSListener>(new InjectionConstructor(new HashSet<AlarmLocation>(),
+                new ResolvedParameter<IRinger>()));
+            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,
+                new ResolvedParameter<IGPSListener>()));
+        }
     }
 }

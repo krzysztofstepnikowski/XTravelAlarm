@@ -45,6 +45,7 @@ namespace XTravelAlarm.Droid
         public void OnActivityResumed(Activity activity)
         {
             CrossCurrentActivity.Current.Activity = activity;
+           
         }
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)

@@ -48,8 +48,6 @@ namespace XTravelAlarm.Features.AlarmRinging
         public void UpdatePosition(Position position)
         {
             var currentDistance = CalculateDistance(position, alarmPosition);
-
-
             if (currentDistance <= alarmDistance)
             {
                 ringer.Ring();

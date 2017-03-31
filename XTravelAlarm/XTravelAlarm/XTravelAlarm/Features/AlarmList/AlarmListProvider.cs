@@ -1,43 +1,48 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Plugin.Geolocator;
-using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmList
 {
     public class AlarmListProvider : IAlarmPageFeatures
     {
-        private readonly HashSet<Location> alarms;
-        private readonly IRinger ringer;
+        private readonly HashSet<AlarmLocation> alarms;
+        private readonly IGPSListener gpsListener;
 
-        public AlarmListProvider(HashSet<Location> alarms, IRinger ringer)
+        public AlarmListProvider(HashSet<AlarmLocation> alarms,IGPSListener gpsListener)
         {
             this.alarms = alarms;
-            this.ringer = ringer;
+            this.gpsListener = gpsListener;
         }
 
-        public IEnumerable<Location> GetAll()
+        public IEnumerable<AlarmLocation> GetAll()
         {
-            return alarms.Select(x => new Location
+            return alarms.Select(x => new AlarmLocation
             {
                 Name = x.Name,
-                Distance = x.Distance
+                Distance = x.Distance,
+                IsRunning = x.IsRunning
             }).ToList();
         }
 
-        public void Add(Location alarmLocation)
+        public void Add(AlarmLocation alarmLocation)
         {
             alarms.Add(alarmLocation);
-            var alarmCaller = new AlarmCaller(alarmLocation.Position, alarmLocation.Distance, ringer);
-            CrossGeolocator.Current.PositionChanged += (s, e) => CurrentPositionChanged(e, alarmCaller);
+
+
+            Enable(alarmLocation);
         }
 
-        private void CurrentPositionChanged(Plugin.Geolocator.Abstractions.PositionEventArgs e, AlarmCaller alarm)
-        {
-            var position = e.Position;
 
-            alarm.UpdatePosition(new Position(position.Latitude, position.Longitude));
+        public void Enable(AlarmLocation alarmLocation)
+        {
+            gpsListener.AddObserver(alarmLocation);
+        }
+
+        public void Disable(AlarmLocation alarmLocation)
+        {
+            gpsListener.RemoveObserver(alarmLocation);
         }
     }
 }
