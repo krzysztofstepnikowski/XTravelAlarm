@@ -7,7 +7,7 @@ namespace XTravelAlarm.Models
 {
     public class AlarmLocationViewModel : BindableBase
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
 
         public Position Position { get; set; }
