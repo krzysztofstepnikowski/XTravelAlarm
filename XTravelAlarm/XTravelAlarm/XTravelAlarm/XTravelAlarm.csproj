@@ -43,6 +43,7 @@
     <Compile Include="Features\GPSObservation\GPSListener.cs" />
     <Compile Include="Features\GPSObservation\IGPSListener.cs" />
     <Compile Include="Features\Position.cs" />
+    <Compile Include="Models\AlarmLocationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\MultipageNavigationBehavior.cs" />
     <Compile Include="ViewModels\AlarmPageViewModel.cs" />
