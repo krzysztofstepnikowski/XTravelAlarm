@@ -79,7 +79,6 @@
     <Compile Include="Views\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\IMainPageFeatures.cs" />
     <Compile Include="Views\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

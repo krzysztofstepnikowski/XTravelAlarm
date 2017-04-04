@@ -22,7 +22,7 @@ namespace XTravelAlarm
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainTabbedPage");
+            NavigationService.NavigateAsync("NavigationPage/MainTabbedPage/");
         }
 
         protected override void RegisterTypes()
@@ -32,6 +32,7 @@ namespace XTravelAlarm
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
+            Container.RegisterType<AlarmPageViewModel>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 

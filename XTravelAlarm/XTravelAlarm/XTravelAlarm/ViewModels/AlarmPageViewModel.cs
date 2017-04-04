@@ -1,10 +1,8 @@
-﻿using System;
-using Acr.UserDialogs;
-using Prism.Commands;
-using Prism.Events;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Prism.Mvvm;
 using Prism.Navigation;
-using XTravelAlarm.Events;
+using XTravelAlarm.Features;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Utils;
 
@@ -12,33 +10,14 @@ namespace XTravelAlarm.ViewModels
 {
     public partial class AlarmPageViewModel : BindableBase, INavigationAware, IMultiPageNavigationAware
     {
-        public AlarmPageViewModel(IEventAggregator eventAggregator, IAlarmPageFeatures alarmPageFeatures)
+        private readonly IAlarmPageFeatures alarmPageFeatures;
+
+        public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
         {
-            eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(location =>
-            {
-                location.RunningStatusChanged = new DelegateCommand<bool?>(isRunning =>
-                {
-                    
-                    if (!isRunning.HasValue)
-                    {
-                        return;
-                    }
+            this.alarmPageFeatures = alarmPageFeatures;
 
-                    if (isRunning.Value)
-                    {
-                        alarmPageFeatures.Enable(location);
-                        UserDialogs.Instance.Toast("Alarm włączony", TimeSpan.FromSeconds(3));
-                    }
-
-                    else
-                    {
-                        alarmPageFeatures.Disable(location);
-                        UserDialogs.Instance.Toast("Alarm wyłączony", TimeSpan.FromSeconds(3));
-                    }
-                });
-                alarmPageFeatures.Add(location); //dysk
-                Alarms.Add(location);
-            }, true);
+            var alarms = alarmPageFeatures.GetAll();
+            Alarms = new ObservableCollection<AlarmLocation>(alarms);
         }
 
 
@@ -48,7 +27,17 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
+            Name = (string) parameters["name"];
+            Distance = (double) parameters["distance"];
+            IsRunning = (bool) parameters["isRunning"];
+
+            alarmLocation = new AlarmLocation(Name, Distance, new Position(50.054067, 21.996808999999985), IsRunning);
+
+
+            alarmPageFeatures.Add(alarmLocation);
+            Alarms.Add(alarmLocation);
         }
+
 
         public void OnInternalNavigatedFrom(NavigationParameters navParams)
         {
@@ -56,6 +45,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
+            Debug.WriteLine("Zakladka wyswietlona");
         }
     }
 }
