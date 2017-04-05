@@ -1,4 +1,4 @@
-# <b> XTravel Alarm </b> ![alt tag](https://i1.wp.com/krzysztofstepnikowski.files.wordpress.com/2017/03/logo.png?ssl=1&w=450) <br />
+# <b> XTravel Alarm </b> ![alt tag](https://github.com/krzysztofstepnikowski/XTravelAlarm/blob/master/XTravelAlarm/XTravelAlarm/XTravelAlarm.Droid/Resources/drawable-hdpi/ic_launcher.png) <br />
 
 Version 1.0
 
@@ -8,7 +8,7 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 
 <br/>
 
-[![DajSiePoznac2017 Logo](https://i2.wp.com/krzysztofstepnikowski.files.wordpress.com/2017/03/dsp2017-1.png?ssl=1&w=450)](http://dajsiepoznac.pl/)
+[![DajSiePoznac2017 Logo](http://uczestnicy.dajsiepoznac.pl/Content/logo/dsp2017-logo.png)](http://dajsiepoznac.pl/)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
