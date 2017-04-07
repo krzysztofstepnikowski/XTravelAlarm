@@ -4,14 +4,10 @@ namespace XTravelAlarm.Features.AlarmRinging
 {
     public class AlarmCaller
     {
-        private readonly Position alarmPosition;
-        private readonly double alarmDistance;
         private readonly IRinger ringer;
 
-        public AlarmCaller(Position alarmPosition, double alarmDistance, IRinger ringer)
+        public AlarmCaller(IRinger ringer)
         {
-            this.alarmPosition = alarmPosition;
-            this.alarmDistance = alarmDistance;
             this.ringer = ringer;
         }
 

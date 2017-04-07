@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
 using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Features;
@@ -45,7 +44,6 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
-            Debug.WriteLine("Zakladka wyswietlona");
         }
     }
 }

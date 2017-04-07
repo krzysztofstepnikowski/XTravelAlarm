@@ -1,8 +1,10 @@
-﻿namespace XTravelAlarm.Features.GPSobservation
+﻿using System;
+
+namespace XTravelAlarm.Features.GPSobservation
 {
     public interface IGPSListener
     {
-        void AddObserver(AlarmLocation alarmLocation);
-        void RemoveObserver(AlarmLocation alarmLocation);
+        void AddObserver(Guid alarmLocationId);
+        void RemoveObserver(Guid alarmLocationId);
     }
 }

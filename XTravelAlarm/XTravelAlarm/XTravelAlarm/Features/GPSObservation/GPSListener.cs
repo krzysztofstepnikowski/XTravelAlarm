@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Plugin.Geolocator;
 using XTravelAlarm.Features.AlarmRinging;
 
@@ -6,11 +7,11 @@ namespace XTravelAlarm.Features.GPSobservation
 {
     public class GPSListener : IGPSListener
     {
-        private readonly HashSet<AlarmLocation> gpsObservers;
+        private readonly HashSet<Guid> gpsObservers;
         private readonly IRinger ringer;
 
 
-        public GPSListener(HashSet<AlarmLocation> gpsObservers, IRinger ringer)
+        public GPSListener(HashSet<Guid> gpsObservers, IRinger ringer)
         {
             this.gpsObservers = gpsObservers;
             this.ringer = ringer;
@@ -21,21 +22,21 @@ namespace XTravelAlarm.Features.GPSobservation
         {
             foreach (var item in gpsObservers)
             {
-                var alarmCaller = new AlarmCaller(item.Position,item.Distance,ringer);
+                var alarmCaller = new AlarmCaller(ringer);
                 alarmCaller.UpdatePosition(new Position(e.Position.Latitude,e.Position.Longitude));
             }
            
         }
 
-        public void AddObserver(AlarmLocation alarmLocation)
+        public void AddObserver(Guid alarmLocationId)
         {
-            gpsObservers.Add(alarmLocation);
+            gpsObservers.Add(alarmLocationId);
            
         }
 
-        public void RemoveObserver(AlarmLocation alarmLocation)
+        public void RemoveObserver(Guid alarmLocationId)
         {
-            gpsObservers.Remove(alarmLocation);
+            gpsObservers.Remove(alarmLocationId);
         }
 
 

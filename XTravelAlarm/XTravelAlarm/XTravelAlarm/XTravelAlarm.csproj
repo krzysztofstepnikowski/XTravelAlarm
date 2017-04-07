@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Events\SaveAlarmEvent.cs" />
+    <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />

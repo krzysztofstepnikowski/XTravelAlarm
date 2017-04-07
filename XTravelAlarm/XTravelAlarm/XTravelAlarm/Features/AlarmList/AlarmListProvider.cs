@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using XTravelAlarm.Features.GPSobservation;
-using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Features.AlarmList
 {
-    public class AlarmListProvider : IAlarmPageFeatures
+    public class AlarmListProvider
     {
         private readonly HashSet<AlarmLocation> alarms;
-        private readonly IGPSListener gpsListener;
 
-        public AlarmListProvider(HashSet<AlarmLocation> alarms,IGPSListener gpsListener)
+        public AlarmListProvider(HashSet<AlarmLocation> alarms)
         {
             this.alarms = alarms;
-            this.gpsListener = gpsListener;
         }
 
         public IEnumerable<AlarmLocation> GetAll()
@@ -29,20 +26,25 @@ namespace XTravelAlarm.Features.AlarmList
         public void Add(AlarmLocation alarmLocation)
         {
             alarms.Add(alarmLocation);
-
-
-            Enable(alarmLocation);
         }
 
-
-        public void Enable(AlarmLocation alarmLocation)
+        public AlarmLocation GetById(Guid id)
         {
-            gpsListener.AddObserver(alarmLocation);
+            return alarms.SingleOrDefault(alarm => alarm.Id == id);
+            
         }
 
-        public void Disable(AlarmLocation alarmLocation)
+        public void Remove(Guid id)
         {
-            gpsListener.RemoveObserver(alarmLocation);
+            var alarm = GetById(id);
+
+            if (alarm == null)
+            {
+                throw new Exception("Alarm doesn't exist");
+            }
+
+            alarms.Remove(alarm);
+
         }
     }
 }
