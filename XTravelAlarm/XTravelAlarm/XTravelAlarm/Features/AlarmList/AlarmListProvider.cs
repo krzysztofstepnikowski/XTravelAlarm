@@ -28,23 +28,11 @@ namespace XTravelAlarm.Features.AlarmList
             alarms.Add(alarmLocation);
         }
 
-        public AlarmLocation GetById(Guid id)
+        public AlarmLocation GetById(Guid Id)
         {
-            return alarms.SingleOrDefault(alarm => alarm.Id == id);
-            
-        }
+            var alarmId = alarms.SingleOrDefault(alarm => alarm.Id == Id);
 
-        public void Remove(Guid id)
-        {
-            var alarm = GetById(id);
-
-            if (alarm == null)
-            {
-                throw new Exception("Alarm doesn't exist");
-            }
-
-            alarms.Remove(alarm);
-
+            return alarmId;
         }
     }
 }

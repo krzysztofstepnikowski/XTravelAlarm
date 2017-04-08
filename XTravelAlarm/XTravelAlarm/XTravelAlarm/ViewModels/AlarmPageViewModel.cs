@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Mvvm;
 using Prism.Navigation;
-using XTravelAlarm.Features;
+using XTravelAlarm.Models;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Utils;
 
@@ -14,9 +14,6 @@ namespace XTravelAlarm.ViewModels
         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
         {
             this.alarmPageFeatures = alarmPageFeatures;
-
-            var alarms = alarmPageFeatures.GetAll();
-            Alarms = new ObservableCollection<AlarmLocation>(alarms);
         }
 
 
@@ -26,15 +23,8 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            Name = (string) parameters["name"];
-            Distance = (double) parameters["distance"];
-            IsRunning = (bool) parameters["isRunning"];
-
-            alarmLocation = new AlarmLocation(Name, Distance, new Position(50.054067, 21.996808999999985), IsRunning);
-
-
-            alarmPageFeatures.Add(alarmLocation);
-            Alarms.Add(alarmLocation);
+            var alarms = alarmPageFeatures.GetAll();
+            Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
         }
 
 

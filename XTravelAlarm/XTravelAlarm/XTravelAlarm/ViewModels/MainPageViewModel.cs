@@ -2,18 +2,18 @@
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
 using XTravelAlarm.Features;
+using XTravelAlarm.Views.Main;
 
 namespace XTravelAlarm.ViewModels
 {
     public partial class MainPageViewModel : BindableBase
     {
-        private readonly INavigationService navigationService;
+        private readonly IMainPageFeatures mainPageFeatures;
 
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(IMainPageFeatures mainPageFeatures)
         {
-            this.navigationService = navigationService;
+            this.mainPageFeatures = mainPageFeatures;
 
             SaveAlarmCommand = new DelegateCommand(SaveAlarm);
         }
@@ -24,13 +24,8 @@ namespace XTravelAlarm.ViewModels
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
-                var navParams = new NavigationParameters();
-                navParams.Add("name",newLocationAlarm.Name);
-                navParams.Add("distance",newLocationAlarm.Distance);
-                navParams.Add("isRunning",newLocationAlarm.IsRunning);
+                mainPageFeatures.Add(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
-
-                navigationService.NavigateAsync("AlarmsPage", navParams);
             }
 
             else

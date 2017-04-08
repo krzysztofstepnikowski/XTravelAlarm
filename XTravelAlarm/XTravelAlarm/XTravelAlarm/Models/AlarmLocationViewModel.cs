@@ -1,7 +1,6 @@
 ﻿﻿using System;
 using System.Windows.Input;
 using Prism.Mvvm;
-using XTravelAlarm.Features;
 
 namespace XTravelAlarm.Models
 {
@@ -9,8 +8,6 @@ namespace XTravelAlarm.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
-        public Position Position { get; set; }
 
         public double Distance { get; set; }
 

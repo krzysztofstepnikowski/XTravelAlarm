@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using XTravelAlarm.Features;
+﻿using System.Collections.Generic;
+using XTravelAlarm.Models;
 
 namespace XTravelAlarm.Views.Alarms
 {
     public interface IAlarmPageFeatures
     {
-        IEnumerable<AlarmLocation> GetAll();
-        void Add(AlarmLocation alarmLocation);
-        AlarmLocation GetById(Guid id);
-        void Remove(Guid id);
-
-
+        IEnumerable<AlarmLocationViewModel> GetAll();
     }
 }

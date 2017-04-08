@@ -35,9 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Adapters\Features\AlarmPageFeatureFacade.cs" />
+    <Compile Include="Adapters\Features\AlarmPageFeaturesFacade.cs" />
+    <Compile Include="Adapters\Features\MainPageFeaturesFacade.cs" />
+    <Compile Include="Features\AlarmRinging\Alarm.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
+    <Compile Include="Features\AlarmRinging\Storage\InMemoryAlarmStorage.cs" />
+    <Compile Include="Features\AlarmRinging\Storage\IAlarmStorage.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />
     <Compile Include="Features\AlarmLocation.cs" />
     <Compile Include="Features\GPSObservation\GPSListener.cs" />
@@ -79,6 +83,7 @@
     <Compile Include="Views\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Main\IMainPageFeatures.cs" />
     <Compile Include="Views\Main\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

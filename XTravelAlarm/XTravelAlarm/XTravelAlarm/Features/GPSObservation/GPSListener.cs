@@ -5,25 +5,24 @@ using XTravelAlarm.Features.AlarmRinging;
 
 namespace XTravelAlarm.Features.GPSobservation
 {
-    public class GPSListener : IGPSListener
+    public class GPSListener
     {
         private readonly HashSet<Guid> gpsObservers;
-        private readonly IRinger ringer;
+        private readonly AlarmCaller alarmCaller;
 
 
-        public GPSListener(HashSet<Guid> gpsObservers, IRinger ringer)
+        public GPSListener(HashSet<Guid> gpsObservers,AlarmCaller alarmCaller)
         {
             this.gpsObservers = gpsObservers;
-            this.ringer = ringer;
+            this.alarmCaller = alarmCaller;
             CrossGeolocator.Current.PositionChanged += CurrentPositionChanged;
         }
 
         private void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
-            foreach (var item in gpsObservers)
+            foreach (var alarmId in gpsObservers)
             {
-                var alarmCaller = new AlarmCaller(ringer);
-                alarmCaller.UpdatePosition(new Position(e.Position.Latitude,e.Position.Longitude));
+                alarmCaller.UpdatePosition(new Position(e.Position.Latitude,e.Position.Longitude),alarmId);
             }
            
         }
