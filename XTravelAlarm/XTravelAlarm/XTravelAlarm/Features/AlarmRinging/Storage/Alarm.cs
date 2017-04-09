@@ -1,11 +1,14 @@
-﻿using System;
-
-namespace XTravelAlarm.Features.AlarmRinging
+﻿namespace XTravelAlarm.Features.AlarmRinging.Storage
 {
     public class Alarm
     {
-        public Guid Id { get; }
         public Position Destination { get; }
         public double Distance { get; }
+
+        public Alarm(Position destination, double distance)
+        {
+            Destination = destination;
+            Distance = distance;
+        }
     }
 }

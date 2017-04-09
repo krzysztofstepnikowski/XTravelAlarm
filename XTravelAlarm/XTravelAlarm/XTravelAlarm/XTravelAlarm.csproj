@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="Adapters\Features\AlarmPageFeaturesFacade.cs" />
     <Compile Include="Adapters\Features\MainPageFeaturesFacade.cs" />
-    <Compile Include="Features\AlarmRinging\Alarm.cs" />
+    <Compile Include="Features\AlarmRinging\Storage\Alarm.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmList\AlarmListProvider.cs" />
     <Compile Include="Features\AlarmRinging\Storage\InMemoryAlarmStorage.cs" />
@@ -45,7 +45,6 @@
     <Compile Include="Features\AlarmRinging\IRinger.cs" />
     <Compile Include="Features\AlarmLocation.cs" />
     <Compile Include="Features\GPSObservation\GPSListener.cs" />
-    <Compile Include="Features\GPSObservation\IGPSListener.cs" />
     <Compile Include="Features\Position.cs" />
     <Compile Include="Models\AlarmLocationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

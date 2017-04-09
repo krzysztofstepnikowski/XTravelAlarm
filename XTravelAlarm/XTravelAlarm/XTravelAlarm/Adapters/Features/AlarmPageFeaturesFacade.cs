@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Models;
 using XTravelAlarm.Views.Alarms;
 
@@ -10,10 +11,12 @@ namespace XTravelAlarm.Adapters.Features
     public class AlarmPageFeaturesFacade : IAlarmPageFeatures
     {
         private readonly AlarmListProvider alarmListProvider;
+        private readonly GPSListener gpsListener;
 
-        public AlarmPageFeaturesFacade(AlarmListProvider alarmListProvider)
+        public AlarmPageFeaturesFacade(AlarmListProvider alarmListProvider, GPSListener gpsListener)
         {
             this.alarmListProvider = alarmListProvider;
+            this.gpsListener = gpsListener;
         }
 
         public IEnumerable<AlarmLocationViewModel> GetAll()
@@ -26,9 +29,19 @@ namespace XTravelAlarm.Adapters.Features
             }).ToList();
         }
 
-        public void Add(AlarmLocation alarmLocation)
+        public void Enable(Guid alarmId)
         {
-            alarmListProvider.Add(alarmLocation);
+            var alarm = alarmListProvider.GetById(alarmId);
+            gpsListener.AddObserver(alarm.Id);
         }
+
+
+        public void Disable(Guid alarmId)
+        {
+            var alarm = alarmListProvider.GetById(alarmId);
+            gpsListener.RemoveObserver(alarm.Id);
+        }
+
+        
     }
 }

@@ -37,17 +37,13 @@ namespace XTravelAlarm
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
-            Container.RegisterType<AlarmPageViewModel>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 
             Container.RegisterType<AlarmCaller>();
             Container.RegisterType<AlarmListProvider>(new InjectionConstructor(alarmRepository));
-
             Container.RegisterType<IAlarmStorage, InMemoryAlarmStorage>();
-
-            Container.RegisterType<GPSListener>(new InjectionConstructor(gpsObservers,
-                new ResolvedParameter<AlarmCaller>()));
+            Container.RegisterType<GPSListener>(new InjectionConstructor(gpsObservers, new ResolvedParameter<AlarmCaller>()));
 
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();
             Container.RegisterType<IAlarmPageFeatures, AlarmPageFeaturesFacade>();

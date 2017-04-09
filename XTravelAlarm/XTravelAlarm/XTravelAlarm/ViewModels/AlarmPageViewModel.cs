@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Acr.UserDialogs;
 using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Models;
@@ -11,9 +12,32 @@ namespace XTravelAlarm.ViewModels
     {
         private readonly IAlarmPageFeatures alarmPageFeatures;
 
+
         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
         {
             this.alarmPageFeatures = alarmPageFeatures;
+        }
+
+        private void GetAlarms()
+        {
+            var alarms = alarmPageFeatures.GetAll();
+
+
+            foreach (var alarm in alarms)
+            {
+                if (alarm.IsRunning)
+                {
+                    alarmPageFeatures.Enable(alarm.Id);
+                    UserDialogs.Instance.Toast("Alarm włączony");
+                }
+
+                else
+                {
+                    alarmPageFeatures.Disable(alarm.Id);
+                    UserDialogs.Instance.Toast("Alarm wyłączony");
+                }
+            }
+            Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
         }
 
 
@@ -23,8 +47,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
-            var alarms = alarmPageFeatures.GetAll();
-            Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
+            GetAlarms();
         }
 
 
@@ -34,6 +57,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
+            GetAlarms();
         }
     }
 }

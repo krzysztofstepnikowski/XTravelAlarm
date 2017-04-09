@@ -17,7 +17,7 @@ namespace XTravelAlarm.Features.AlarmRinging.Storage
         {
             var alarm = alarmListProvider.GetById(alarmId);
 
-            return alarm;
+            return new Alarm(alarm.Position,alarm.Distance);
         }
     }
 }
