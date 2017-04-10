@@ -26,6 +26,7 @@ namespace XTravelAlarm.Features
 
         public AlarmLocation()
         {
+            Id = Guid.NewGuid();
         }
     }
 }

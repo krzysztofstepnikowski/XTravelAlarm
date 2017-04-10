@@ -23,13 +23,14 @@ namespace XTravelAlarm.ViewModels
         private void GetAlarms()
         {
             var alarms = alarmPageFeatures.GetAll();
+            Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
 
             foreach (var alarm in alarms)
             {
                 alarm.RunningStatusChanged = new DelegateCommand<bool?>(x => RunningStatusChanged(x, alarm));
             }
 
-            Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
+          
         }
 
         private void RunningStatusChanged(bool? isRunning, AlarmLocationViewModel alarm)

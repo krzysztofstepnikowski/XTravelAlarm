@@ -27,6 +27,7 @@ namespace XTravelAlarm.Services
         {
             return alarms.Select(x => new AlarmLocation
             {
+                Id = x.Id,
                 Name = x.Name,
                 Distance = x.Distance,
                 IsRunning = x.IsRunning
