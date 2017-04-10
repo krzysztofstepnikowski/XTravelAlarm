@@ -5,10 +5,10 @@ using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Features.AlarmRinging.Storage;
 using XTravelAlarm.Features.GPSobservation;
+using XTravelAlarm.Services;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -41,8 +41,8 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<NavigationPage>();
 
             Container.RegisterType<AlarmCaller>();
-            Container.RegisterType<AlarmListProvider>(new InjectionConstructor(alarmRepository));
-            Container.RegisterType<IAlarmStorage, InMemoryAlarmStorage>();
+            Container.RegisterType<IAlarmStorage,InMemoryAlarmStorage>(new InjectionConstructor(alarmRepository));
+//            Container.RegisterType<IAlarmStorage, InMemoryAlarmStorage>();
             Container.RegisterType<GPSListener>(new InjectionConstructor(gpsObservers, new ResolvedParameter<AlarmCaller>()));
 
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();

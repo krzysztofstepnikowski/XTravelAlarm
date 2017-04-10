@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using XTravelAlarm.Features;
+using XTravelAlarm.Features.AlarmRinging.Storage;
 
-namespace XTravelAlarm.Features.AlarmList
+namespace XTravelAlarm.Services
 {
-    public class AlarmListProvider
+    public class InMemoryAlarmStorage : IAlarmStorage
     {
         private readonly HashSet<AlarmLocation> alarms;
 
-        public AlarmListProvider(HashSet<AlarmLocation> alarms)
+        public InMemoryAlarmStorage(HashSet<AlarmLocation> alarms)
         {
             this.alarms = alarms;
+        }
+
+
+        public Alarm GetAlarm(Guid alarmId)
+        {
+            var alarm = GetById(alarmId);
+
+            return new Alarm(alarm.Position, alarm.Distance);
         }
 
         public IEnumerable<AlarmLocation> GetAll()

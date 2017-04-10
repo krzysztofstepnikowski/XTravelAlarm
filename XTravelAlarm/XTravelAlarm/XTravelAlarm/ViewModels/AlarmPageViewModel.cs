@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Acr.UserDialogs;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using XTravelAlarm.Models;
@@ -22,22 +24,35 @@ namespace XTravelAlarm.ViewModels
         {
             var alarms = alarmPageFeatures.GetAll();
 
-
             foreach (var alarm in alarms)
             {
-                if (alarm.IsRunning)
-                {
-                    alarmPageFeatures.Enable(alarm.Id);
-                    UserDialogs.Instance.Toast("Alarm włączony");
-                }
-
-                else
-                {
-                    alarmPageFeatures.Disable(alarm.Id);
-                    UserDialogs.Instance.Toast("Alarm wyłączony");
-                }
+                alarm.RunningStatusChanged = new DelegateCommand<bool?>(x => RunningStatusChanged(x, alarm));
             }
+
             Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
+        }
+
+        private void RunningStatusChanged(bool? isRunning, AlarmLocationViewModel alarm)
+        {
+            if (!isRunning.HasValue)
+            {
+                Debug.WriteLine("IsRunning is null");
+                return;
+            }
+
+            if (isRunning.Value)
+            {
+                alarmPageFeatures.Enable(alarm.Id);
+                UserDialogs.Instance.Toast("Alarm włączony");
+            }
+
+            else
+            {
+                alarmPageFeatures.Disable(alarm.Id);
+                UserDialogs.Instance.Toast("Alarm wyłączony");
+            }
+
+
         }
 
 

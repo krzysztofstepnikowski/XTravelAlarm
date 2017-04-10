@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Models;
+using XTravelAlarm.Services;
 using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Adapters.Features
 {
     public class AlarmPageFeaturesFacade : IAlarmPageFeatures
     {
-        private readonly AlarmListProvider alarmListProvider;
+        private readonly InMemoryAlarmStorage alarmStorage;
         private readonly GPSListener gpsListener;
 
-        public AlarmPageFeaturesFacade(AlarmListProvider alarmListProvider, GPSListener gpsListener)
+        public AlarmPageFeaturesFacade(GPSListener gpsListener, InMemoryAlarmStorage alarmStorage)
         {
-            this.alarmListProvider = alarmListProvider;
             this.gpsListener = gpsListener;
+            this.alarmStorage = alarmStorage;
         }
 
         public IEnumerable<AlarmLocationViewModel> GetAll()
         {
-            return alarmListProvider.GetAll().Select(x => new AlarmLocationViewModel()
+            return alarmStorage.GetAll().Select(x => new AlarmLocationViewModel()
             {
                 Name = x.Name,
                 Distance = x.Distance,
@@ -31,17 +31,17 @@ namespace XTravelAlarm.Adapters.Features
 
         public void Enable(Guid alarmId)
         {
-            var alarm = alarmListProvider.GetById(alarmId);
-            gpsListener.AddObserver(alarm.Id);
+            var alarm = alarmStorage.GetById(alarmId);
+            alarm.IsRunning = true;
+            gpsListener.AddObserver(alarmId);
         }
 
 
         public void Disable(Guid alarmId)
         {
-            var alarm = alarmListProvider.GetById(alarmId);
-            gpsListener.RemoveObserver(alarm.Id);
+            var alarm = alarmStorage.GetById(alarmId);
+            alarm.IsRunning = false;
+            gpsListener.RemoveObserver(alarmId);
         }
-
-        
     }
 }

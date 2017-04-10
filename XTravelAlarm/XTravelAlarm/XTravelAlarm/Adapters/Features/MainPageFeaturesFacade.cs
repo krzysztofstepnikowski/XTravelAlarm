@@ -1,25 +1,25 @@
 ﻿using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmList;
 using XTravelAlarm.Features.GPSobservation;
+using XTravelAlarm.Services;
 using XTravelAlarm.Views.Main;
 
 namespace XTravelAlarm.Adapters.Features
 {
     public class MainPageFeaturesFacade : IMainPageFeatures
     {
-        private readonly AlarmListProvider alarmListProvider;
+        private readonly InMemoryAlarmStorage alarmStorage;
         private readonly GPSListener gpsListener;
 
-        public MainPageFeaturesFacade(AlarmListProvider alarmListProvider, GPSListener gpsListener)
+        public MainPageFeaturesFacade(GPSListener gpsListener, InMemoryAlarmStorage alarmStorage)
         {
-            this.alarmListProvider = alarmListProvider;
             this.gpsListener = gpsListener;
+            this.alarmStorage = alarmStorage;
         }
 
         public void Add(AlarmLocation alarmLocation)
         {
             gpsListener.AddObserver(alarmLocation.Id);
-            alarmListProvider.Add(alarmLocation);
+            alarmStorage.Add(alarmLocation);
         }
     }
 }
