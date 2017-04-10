@@ -29,8 +29,6 @@ namespace XTravelAlarm.ViewModels
             {
                 alarm.RunningStatusChanged = new DelegateCommand<bool?>(x => RunningStatusChanged(x, alarm));
             }
-
-          
         }
 
         private void RunningStatusChanged(bool? isRunning, AlarmLocationViewModel alarm)
@@ -52,8 +50,6 @@ namespace XTravelAlarm.ViewModels
                 alarmPageFeatures.Disable(alarm.Id);
                 UserDialogs.Instance.Toast("Alarm wyłączony");
             }
-
-
         }
 
 

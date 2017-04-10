@@ -15,9 +15,8 @@ namespace XTravelAlarm.Features
         public bool IsRunning { get; set; }
 
 
-        public AlarmLocation(string name, double distance, Position position, bool isRunning)
+        public AlarmLocation(string name, double distance, Position position, bool isRunning) : this()
         {
-            Id = Guid.NewGuid();
             Name = name;
             Distance = distance;
             Position = position;

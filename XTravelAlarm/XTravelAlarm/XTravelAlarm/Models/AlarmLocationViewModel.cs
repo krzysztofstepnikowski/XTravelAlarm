@@ -18,6 +18,10 @@ namespace XTravelAlarm.Models
             get { return _isRunning; }
             set
             {
+                if (_isRunning == value)
+                {
+                    return;
+                }
                 SetProperty(ref _isRunning, value);
                 RunningStatusChanged?.Execute(value);
             }

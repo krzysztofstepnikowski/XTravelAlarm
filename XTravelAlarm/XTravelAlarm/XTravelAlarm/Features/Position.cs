@@ -17,5 +17,10 @@ namespace XTravelAlarm.Features
         public Position()
         {
         }
+
+        public override string ToString()
+        {
+            return "position =" + Latitude + "," + Longitude;
+        }
     }
 }

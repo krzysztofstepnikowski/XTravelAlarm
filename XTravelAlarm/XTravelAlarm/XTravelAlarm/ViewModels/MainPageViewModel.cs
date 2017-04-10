@@ -26,12 +26,17 @@ namespace XTravelAlarm.ViewModels
         private async void SaveAlarm()
         {
             var geocoder = new Geocoder();
-            var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).First();
+            var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).FirstOrDefault();
 
-            Debug.WriteLine("Position= ",targetPlace.Latitude,targetPlace.Longitude);
+
+            if (targetPlace == default(Xamarin.Forms.Maps.Position))
+            {
+                return;
+            }
 
             var newLocationAlarm = new AlarmLocation(Name, Distance,
                 new Position(targetPlace.Latitude, targetPlace.Longitude), true);
+
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
