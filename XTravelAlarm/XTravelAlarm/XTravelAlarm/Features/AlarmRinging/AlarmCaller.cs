@@ -1,5 +1,5 @@
 ﻿using System;
-using XTravelAlarm.Features.AlarmRinging.Storage;
+using XTravelAlarm.Services.Storage;
 
 namespace XTravelAlarm.Features.AlarmRinging
 {

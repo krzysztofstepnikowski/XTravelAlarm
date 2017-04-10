@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XTravelAlarm.Features.AlarmRinging.Storage
+namespace XTravelAlarm.Services.Storage
 {
     public interface IAlarmStorage
     {

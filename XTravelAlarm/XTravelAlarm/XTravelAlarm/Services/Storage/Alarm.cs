@@ -1,4 +1,6 @@
-﻿namespace XTravelAlarm.Features.AlarmRinging.Storage
+﻿using XTravelAlarm.Features;
+
+namespace XTravelAlarm.Services.Storage
 {
     public class Alarm
     {

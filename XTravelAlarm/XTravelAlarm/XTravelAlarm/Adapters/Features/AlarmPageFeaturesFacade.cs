@@ -23,6 +23,7 @@ namespace XTravelAlarm.Adapters.Features
         {
             return alarmStorage.GetAll().Select(x => new AlarmLocationViewModel()
             {
+                Id = x.Id,
                 Name = x.Name,
                 Distance = x.Distance,
                 IsRunning = x.IsRunning

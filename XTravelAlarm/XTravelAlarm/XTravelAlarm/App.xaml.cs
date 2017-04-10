@@ -6,9 +6,9 @@ using Xamarin.Forms;
 using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.Features.AlarmRinging.Storage;
 using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Services;
+using XTravelAlarm.Services.Storage;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -42,7 +42,6 @@ namespace XTravelAlarm
 
             Container.RegisterType<AlarmCaller>();
             Container.RegisterType<IAlarmStorage,InMemoryAlarmStorage>(new InjectionConstructor(alarmRepository));
-//            Container.RegisterType<IAlarmStorage, InMemoryAlarmStorage>();
             Container.RegisterType<GPSListener>(new InjectionConstructor(gpsObservers, new ResolvedParameter<AlarmCaller>()));
 
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();

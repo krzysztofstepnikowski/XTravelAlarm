@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmRinging.Storage;
+using XTravelAlarm.Services.Storage;
 
 namespace XTravelAlarm.Services
 {

@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using Acr.UserDialogs;
+using Plugin.Geolocator;
 using Prism.Commands;
 using Prism.Mvvm;
+using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
 using XTravelAlarm.Views.Main;
+using Position = XTravelAlarm.Features.Position;
 
 namespace XTravelAlarm.ViewModels
 {
@@ -18,9 +23,15 @@ namespace XTravelAlarm.ViewModels
             SaveAlarmCommand = new DelegateCommand(SaveAlarm);
         }
 
-        private void SaveAlarm()
+        private async void SaveAlarm()
         {
-            var newLocationAlarm = new AlarmLocation(Name, Distance, new Position(50.054067, 21.996808999999985),true);
+            var geocoder = new Geocoder();
+            var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).First();
+
+            Debug.WriteLine("Position= ",targetPlace.Latitude,targetPlace.Longitude);
+
+            var newLocationAlarm = new AlarmLocation(Name, Distance,
+                new Position(targetPlace.Latitude, targetPlace.Longitude), true);
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {

@@ -37,10 +37,10 @@
   <ItemGroup>
     <Compile Include="Adapters\Features\AlarmPageFeaturesFacade.cs" />
     <Compile Include="Adapters\Features\MainPageFeaturesFacade.cs" />
-    <Compile Include="Features\AlarmRinging\Storage\Alarm.cs" />
+    <Compile Include="Services\Storage\Alarm.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Services\InMemoryAlarmStorage.cs" />
-    <Compile Include="Features\AlarmRinging\Storage\IAlarmStorage.cs" />
+    <Compile Include="Services\Storage\IAlarmStorage.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />
     <Compile Include="Features\AlarmLocation.cs" />
     <Compile Include="Services\GPSListener.cs" />
