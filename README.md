@@ -26,8 +26,6 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 <li>Wyszukiwanie miejsc</li>
 <br/>
 <li>Podpowiadanie punktów zainteresowań</li>
-<br/>
-<li>Praca w trybie offline</li>
 </ul>
 <br/>
 
@@ -36,6 +34,9 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 <li>Ustawienie poziomu głośności dźwieku</li>
 <br/>
 <li>Ustawienie wibracji</li>
+<br />
+<br/>
+<li>Praca w trybie offline</li>
 <br />
 <li>Ustawienie odpowiedniej jednostki (kilometry/metry)</li>
 </ul>
