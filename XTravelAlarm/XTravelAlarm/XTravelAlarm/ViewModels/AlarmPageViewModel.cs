@@ -1,10 +1,10 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Acr.UserDialogs;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
-using XTravelAlarm.Events;
+using XTravelAlarm.Models;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Utils;
 
@@ -12,33 +12,44 @@ namespace XTravelAlarm.ViewModels
 {
     public partial class AlarmPageViewModel : BindableBase, INavigationAware, IMultiPageNavigationAware
     {
-        public AlarmPageViewModel(IEventAggregator eventAggregator, IAlarmPageFeatures alarmPageFeatures)
+        private readonly IAlarmPageFeatures alarmPageFeatures;
+
+
+        public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures)
         {
-            eventAggregator.GetEvent<SaveAlarmEvent>().Subscribe(location =>
+            this.alarmPageFeatures = alarmPageFeatures;
+        }
+
+        private void GetAlarms()
+        {
+            var alarms = alarmPageFeatures.GetAll();
+            Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
+
+            foreach (var alarm in alarms)
             {
-                location.RunningStatusChanged = new DelegateCommand<bool?>(isRunning =>
-                {
-                    
-                    if (!isRunning.HasValue)
-                    {
-                        return;
-                    }
+                alarm.RunningStatusChanged = new DelegateCommand<bool?>(x => RunningStatusChanged(x, alarm));
+            }
+        }
 
-                    if (isRunning.Value)
-                    {
-                        alarmPageFeatures.Enable(location);
-                        UserDialogs.Instance.Toast("Alarm włączony", TimeSpan.FromSeconds(3));
-                    }
+        private void RunningStatusChanged(bool? isRunning, AlarmLocationViewModel alarm)
+        {
+            if (!isRunning.HasValue)
+            {
+                Debug.WriteLine("IsRunning is null");
+                return;
+            }
 
-                    else
-                    {
-                        alarmPageFeatures.Disable(location);
-                        UserDialogs.Instance.Toast("Alarm wyłączony", TimeSpan.FromSeconds(3));
-                    }
-                });
-                alarmPageFeatures.Add(location); //dysk
-                Alarms.Add(location);
-            }, true);
+            if (isRunning.Value)
+            {
+                alarmPageFeatures.Enable(alarm.Id);
+                UserDialogs.Instance.Toast("Alarm włączony");
+            }
+
+            else
+            {
+                alarmPageFeatures.Disable(alarm.Id);
+                UserDialogs.Instance.Toast("Alarm wyłączony");
+            }
         }
 
 
@@ -48,7 +59,9 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedTo(NavigationParameters parameters)
         {
+            GetAlarms();
         }
+
 
         public void OnInternalNavigatedFrom(NavigationParameters navParams)
         {
@@ -56,6 +69,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
+            GetAlarms();
         }
     }
 }

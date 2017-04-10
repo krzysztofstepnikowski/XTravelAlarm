@@ -1,32 +1,21 @@
-﻿using System.Windows.Input;
-using Prism.Mvvm;
+﻿using System;
 
 namespace XTravelAlarm.Features
 {
-    public class AlarmLocation : BindableBase
+    public class AlarmLocation
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
 
         public Position Position { get; set; }
 
         public double Distance { get; set; }
 
-        private bool _isRunning;
 
-        public bool IsRunning
-        {
-            get { return _isRunning; }
-            set
-            {
-                SetProperty(ref _isRunning, value);
-                RunningStatusChanged?.Execute(value);
-            }
-        }
-
-        public ICommand RunningStatusChanged { get; set; }
+        public bool IsRunning { get; set; }
 
 
-        public AlarmLocation(string name, double distance, Position position, bool isRunning)
+        public AlarmLocation(string name, double distance, Position position, bool isRunning) : this()
         {
             Name = name;
             Distance = distance;
@@ -36,6 +25,7 @@ namespace XTravelAlarm.Features
 
         public AlarmLocation()
         {
+            Id = Guid.NewGuid();
         }
     }
 }

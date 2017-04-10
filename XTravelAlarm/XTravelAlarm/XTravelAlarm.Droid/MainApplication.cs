@@ -29,13 +29,15 @@ namespace XTravelAlarm.Droid
             UnregisterActivityLifecycleCallbacks(this);
         }
 
-        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
+        public async void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
             CrossCurrentActivity.Current.Activity = activity;
+            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
         }
 
-        public void OnActivityDestroyed(Activity activity)
+        public async void OnActivityDestroyed(Activity activity)
         {
+            await CrossGeolocator.Current.StopListeningAsync();
         }
 
         public void OnActivityPaused(Activity activity)
@@ -52,16 +54,14 @@ namespace XTravelAlarm.Droid
         {
         }
 
-        public async void OnActivityStarted(Activity activity)
+        public void OnActivityStarted(Activity activity)
         {
-            CrossCurrentActivity.Current.Activity = activity;
-            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
+          
         }
 
-        public async void OnActivityStopped(Activity activity)
+        public void OnActivityStopped(Activity activity)
         {
-            CrossCurrentActivity.Current.Activity = activity;
-            await CrossGeolocator.Current.StopListeningAsync();
+            
         }
 
     }

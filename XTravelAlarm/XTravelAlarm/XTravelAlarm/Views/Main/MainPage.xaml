@@ -26,7 +26,8 @@
                        PlaceholderColor="Gray"
                        FontSize="18"
                        FontAttributes="Italic"
-                       Text="{Binding Name}" />
+                       Text="{Binding Name}"
+                       />
 
 
             <maps:Map WidthRequest="350" HeightRequest="220"

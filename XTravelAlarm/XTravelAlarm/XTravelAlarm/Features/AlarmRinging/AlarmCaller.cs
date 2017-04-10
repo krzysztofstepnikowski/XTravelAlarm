@@ -1,22 +1,26 @@
 ﻿using System;
+using XTravelAlarm.Services.Storage;
 
 namespace XTravelAlarm.Features.AlarmRinging
 {
     public class AlarmCaller
     {
-        private readonly Position alarmPosition;
-        private readonly double alarmDistance;
         private readonly IRinger ringer;
+        private readonly IAlarmStorage alarmStorage;
 
-        public AlarmCaller(Position alarmPosition, double alarmDistance, IRinger ringer)
+        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage)
         {
-            this.alarmPosition = alarmPosition;
-            this.alarmDistance = alarmDistance;
             this.ringer = ringer;
+            this.alarmStorage = alarmStorage;
         }
 
 
         private double CalculateDistance(Position position, Position alarmPosition)
+        {
+            return CalculateWithHaversine(position, alarmPosition);
+        }
+
+        private double CalculateWithHaversine(Position position, Position alarmPosition)
         {
             var R = 6371d;
             var currentLatitude = position.Latitude;
@@ -45,10 +49,13 @@ namespace XTravelAlarm.Features.AlarmRinging
         }
 
 
-        public void UpdatePosition(Position position)
+        public void UpdatePosition(Position position, Guid alarmId)
         {
-            var currentDistance = CalculateDistance(position, alarmPosition);
-            if (currentDistance <= alarmDistance)
+            var alarm = alarmStorage.GetAlarm(alarmId);
+
+
+            var currentDistance = CalculateDistance(position, alarm.Destination);
+            if (currentDistance <= alarm.Distance)
             {
                 ringer.Ring();
             }

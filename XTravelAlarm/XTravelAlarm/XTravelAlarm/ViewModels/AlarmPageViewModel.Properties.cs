@@ -1,31 +1,18 @@
 ﻿using System.Collections.ObjectModel;
-using XTravelAlarm.Features;
+using XTravelAlarm.Models;
 
 namespace XTravelAlarm.ViewModels
 {
-     partial class AlarmPageViewModel
+    partial class AlarmPageViewModel
     {
-        private ObservableCollection<AlarmLocation> _alarms;
+        private ObservableCollection<AlarmLocationViewModel> _alarms;
 
-        public ObservableCollection<AlarmLocation> Alarms
+
+        public ObservableCollection<AlarmLocationViewModel> Alarms
         {
-            get
-            {
-                if (_alarms == null)
-                {
-                    _alarms = new ObservableCollection<AlarmLocation>();
-                }
+            get { return _alarms; }
 
-                return _alarms;
-            }
-
-            set
-            {
-                SetProperty(ref _alarms, value); 
-               
-            }
+            set { SetProperty(ref _alarms, value); }
         }
-
-       
     }
 }

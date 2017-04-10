@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 using Prism.Unity;
 using Xamarin.Forms;
+using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmList;
+using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Features.GPSobservation;
+using XTravelAlarm.Services;
+using XTravelAlarm.Services.Storage;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -22,12 +26,13 @@ namespace XTravelAlarm
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainTabbedPage");
+            NavigationService.NavigateAsync("NavigationPage/MainTabbedPage/");
         }
 
         protected override void RegisterTypes()
         {
             var alarmRepository = new HashSet<AlarmLocation>();
+            var gpsObservers = new HashSet<Guid>();
 
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
@@ -35,11 +40,12 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 
+            Container.RegisterType<AlarmCaller>();
+            Container.RegisterType<IAlarmStorage,InMemoryAlarmStorage>(new InjectionConstructor(alarmRepository));
+            Container.RegisterType<GPSListener>(new InjectionConstructor(gpsObservers, new ResolvedParameter<AlarmCaller>()));
 
-            Container.RegisterType<IGPSListener, GPSListener>(new InjectionConstructor(new HashSet<AlarmLocation>(),
-                new ResolvedParameter<IRinger>()));
-            Container.RegisterType<IAlarmPageFeatures, AlarmListProvider>(new InjectionConstructor(alarmRepository,
-                new ResolvedParameter<IGPSListener>()));
+            Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();
+            Container.RegisterType<IAlarmPageFeatures, AlarmPageFeaturesFacade>();
         }
     }
 }
