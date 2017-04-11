@@ -45,5 +45,21 @@ namespace XTravelAlarm.Services
 
             return alarmId;
         }
+
+        public void Remove(Guid Id)
+        {
+            var alarm = GetById(Id);
+
+            if (alarm == null)
+            {
+                throw new Exception("Alarm null");
+            }
+
+            else
+            {
+                alarms.Remove(alarm);
+            }
+
+        }
     }
 }
