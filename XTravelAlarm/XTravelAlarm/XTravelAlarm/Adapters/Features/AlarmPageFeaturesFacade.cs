@@ -49,5 +49,10 @@ namespace XTravelAlarm.Adapters.Features
         {
             alarmStorage.Remove(alarmId);
         }
+
+        public bool IsEmptyAlarmList()
+        {
+            return alarmStorage.IsEmptyStorage();
+        }
     }
 }

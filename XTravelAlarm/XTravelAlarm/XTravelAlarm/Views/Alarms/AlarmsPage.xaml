@@ -14,6 +14,12 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout Orientation="Vertical" Padding="8,8,8,0">
+
+        <Label Text="Brak alarmów"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               IsVisible="{Binding IsVisibleAlarms}" />
+
         <ListView x:Name="AlarmsListView"
                   RowHeight="80"
                   ItemsSource="{Binding Alarms}">
@@ -30,15 +36,15 @@
                     <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem Clicked="DeleteClicked"
-								CommandParameter="{Binding .}"
-								Text="Usuń"/>
+                                      CommandParameter="{Binding .}"
+                                      Text="Usuń" />
                         </ViewCell.ContextActions>
                         <StackLayout Orientation="Vertical" Padding="8,8,8,0">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}"
                                        FontSize="18"
                                        TextColor="Black" />
-                                <Switch IsToggled="{Binding IsRunning, Mode=TwoWay}"  HorizontalOptions="EndAndExpand" />
+                                <Switch IsToggled="{Binding IsRunning, Mode=TwoWay}" HorizontalOptions="EndAndExpand" />
 
                             </StackLayout>
 
@@ -62,6 +68,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
     </StackLayout>
 
 </ContentPage>

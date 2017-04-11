@@ -29,7 +29,11 @@ namespace XTravelAlarm.ViewModels
         private void GetAlarms()
         {
             var alarms = alarmPageFeatures.GetAll();
+
+
             Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
+
+            IsVisibleAlarms = alarmPageFeatures.IsEmptyAlarmList();
 
             foreach (var alarm in alarms)
             {
