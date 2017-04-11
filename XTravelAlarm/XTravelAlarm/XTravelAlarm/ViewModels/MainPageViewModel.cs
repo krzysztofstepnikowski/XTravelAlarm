@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using Acr.UserDialogs;
-using Plugin.Geolocator;
 using Prism.Commands;
 using Prism.Mvvm;
 using Xamarin.Forms.Maps;
@@ -36,6 +35,8 @@ namespace XTravelAlarm.ViewModels
 
             var newLocationAlarm = new AlarmLocation(Name, Distance,
                 new Position(targetPlace.Latitude, targetPlace.Longitude), true);
+
+            Debug.WriteLine(newLocationAlarm.Position);
 
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
