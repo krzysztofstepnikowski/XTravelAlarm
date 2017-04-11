@@ -28,6 +28,11 @@
                 <DataTemplate>
 
                     <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="DeleteClicked"
+								CommandParameter="{Binding .}"
+								Text="Usuń"/>
+                        </ViewCell.ContextActions>
                         <StackLayout Orientation="Vertical" Padding="8,8,8,0">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}"

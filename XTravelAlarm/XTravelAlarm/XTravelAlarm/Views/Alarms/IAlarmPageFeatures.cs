@@ -9,5 +9,6 @@ namespace XTravelAlarm.Views.Alarms
         IEnumerable<AlarmLocationViewModel> GetAll();
         void Enable(Guid alarmId);
         void Disable(Guid alarmId);
+        void Remove(Guid alarmId);
     }
 }

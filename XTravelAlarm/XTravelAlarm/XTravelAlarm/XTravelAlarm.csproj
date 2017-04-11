@@ -48,6 +48,9 @@
     <Compile Include="Models\AlarmLocationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\MultipageNavigationBehavior.cs" />
+    <Compile Include="ViewModels\AlarmPageViewModel.Commands.cs">
+      <DependentUpon>AlarmPageViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AlarmPageViewModel.cs" />
     <Compile Include="ViewModels\AlarmPageViewModel.Properties.cs">
       <DependentUpon>AlarmPageViewModel.cs</DependentUpon>
