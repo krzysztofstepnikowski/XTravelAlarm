@@ -31,16 +31,24 @@ namespace XTravelAlarm.iOS
             return base.FinishedLaunching(app, options);
         }
 
-        public override async void OnActivated(UIApplication uiApplication)
+        public override void OnActivated(UIApplication uiApplication)
         {
             base.OnActivated(uiApplication);
-            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
+            var locator = CrossGeolocator.Current;
+
+            locator.AllowsBackgroundUpdates = true;
+            locator.PausesLocationUpdatesAutomatically = false;
+            locator.DesiredAccuracy = 100;
         }
 
-        public override async void DidEnterBackground(UIApplication uiApplication)
+        public override void DidEnterBackground(UIApplication uiApplication)
         {
             base.DidEnterBackground(uiApplication);
-            await CrossGeolocator.Current.StopListeningAsync();
+            var locator = CrossGeolocator.Current;
+
+            locator.AllowsBackgroundUpdates = true;
+            locator.PausesLocationUpdatesAutomatically = false;
+            locator.DesiredAccuracy = 100;
         }
     }
 

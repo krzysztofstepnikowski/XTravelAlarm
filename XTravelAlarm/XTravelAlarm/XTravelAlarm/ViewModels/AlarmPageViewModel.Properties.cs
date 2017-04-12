@@ -16,12 +16,12 @@ namespace XTravelAlarm.ViewModels
             set { SetProperty(ref _alarms, value); }
         }
 
-        private bool _isVisibleAlarms;
+        private bool _isAlarmListPlaceholderVisible;
 
-        public bool IsVisibleAlarms
+        public bool IsAlarmListPlaceholderVisible
         {
-            get { return _isVisibleAlarms; }
-            set { SetProperty(ref _isVisibleAlarms, value); }
+            get { return _isAlarmListPlaceholderVisible; }
+            set { SetProperty(ref _isAlarmListPlaceholderVisible, value); }
 
        
     }

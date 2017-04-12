@@ -10,7 +10,5 @@ namespace XTravelAlarm.Views.Alarms
         void Enable(Guid alarmId);
         void Disable(Guid alarmId);
         void Remove(Guid alarmId);
-
-        bool IsEmptyAlarmList();
     }
 }

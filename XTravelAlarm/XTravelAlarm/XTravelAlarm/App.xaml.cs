@@ -7,7 +7,6 @@ using XTravelAlarm.Adapters.Features;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Features.AlarmRinging.Storage;
-using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Services;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;

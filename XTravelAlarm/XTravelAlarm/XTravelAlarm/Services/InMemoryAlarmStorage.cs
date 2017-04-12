@@ -60,10 +60,5 @@ namespace XTravelAlarm.Services
                 alarms.Remove(alarm);
             }
         }
-
-        public bool IsEmptyStorage()
-        {
-            return alarms.Count == 0;
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -30,10 +31,9 @@ namespace XTravelAlarm.ViewModels
         {
             var alarms = alarmPageFeatures.GetAll();
 
-
             Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
 
-            IsVisibleAlarms = alarmPageFeatures.IsEmptyAlarmList();
+            IsAlarmListPlaceholderVisible = !Alarms.Any();
 
             foreach (var alarm in alarms)
             {

@@ -5,6 +5,7 @@
              x:Class="XTravelAlarm.Views.Alarms.AlarmsPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             x:Name="ContentPage"
              Title="Moje alarmy">
 
 
@@ -18,7 +19,7 @@
         <Label Text="Brak alarmów"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand"
-               IsVisible="{Binding IsVisibleAlarms}" />
+               IsVisible="{Binding IsAlarmListPlaceholderVisible}" />
 
         <ListView x:Name="AlarmsListView"
                   RowHeight="80"
@@ -35,7 +36,7 @@
 
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Clicked="DeleteClicked"
+                            <MenuItem Command="{Binding Source={x:Reference ContentPage}, Path=BindingContext.RemoveAlarm}"
                                       CommandParameter="{Binding .}"
                                       Text="Usuń" />
                         </ViewCell.ContextActions>

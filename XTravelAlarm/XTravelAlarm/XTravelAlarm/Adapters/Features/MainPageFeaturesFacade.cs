@@ -1,5 +1,4 @@
 ﻿using XTravelAlarm.Features;
-using XTravelAlarm.Features.GPSobservation;
 using XTravelAlarm.Services;
 using XTravelAlarm.Views.Main;
 
