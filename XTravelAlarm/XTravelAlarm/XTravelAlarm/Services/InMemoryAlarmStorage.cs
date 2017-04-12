@@ -59,7 +59,6 @@ namespace XTravelAlarm.Services
             {
                 alarms.Remove(alarm);
             }
-
         }
     }
 }

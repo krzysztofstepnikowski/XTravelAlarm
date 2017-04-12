@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Plugin.Geolocator;
+using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging;
 
-namespace XTravelAlarm.Features.GPSobservation
+namespace XTravelAlarm.Services
 {
     public class GPSListener
     {

@@ -10,5 +10,7 @@ namespace XTravelAlarm.Views.Main
         {
             InitializeComponent();
         }
+
+        
     }
 }

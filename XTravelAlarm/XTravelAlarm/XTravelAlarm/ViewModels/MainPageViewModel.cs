@@ -33,8 +33,7 @@ namespace XTravelAlarm.ViewModels
                 return;
             }
 
-            var newLocationAlarm = new AlarmLocation(Name, Distance,
-                new Position(targetPlace.Latitude, targetPlace.Longitude), true);
+            var newLocationAlarm = new AlarmLocation(Name, Distance, new Position(targetPlace.Latitude, targetPlace.Longitude), true);
 
             Debug.WriteLine(newLocationAlarm.Position);
 

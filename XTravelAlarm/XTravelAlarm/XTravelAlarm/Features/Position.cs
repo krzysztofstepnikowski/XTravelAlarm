@@ -20,7 +20,7 @@ namespace XTravelAlarm.Features
 
         public override string ToString()
         {
-            return $"Position= ({Latitude},{Longitude})";
+            return $"Position= ({Latitude};{Longitude})";
         }
     }
 }

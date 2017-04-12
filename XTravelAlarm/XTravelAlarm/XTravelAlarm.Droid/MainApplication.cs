@@ -24,29 +24,29 @@ namespace XTravelAlarm.Droid
             //A great place to initialize Xamarin.Insights and Dependency Services!
         }
 
-        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
+        public async void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
-           
+            CrossCurrentActivity.Current.Activity = activity;
+            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been created");
         }
 
         public void OnActivityStarted(Activity activity)
         {
-            CrossCurrentActivity.Current.Activity = activity;
-            CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
+            
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been started");
         }
 
         public void OnActivityResumed(Activity activity)
         {
+            CrossCurrentActivity.Current.Activity = activity;
+            CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been resumed");
 
         }
 
-        public async void OnActivityPaused(Activity activity)
+        public void OnActivityPaused(Activity activity)
         {
-            CrossCurrentActivity.Current.Activity = activity;
-            await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 1000);
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been paused");
         }
 
