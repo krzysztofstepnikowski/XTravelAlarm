@@ -34,37 +34,40 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
 
+
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Clicked="DeleteAlarmClicked"
+                            <MenuItem
+                                Command="{Binding Source={x:Reference ContentPage}, Path=BindingContext.RemoveAlarm}"
                                 CommandParameter="{Binding .}"
                                 Text="Usuń" />
                         </ViewCell.ContextActions>
-<!--                        <StackLayout Orientation="Vertical" Padding="8,8,8,0">-->
-<!--                            <StackLayout Orientation="Horizontal">-->
-<!--                                <Label Text="{Binding Name}"-->
-<!--                                       FontSize="18"-->
-<!--                                       TextColor="Black" />-->
-<!--                                <Switch IsToggled="{Binding IsRunning, Mode=TwoWay}" HorizontalOptions="EndAndExpand" />-->
-<!---->
-<!--                            </StackLayout>-->
-<!---->
-<!--                            <StackLayout Orientation="Horizontal" Padding="12,0,12,5">-->
-<!---->
-<!--                                <Label Text="Dystans:"-->
-<!--                                       FontSize="14"-->
-<!--                                       TextColor="Gray" />-->
-<!--                                <Label Text="{Binding Distance}"-->
-<!--                                       FontSize="14"-->
-<!--                                       TextColor="Gray"-->
-<!--                                       Margin="0" />-->
-<!---->
-<!--                                <Label Text="km"-->
-<!--                                       FontSize="14"-->
-<!--                                       TextColor="Gray" />-->
-<!--                            </StackLayout>-->
-<!---->
-<!--                        </StackLayout>-->
+                        <StackLayout Orientation="Vertical" Padding="8,8,8,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       TextColor="Black" />
+                                <Switch IsToggled="{Binding IsRunning, Mode=TwoWay}"
+                                        HorizontalOptions="EndAndExpand" />
+
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="12,0,12,5">
+
+                                <Label Text="Dystans:"
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                                <Label Text="{Binding Distance}"
+                                       FontSize="14"
+                                       TextColor="Gray"
+                                       Margin="0" />
+
+                                <Label Text="km"
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                            </StackLayout>
+
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
