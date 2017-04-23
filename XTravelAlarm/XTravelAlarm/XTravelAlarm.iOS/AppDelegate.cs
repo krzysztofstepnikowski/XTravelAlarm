@@ -30,26 +30,6 @@ namespace XTravelAlarm.iOS
 
             return base.FinishedLaunching(app, options);
         }
-
-        public override void OnActivated(UIApplication uiApplication)
-        {
-            base.OnActivated(uiApplication);
-            var locator = CrossGeolocator.Current;
-
-            locator.AllowsBackgroundUpdates = true;
-            locator.PausesLocationUpdatesAutomatically = false;
-            locator.DesiredAccuracy = 100;
-        }
-
-        public override void DidEnterBackground(UIApplication uiApplication)
-        {
-            base.DidEnterBackground(uiApplication);
-            var locator = CrossGeolocator.Current;
-
-            locator.AllowsBackgroundUpdates = true;
-            locator.PausesLocationUpdatesAutomatically = false;
-            locator.DesiredAccuracy = 100;
-        }
     }
 
     public class iOSInitializer : IPlatformInitializer
