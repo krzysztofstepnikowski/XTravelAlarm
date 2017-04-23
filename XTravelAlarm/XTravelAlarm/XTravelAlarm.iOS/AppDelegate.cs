@@ -34,21 +34,6 @@ namespace XTravelAlarm.iOS
         public override void OnActivated(UIApplication uiApplication)
         {
             base.OnActivated(uiApplication);
-            var locator = CrossGeolocator.Current;
-
-            locator.AllowsBackgroundUpdates = true;
-            locator.PausesLocationUpdatesAutomatically = false;
-            locator.DesiredAccuracy = 100;
-        }
-
-        public override void DidEnterBackground(UIApplication uiApplication)
-        {
-            base.DidEnterBackground(uiApplication);
-            var locator = CrossGeolocator.Current;
-
-            locator.AllowsBackgroundUpdates = true;
-            locator.PausesLocationUpdatesAutomatically = false;
-            locator.DesiredAccuracy = 100;
         }
     }
 
@@ -56,8 +41,7 @@ namespace XTravelAlarm.iOS
     {
         public void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<IRinger,iOSAlarmRinger>();
+            container.RegisterType<IRinger, iOSAlarmRinger>();
         }
     }
-
 }

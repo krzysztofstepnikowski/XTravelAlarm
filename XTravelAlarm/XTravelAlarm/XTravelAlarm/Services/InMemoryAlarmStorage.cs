@@ -13,6 +13,7 @@ namespace XTravelAlarm.Services
         public InMemoryAlarmStorage(HashSet<AlarmLocation> alarms)
         {
             this.alarms = alarms;
+            alarms.Add(new AlarmLocation());
         }
 
 

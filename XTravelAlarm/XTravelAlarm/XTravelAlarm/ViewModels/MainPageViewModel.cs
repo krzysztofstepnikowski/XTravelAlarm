@@ -25,21 +25,21 @@ namespace XTravelAlarm.ViewModels
         private async void SaveAlarm()
         {
             var geocoder = new Geocoder();
-            var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).FirstOrDefault();
-
-
-            if (targetPlace == default(Xamarin.Forms.Maps.Position))
-            {
-                return;
-            }
-
-            var newLocationAlarm = new AlarmLocation(Name, Distance, new Position(targetPlace.Latitude, targetPlace.Longitude), true);
-
-            Debug.WriteLine(newLocationAlarm.Position);
 
 
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
+                var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).FirstOrDefault();
+
+
+                if (targetPlace == default(Xamarin.Forms.Maps.Position))
+                {
+                    return;
+                }
+
+                var newLocationAlarm = new AlarmLocation(Name, Distance,
+                    new Position(targetPlace.Latitude, targetPlace.Longitude), true);
+
                 mainPageFeatures.Add(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
             }

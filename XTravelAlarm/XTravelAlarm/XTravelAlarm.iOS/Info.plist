@@ -32,10 +32,6 @@
 		<string>Default@2x.png</string>
 		<string>Default-568h@2x.png</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>You are about to use location!</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This will be called if location is used behind the scenes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleShortVersionString</key>
@@ -46,5 +42,9 @@
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Zamierzasz użyć lokalizacji!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>To zostanie wywołane, jeśli lokalizacja jest używana za kulisami.</string>
 </dict>
 </plist>

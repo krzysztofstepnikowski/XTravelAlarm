@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace XTravelAlarm.Views.Alarms
@@ -10,6 +11,13 @@ namespace XTravelAlarm.Views.Alarms
         {
             InitializeComponent();
             AlarmsListView.ItemSelected += (sender, e) => AlarmsListView.SelectedItem = null;
+        }
+
+
+
+        private void DeleteAlarmClicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }
