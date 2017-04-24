@@ -39,7 +39,3 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 <br />
 <li>Ustawienie odpowiedniej jednostki (kilometry/metry)</li>
 </ul>
-
-
-
-

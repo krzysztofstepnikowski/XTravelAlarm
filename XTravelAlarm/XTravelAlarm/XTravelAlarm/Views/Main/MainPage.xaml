@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
@@ -22,13 +23,15 @@
         <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
 
 
-            <SearchBar Placeholder="Podaj miejsce docelowe"
-                       PlaceholderColor="Gray"
-                       FontSize="18"
-                       FontAttributes="Italic"
-                       Text="{Binding Name}"
-                       />
-
+            <autocomplete:SfAutoComplete Watermark="Podaj miejsce docelowe"
+                                         WatermarkColor="Gray"
+                                         Text="{Binding Name}"
+                                         TextSize="18"
+                                         SuggestionMode="StartsWith"
+                                         AutoCompleteMode="Suggest"
+                                         HeightRequest="40"
+                                         MinimumPrefixCharacters="1"
+                                         MaximumDropDownHeight="200" />
 
             <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"

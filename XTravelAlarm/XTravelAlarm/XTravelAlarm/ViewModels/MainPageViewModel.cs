@@ -23,11 +23,10 @@ namespace XTravelAlarm.ViewModels
 
         private async void SaveAlarm()
         {
-            var geocoder = new Geocoder();
-
-
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
+                var geocoder = new Geocoder();
+
                 var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).FirstOrDefault();
 
 

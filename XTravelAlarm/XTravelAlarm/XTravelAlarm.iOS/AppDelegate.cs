@@ -2,7 +2,6 @@
 using UIKit;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
-using Plugin.Geolocator;
 using Xamarin;
 using XTravelAlarm.Features;
 using XTravelAlarm.iOS.Services;
@@ -31,10 +30,12 @@ namespace XTravelAlarm.iOS
             return base.FinishedLaunching(app, options);
         }
 
+
         public override void OnActivated(UIApplication uiApplication)
         {
             base.OnActivated(uiApplication);
         }
+
     }
 
     public class iOSInitializer : IPlatformInitializer
