@@ -1,5 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics;
+using System.Linq;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XTravelAlarm.Services;
+using ValueChangedEventArgs = Syncfusion.SfAutoComplete.XForms.ValueChangedEventArgs;
 
 namespace XTravelAlarm.Views.Main
 {
@@ -11,6 +15,21 @@ namespace XTravelAlarm.Views.Main
             InitializeComponent();
         }
 
-        
+
+        private async void AutoCompleteOnValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (e.Value == null)
+            {
+                return;
+            }
+
+            var googleLocationAutoComplete = new GoogleLocationAutoComplete();
+
+            var locations = await googleLocationAutoComplete.GetPredictionsAsync(e.Value);
+
+            AutoComplete.AutoCompleteSource = locations.ToList();
+
+            Debug.WriteLine(e.Value);
+        }
     }
 }

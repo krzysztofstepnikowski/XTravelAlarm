@@ -2,6 +2,7 @@
 using UIKit;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using Syncfusion.SfAutoComplete.XForms.iOS;
 using Xamarin;
 using XTravelAlarm.Features;
 using XTravelAlarm.iOS.Services;
@@ -25,6 +26,7 @@ namespace XTravelAlarm.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FormsMaps.Init();
+//            new SfAutoCompleteRenderer();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);
@@ -35,7 +37,6 @@ namespace XTravelAlarm.iOS
         {
             base.OnActivated(uiApplication);
         }
-
     }
 
     public class iOSInitializer : IPlatformInitializer
