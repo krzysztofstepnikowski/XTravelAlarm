@@ -31,6 +31,7 @@
                                          DataSource="{Binding AutoCompletePredictions}"
                                          ValueChanged="AutoCompleteOnValueChanged"
                                          SuggestionMode="StartsWith"
+                                         
                                          AutoCompleteMode="Suggest"
                                          HeightRequest="40"
                                          MinimumPrefixCharacters="1"

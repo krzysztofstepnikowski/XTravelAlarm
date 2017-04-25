@@ -7,26 +7,27 @@ namespace XTravelAlarm.Services
 {
     public class GoogleLocationAutoComplete
     {
-        private readonly string key;
+        private string key;
 
-        public GoogleLocationAutoComplete()
+        public GoogleLocationAutoComplete(string key)
         {
-            key = "AIzaSyDcPhALdqGkeHyInWu0XtiU6IDnemuiqis";
+            this.key = key;
         }
 
         public async Task<string[]> GetPredictionsAsync(string name)
         {
-            var httpClient = new HttpClient();
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync(
+                    $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={name}&types=geocode&language=pl&key={key}");
+                var json = await response.Content.ReadAsStringAsync();
 
-            var response = await httpClient.GetAsync(
-                $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={name}&types=geocode&language=pl&key={key}");
-            var json = await response.Content.ReadAsStringAsync();
+                var data = JObject.Parse(json);
+                var predictions = data["predictions"].Children();
+                var descriptions = predictions.Select(x => x["description"].ToString()).ToArray();
 
-            var data = JObject.Parse(json);
-            var predictions = data["predictions"].Children();
-            var descriptions = predictions.Select(x => x["description"].ToString()).ToArray();
-
-            return descriptions;
+                return descriptions;
+            }
         }
     }
 }
