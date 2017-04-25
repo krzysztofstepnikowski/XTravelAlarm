@@ -27,12 +27,13 @@
                                          WatermarkColor="Gray"
                                          x:Name="AutoComplete"
                                          Text="{Binding Name}"
-                                         TextSize="18"
+                                         TextSize="14"
+                                         DataSource="{Binding AutoCompletePredictions}"
                                          ValueChanged="AutoCompleteOnValueChanged"
                                          SuggestionMode="StartsWith"
                                          AutoCompleteMode="Suggest"
                                          HeightRequest="40"
-                                         MinimumPrefixCharacters="1"
+                                         MinimumPrefixCharacters="3"
                                          MaximumDropDownHeight="200" />
 
             <maps:Map WidthRequest="350" HeightRequest="220"

@@ -19,7 +19,7 @@ namespace XTravelAlarm.Services
             var httpClient = new HttpClient();
 
             var response = await httpClient.GetAsync(
-                $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={name}&types=geocode&key={key}");
+                $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={name}&types=geocode&language=pl&key={key}");
             var json = await response.Content.ReadAsStringAsync();
 
             var data = JObject.Parse(json);
