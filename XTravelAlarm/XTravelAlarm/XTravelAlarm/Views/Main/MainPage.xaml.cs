@@ -15,7 +15,6 @@ namespace XTravelAlarm.Views.Main
         public MainPage()
         {
             InitializeComponent();
-           
         }
 
         private async void AutoCompleteOnValueChanged(object sender, ValueChangedEventArgs e)

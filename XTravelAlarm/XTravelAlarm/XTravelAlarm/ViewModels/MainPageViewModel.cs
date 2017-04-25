@@ -40,7 +40,6 @@ namespace XTravelAlarm.ViewModels
                 var newLocationAlarm = new AlarmLocation(Name, Distance,
                     new Position(targetPlace.Latitude, targetPlace.Longitude), true);
 
-                Debug.WriteLine(newLocationAlarm.Position.ToString());
 
                 mainPageFeatures.Add(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));

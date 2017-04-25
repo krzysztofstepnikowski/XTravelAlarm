@@ -33,7 +33,7 @@
                                          SuggestionMode="StartsWith"
                                          AutoCompleteMode="Suggest"
                                          HeightRequest="40"
-                                         MinimumPrefixCharacters="3"
+                                         MinimumPrefixCharacters="1"
                                          MaximumDropDownHeight="200" />
 
             <maps:Map WidthRequest="350" HeightRequest="220"
