@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
 using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
+using XTravelAlarm.Services;
 using XTravelAlarm.Views.Main;
 using Position = XTravelAlarm.Features.Position;
 
@@ -18,10 +20,34 @@ namespace XTravelAlarm.ViewModels
         {
             this.mainPageFeatures = mainPageFeatures;
 
-            SaveAlarmCommand = new DelegateCommand(SaveAlarm);
+            AutoCompleteCommand = new DelegateCommand(GetPredictionsAsync);
+            SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
 
-        private async void SaveAlarm()
+        private async void GetPredictionsAsync()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                return;
+            }
+
+            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyCnsoE4LIw9R4Kd9vF_S3D2qJ7N_iyUFUc");
+
+            try
+            {
+                var locations = await googleLocationAutoComplete.GetPredictionsAsync(Name);
+
+                Debug.WriteLine($"Locations length= {locations.Length}");
+
+                AutoCompletePredictions = locations.ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private async void SaveAlarmAsync()
         {
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {

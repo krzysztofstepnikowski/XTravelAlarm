@@ -7,7 +7,7 @@ namespace XTravelAlarm.Services
 {
     public class GoogleLocationAutoComplete
     {
-        private string key;
+        private readonly string key;
 
         public GoogleLocationAutoComplete(string key)
         {

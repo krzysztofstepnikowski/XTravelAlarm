@@ -39,7 +39,6 @@
     <Compile Include="Adapters\Features\MainPageFeaturesFacade.cs" />
     <Compile Include="Features\AlarmRinging\Storage\Alarm.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
-    <Compile Include="Models\AutoCompleteViewModel.cs" />
     <Compile Include="Services\GoogleLocationAutoComplete.cs" />
     <Compile Include="Services\InMemoryAlarmStorage.cs" />
     <Compile Include="Features\AlarmRinging\Storage\IAlarmStorage.cs" />
@@ -65,6 +64,7 @@
     <Compile Include="Views\Alarms\AlarmsPage.xaml.cs">
       <DependentUpon>AlarmsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="YourAppBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -113,6 +113,14 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Pillar, Version=1.0.0.94, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Askaiser.Mobile.Pillar.1.0.0\lib\portable-net45+win8+wpa81+wp8\Pillar.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Pillar.Ioc, Version=1.0.0.94, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Askaiser.Mobile.Pillar.1.0.0\lib\portable-net45+win8+wpa81+wp8\Pillar.Ioc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.Geolocator, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">

@@ -5,6 +5,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:behaviors="clr-namespace:Pillar;assembly=Pillar"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
@@ -25,17 +26,18 @@
 
             <autocomplete:SfAutoComplete Watermark="Podaj miejsce docelowe"
                                          WatermarkColor="Gray"
-                                         x:Name="AutoComplete"
                                          Text="{Binding Name}"
                                          TextSize="14"
-                                         DataSource="{Binding AutoCompletePredictions}"
-                                         ValueChanged="AutoCompleteOnValueChanged"
+                                         AutoCompleteSource="{Binding AutoCompletePredictions}"
                                          SuggestionMode="StartsWith"
-                                         
                                          AutoCompleteMode="Suggest"
                                          HeightRequest="40"
-                                         MinimumPrefixCharacters="1"
-                                         MaximumDropDownHeight="200" />
+                                         MinimumPrefixCharacters="2"
+                                         MaximumDropDownHeight="200">
+                <autocomplete:SfAutoComplete.Behaviors>
+                    <behaviors:EventToCommandBehavior EventName="ValueChanged" Command="{Binding AutoCompleteCommand}" />
+                </autocomplete:SfAutoComplete.Behaviors>
+            </autocomplete:SfAutoComplete>
 
             <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"
