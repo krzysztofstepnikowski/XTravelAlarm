@@ -10,6 +10,7 @@
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
 
+   
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zapisz"
@@ -33,11 +34,32 @@
                                          AutoCompleteMode="Suggest"
                                          HeightRequest="40"
                                          MinimumPrefixCharacters="2"
-                                         MaximumDropDownHeight="200">
+                                         MaximumDropDownHeight="200"
+                                         >
+                <autocomplete:SfAutoComplete.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <OnPlatform.Android>True</OnPlatform.Android>
+                        <OnPlatform.iOS>False</OnPlatform.iOS>
+                    </OnPlatform>
+
+                </autocomplete:SfAutoComplete.IsVisible>
                 <autocomplete:SfAutoComplete.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="ValueChanged" Command="{Binding AutoCompleteCommand}" />
+                    <behaviors:EventToCommandBehavior EventName="ValueChanged" Command="{Binding AutoCompleteCommand}"/>
                 </autocomplete:SfAutoComplete.Behaviors>
             </autocomplete:SfAutoComplete>
+
+            <Entry Placeholder="Podaj miejsce docelowe"
+                   PlaceholderColor="Gray"
+                   Text="{Binding Name}"
+                   FontSize="14"
+                   HeightRequest="40">
+                <Entry.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <OnPlatform.Android>False</OnPlatform.Android>
+                        <OnPlatform.iOS>True</OnPlatform.iOS>
+                    </OnPlatform>
+                </Entry.IsVisible>
+            </Entry>
 
             <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"

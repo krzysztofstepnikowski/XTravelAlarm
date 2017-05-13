@@ -4,11 +4,13 @@ using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
 using XTravelAlarm.Services;
 using XTravelAlarm.Views.Main;
 using Position = XTravelAlarm.Features.Position;
+using ValueChangedEventArgs = Syncfusion.SfAutoComplete.XForms.ValueChangedEventArgs;
 
 namespace XTravelAlarm.ViewModels
 {
@@ -20,26 +22,27 @@ namespace XTravelAlarm.ViewModels
         {
             this.mainPageFeatures = mainPageFeatures;
 
-            AutoCompleteCommand = new DelegateCommand(GetPredictionsAsync);
+            AutoCompleteCommand = new Command<ValueChangedEventArgs>(GetPredictionsAsync);
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
 
-        private async void GetPredictionsAsync()
+        private async void GetPredictionsAsync(ValueChangedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Name))
+            if (string.IsNullOrWhiteSpace(e.Value))
             {
                 return;
             }
 
-            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyCnsoE4LIw9R4Kd9vF_S3D2qJ7N_iyUFUc");
+            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyD2fF0tOUWmbnqYEWbeu5rbKktE0BcbzRY");
 
             try
             {
-                var locations = await googleLocationAutoComplete.GetPredictionsAsync(Name);
+                var locations = await googleLocationAutoComplete.GetPredictionsAsync(e.Value);
+                AutoCompletePredictions = locations.ToList();
 
                 Debug.WriteLine($"Locations length= {locations.Length}");
-
-                AutoCompletePredictions = locations.ToList();
+                
+               
             }
             catch (Exception ex)
             {
@@ -68,6 +71,7 @@ namespace XTravelAlarm.ViewModels
 
                 mainPageFeatures.Add(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
+                Debug.WriteLine(newLocationAlarm.Position.ToString());
             }
 
             else
