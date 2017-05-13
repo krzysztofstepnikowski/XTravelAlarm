@@ -4,8 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
-using XTravelAlarm.Features;
 using XTravelAlarm.Droid.Services;
+using XTravelAlarm.Features.AlarmRinging;
 
 namespace XTravelAlarm.Droid
 {

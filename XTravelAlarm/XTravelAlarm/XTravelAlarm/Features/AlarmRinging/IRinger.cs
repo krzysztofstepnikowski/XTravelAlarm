@@ -1,7 +1,9 @@
-﻿namespace XTravelAlarm.Features
+﻿using System.Threading.Tasks;
+
+namespace XTravelAlarm.Features.AlarmRinging
 {
     public interface IRinger
     {
-        void Ring();
+        Task PlaySoundAsync(string filename);
     }
 }

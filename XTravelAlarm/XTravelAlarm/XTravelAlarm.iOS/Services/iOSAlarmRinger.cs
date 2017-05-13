@@ -1,18 +1,38 @@
-﻿using UIKit;
+﻿using System.IO;
+using System.Threading.Tasks;
+using AVFoundation;
+using Foundation;
 using Xamarin.Forms;
-using XTravelAlarm.Features;
+using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
 
 
-[assembly:Dependency(typeof(iOSAlarmRinger))]
+[assembly: Dependency(typeof(iOSAlarmRinger))]
+
 namespace XTravelAlarm.iOS.Services
 {
-    public class iOSAlarmRinger : IRinger
+    public class iOSAlarmRinger : NSObject, IRinger, IAVAudioPlayerDelegate
     {
-        public void Ring()
+        private AVAudioPlayer player;
+
+        public Task PlaySoundAsync(string filename)
         {
-            var infoAlert = new UIAlertView("","Obudź się!",null,"OK",null);
-            infoAlert.Show();
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+            string path = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(filename),
+                Path.GetExtension(filename));
+
+            var url = NSUrl.FromString(path);
+            player = AVAudioPlayer.FromUrl(url);
+
+            player.FinishedPlaying += (object sender, AVStatusEventArgs e) =>
+            {
+                player = null;
+                taskCompletionSource.SetResult(true);
+            };
+
+            player.Play();
+
+            return taskCompletionSource.Task;
         }
     }
 }

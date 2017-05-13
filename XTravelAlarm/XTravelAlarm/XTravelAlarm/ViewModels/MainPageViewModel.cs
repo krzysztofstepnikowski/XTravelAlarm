@@ -32,7 +32,7 @@ namespace XTravelAlarm.ViewModels
                 return;
             }
 
-            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyBz1dxOdtGzawfGrPC4v9SCLhFuPxbh-70");
+            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyCzej1qQJMGOcGZnPy_TbCbBcpTmvVnDOs");
 
             try
             {
