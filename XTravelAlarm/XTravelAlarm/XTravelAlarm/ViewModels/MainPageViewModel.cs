@@ -4,13 +4,11 @@ using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
-using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
 using XTravelAlarm.Services;
 using XTravelAlarm.Views.Main;
 using Position = XTravelAlarm.Features.Position;
-using ValueChangedEventArgs = Syncfusion.SfAutoComplete.XForms.ValueChangedEventArgs;
 
 namespace XTravelAlarm.ViewModels
 {
@@ -22,33 +20,39 @@ namespace XTravelAlarm.ViewModels
         {
             this.mainPageFeatures = mainPageFeatures;
 
-            AutoCompleteCommand = new Command<ValueChangedEventArgs>(GetPredictionsAsync);
+            AutoCompleteCommand = new DelegateCommand(GetPredictionsAsync);
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
 
-        private async void GetPredictionsAsync(ValueChangedEventArgs e)
+
+        private async void GetPredictionsAsync()
         {
-            if (string.IsNullOrWhiteSpace(e.Value))
+            if (string.IsNullOrWhiteSpace(Name))
             {
                 return;
             }
 
-            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyD2fF0tOUWmbnqYEWbeu5rbKktE0BcbzRY");
+            var googleLocationAutoComplete = new GoogleLocationAutoComplete("AIzaSyBz1dxOdtGzawfGrPC4v9SCLhFuPxbh-70");
 
             try
             {
-                var locations = await googleLocationAutoComplete.GetPredictionsAsync(e.Value);
-                AutoCompletePredictions = locations.ToList();
+                var locations = await googleLocationAutoComplete.GetPredictionsAsync(Name);
+                AutoCompletePredictions.Clear();
+                foreach (var item in locations)
+                {
+                    AutoCompletePredictions.Add(item);
+                    Debug.WriteLine($"Place= {item}");
+                }
 
-                Debug.WriteLine($"Locations length= {locations.Length}");
-                
-               
+
+                Debug.WriteLine($"Locations= {AutoCompletePredictions.Count}");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }
         }
+
 
         private async void SaveAlarmAsync()
         {
