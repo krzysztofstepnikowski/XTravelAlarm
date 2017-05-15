@@ -61,7 +61,6 @@ namespace XTravelAlarm.Features.AlarmRinging
             {
                 await ringer.PlaySoundAsync("MySong.mp3");
                 notificationService.Show("Alarm", "Wyłącz ten alarm", DateTime.Now);
-                
             }
         }
     }
