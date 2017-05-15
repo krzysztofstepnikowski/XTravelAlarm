@@ -1,4 +1,5 @@
 ﻿using System;
+using Plugin.LocalNotifications;
 using XTravelAlarm.Features.AlarmRinging.Storage;
 
 namespace XTravelAlarm.Features.AlarmRinging
@@ -58,6 +59,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             if (currentDistance <= alarm.Distance)
             {
                 await ringer.PlaySoundAsync("MySong.mp3");
+                CrossLocalNotifications.Current.Show("Alarm", "Wyłącz ten alarm", 1, DateTime.Now);
             }
         }
     }

@@ -9,7 +9,7 @@ using XTravelAlarm.Features.AlarmRinging;
 
 namespace XTravelAlarm.Droid
 {
-    [Activity(Label = "XTravelAlarm", Icon = "@drawable/ic_launcher", MainLauncher = true,
+    [Activity(Label = "XTravel Alarm", Icon = "@drawable/ic_launcher", MainLauncher = true,
         ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

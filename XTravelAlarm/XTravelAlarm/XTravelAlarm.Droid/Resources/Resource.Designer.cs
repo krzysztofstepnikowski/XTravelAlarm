@@ -63,6 +63,7 @@ namespace XTravelAlarm.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::XTravelAlarm.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::XTravelAlarm.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::XTravelAlarm.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::XTravelAlarm.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Splat.Resource.String.library_name = global::XTravelAlarm.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::XTravelAlarm.Droid.Resource.Attribute.actionBarSize;
 		}
@@ -2562,20 +2563,23 @@ namespace XTravelAlarm.Droid
 			// aapt resource value: 0x7f0200d0
 			public const int mr_ic_play_light = 2130837712;
 			
-			// aapt resource value: 0x7f0200d5
-			public const int notification_template_icon_bg = 2130837717;
+			// aapt resource value: 0x7f0200d6
+			public const int notification_template_icon_bg = 2130837718;
 			
 			// aapt resource value: 0x7f0200d1
-			public const int roundedbg = 2130837713;
+			public const int plugin_lc_smallicon = 2130837713;
 			
 			// aapt resource value: 0x7f0200d2
-			public const int roundedbgdark = 2130837714;
+			public const int roundedbg = 2130837714;
 			
 			// aapt resource value: 0x7f0200d3
-			public const int sfclosebutton = 2130837715;
+			public const int roundedbgdark = 2130837715;
 			
 			// aapt resource value: 0x7f0200d4
-			public const int styleinfo = 2130837716;
+			public const int sfclosebutton = 2130837716;
+			
+			// aapt resource value: 0x7f0200d5
+			public const int styleinfo = 2130837717;
 			
 			static Drawable()
 			{
