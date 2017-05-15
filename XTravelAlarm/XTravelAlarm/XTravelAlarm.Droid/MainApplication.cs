@@ -27,6 +27,7 @@ namespace XTravelAlarm.Droid
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
             CrossCurrentActivity.Current.Activity = activity;
+            
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been created");
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Plugin.LocalNotifications;
 using XTravelAlarm.Features.AlarmRinging.Storage;
 
 namespace XTravelAlarm.Features.AlarmRinging
@@ -8,11 +7,13 @@ namespace XTravelAlarm.Features.AlarmRinging
     {
         private readonly IRinger ringer;
         private readonly IAlarmStorage alarmStorage;
+        private readonly INotificationService notificationService;
 
-        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage)
+        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage, INotificationService notificationService)
         {
             this.ringer = ringer;
             this.alarmStorage = alarmStorage;
+            this.notificationService = notificationService;
         }
 
 
@@ -59,7 +60,8 @@ namespace XTravelAlarm.Features.AlarmRinging
             if (currentDistance <= alarm.Distance)
             {
                 await ringer.PlaySoundAsync("MySong.mp3");
-                CrossLocalNotifications.Current.Show("Alarm", "Wyłącz ten alarm", 1, DateTime.Now);
+                notificationService.Show("Alarm", "Wyłącz ten alarm", DateTime.Now);
+                
             }
         }
     }

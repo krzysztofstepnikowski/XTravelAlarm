@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using Acr.UserDialogs;
-using Plugin.LocalNotifications;
 using Prism.Commands;
 using Prism.Mvvm;
 using Xamarin.Forms.Maps;

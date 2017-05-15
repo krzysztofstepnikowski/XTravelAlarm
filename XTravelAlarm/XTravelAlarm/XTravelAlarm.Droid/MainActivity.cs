@@ -21,7 +21,6 @@ namespace XTravelAlarm.Droid
 
             base.OnCreate(bundle);
 
-            
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
@@ -35,6 +34,7 @@ namespace XTravelAlarm.Droid
         public void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IRinger, DroidAlarmRinger>();
+            container.RegisterType<INotificationService, DroidNotificationService>();
         }
     }
 }
