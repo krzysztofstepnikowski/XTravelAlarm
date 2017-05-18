@@ -24,10 +24,12 @@ namespace XTravelAlarm.Droid
             //A great place to initialize Xamarin.Insights and Dependency Services!
         }
 
+        
+
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
         {
             CrossCurrentActivity.Current.Activity = activity;
-            
+
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been created");
         }
 
@@ -37,10 +39,12 @@ namespace XTravelAlarm.Droid
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been started");
         }
 
+
+
         public void OnActivityResumed(Activity activity)
         {
             CrossCurrentActivity.Current.Activity = activity;
-            Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been resumed");
+           
 
         }
 
@@ -51,6 +55,7 @@ namespace XTravelAlarm.Droid
 
         public void OnActivitySaveInstanceState(Activity activity, Bundle outState)
         {
+
             Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been saved instance state");
         }
 

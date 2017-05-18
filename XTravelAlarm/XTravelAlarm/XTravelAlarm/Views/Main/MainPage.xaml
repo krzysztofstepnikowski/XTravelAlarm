@@ -4,8 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
-             xmlns:behaviors="clr-namespace:Pillar;assembly=Pillar"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
@@ -24,41 +22,35 @@
         <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
 
 
-            <autocomplete:SfAutoComplete Watermark="Podaj miejsce docelowe"
-                                         WatermarkColor="Gray"
-                                         Text="{Binding Name}"
-                                         TextSize="14"
-                                         AutoCompleteSource="{Binding AutoCompletePredictions}"
-                                         SuggestionMode="ContainsWithCaseSensitive"
-                                         AutoCompleteMode="Suggest"
-                                         HeightRequest="40"
-                                         MinimumPrefixCharacters="3"
-                                         MaximumDropDownHeight="200"
-                                         x:Name="autoComplete">
-                <autocomplete:SfAutoComplete.IsVisible>
-                    <OnPlatform x:TypeArguments="x:Boolean">
-                        <OnPlatform.Android>True</OnPlatform.Android>
-                        <OnPlatform.iOS>False</OnPlatform.iOS>
-                    </OnPlatform>
+            <!--            <autocomplete:SfAutoComplete Watermark="Podaj miejsce docelowe"-->
+            <!--                                         WatermarkColor="Gray"-->
+            <!--                                         Text="{Binding Name}"-->
+            <!--                                         TextSize="14"-->
+            <!--                                         AutoCompleteSource="{Binding AutoCompletePredictions}"-->
+            <!--                                         SuggestionMode="ContainsWithCaseSensitive"-->
+            <!--                                         AutoCompleteMode="Suggest"-->
+            <!--                                         HeightRequest="40"-->
+            <!--                                         MinimumPrefixCharacters="3"-->
+            <!--                                         MaximumDropDownHeight="200"-->
+            <!--                                         x:Name="autoComplete">-->
+            <!--                <autocomplete:SfAutoComplete.IsVisible>-->
+            <!--                    <OnPlatform x:TypeArguments="x:Boolean">-->
+            <!--                        <OnPlatform.Android>True</OnPlatform.Android>-->
+            <!--                        <OnPlatform.iOS>False</OnPlatform.iOS>-->
+            <!--                    </OnPlatform>-->
+            <!---->
+            <!--                </autocomplete:SfAutoComplete.IsVisible>-->
+            <!--                <autocomplete:SfAutoComplete.Behaviors>-->
+            <!--                    <behaviors:EventToCommandBehavior EventName="ValueChanged" Command="{Binding AutoCompleteCommand}" />-->
+            <!--                </autocomplete:SfAutoComplete.Behaviors>-->
+            <!--            </autocomplete:SfAutoComplete>-->
 
-                </autocomplete:SfAutoComplete.IsVisible>
-                <autocomplete:SfAutoComplete.Behaviors>
-                    <behaviors:EventToCommandBehavior EventName="ValueChanged" Command="{Binding AutoCompleteCommand}" />
-                </autocomplete:SfAutoComplete.Behaviors>
-            </autocomplete:SfAutoComplete>
+            <Entry Placeholder="Podaj miejsce docelowe"
+                   PlaceholderColor="Gray"
+                   Text="{Binding Name}"
+                   FontSize="14"
+                   HeightRequest="40" />
 
-                        <Entry Placeholder="Podaj miejsce docelowe"
-                               PlaceholderColor="Gray"
-                               Text="{Binding Name}"
-                               FontSize="14"
-                               HeightRequest="40">
-                            <Entry.IsVisible>
-                                <OnPlatform x:TypeArguments="x:Boolean">
-                                    <OnPlatform.Android>False</OnPlatform.Android>
-                                    <OnPlatform.iOS>True</OnPlatform.iOS>
-                                </OnPlatform>
-                            </Entry.IsVisible>
-                        </Entry>
 
             <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"

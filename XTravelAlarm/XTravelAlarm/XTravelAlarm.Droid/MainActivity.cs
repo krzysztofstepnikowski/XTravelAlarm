@@ -1,7 +1,10 @@
 ﻿using Acr.UserDialogs;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Util;
+using Android.Widget;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
 using XTravelAlarm.Droid.Services;
@@ -26,8 +29,39 @@ namespace XTravelAlarm.Droid
             Xamarin.FormsMaps.Init(this, bundle);
             UserDialogs.Init(this);
             LoadApplication(new App(new AndroidInitializer()));
+
+            ProcessIntentAction(Intent);
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            ProcessIntentAction(intent);
+            base.OnNewIntent(intent);
+        }
+
+        private void ProcessIntentAction(Intent intent)
+        {
+            if (intent.Action != null)
+            {
+                switch (intent.Action)
+                {
+                    case "TURN_OFF_ALARM_ACTION":
+                        Bundle extras = intent.Extras;
+                        if (extras != null)
+                        {
+                            if (extras.ContainsKey("alarmId"))
+                            {
+                                string alarmId = extras.GetString("alarmId");
+                                Toast.MakeText(this,$"Alarm wyłączony",ToastLength.Short).Show();
+                                Log.WriteLine(LogPriority.Debug, "LOG", $"AlarmId from NotificationService= {alarmId}");
+                            }
+                        }
+                        break;
+                }
+            }
         }
     }
+
 
     public class AndroidInitializer : IPlatformInitializer
     {
