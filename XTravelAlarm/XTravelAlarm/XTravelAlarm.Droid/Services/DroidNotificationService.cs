@@ -13,6 +13,7 @@ namespace XTravelAlarm.Droid.Services
 {
     public class DroidNotificationService : INotificationService
     {
+        
         public void Show(string title, string message, Guid alarmId)
         {
             var activity = Forms.Context as Activity;

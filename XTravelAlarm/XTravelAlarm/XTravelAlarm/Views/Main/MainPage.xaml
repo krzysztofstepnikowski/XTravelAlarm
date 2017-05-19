@@ -13,9 +13,6 @@
         <ToolbarItem Text="Zapisz"
                      Order="Primary"
                      Command="{Binding SaveAlarmCommand}" />
-
-        <ToolbarItem Text="Ustawienia"
-                     Order="Secondary" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
@@ -55,7 +52,10 @@
             <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"
                       IsShowingUser="true"
-                      MapType="Street" />
+                      MapType="Street"
+                      HasScrollEnabled="True"
+                      HasZoomEnabled="True"
+                      />
 
             <Label Text="Ustaw odległość od miejsca docelowego"
                    FontSize="18"

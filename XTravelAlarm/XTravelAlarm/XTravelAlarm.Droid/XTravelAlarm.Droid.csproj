@@ -249,7 +249,7 @@
     <AndroidResource Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\MySong.mp3" />
+    <AndroidAsset Include="Assets\Alarm.mp3" />
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -288,6 +288,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_notification_white.png" />
     <AndroidResource Include="Resources\drawable\ic_notification_white.png" />
     <AndroidResource Include="Resources\drawable\ic_alarm_off.png" />
+    <AndroidAsset Include="Resources\raw\Alarm.mp3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XTravelAlarm\XTravelAlarm.csproj">

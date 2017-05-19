@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
+using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Main;
 using Position = XTravelAlarm.Features.Position;
 
@@ -14,10 +15,14 @@ namespace XTravelAlarm.ViewModels
     public partial class MainPageViewModel : BindableBase
     {
         private readonly IMainPageFeatures mainPageFeatures;
+        private readonly INotificationService notificationService;
+        private readonly IRinger ringer;
 
-        public MainPageViewModel(IMainPageFeatures mainPageFeatures)
+        public MainPageViewModel(IMainPageFeatures mainPageFeatures, INotificationService notificationService, IRinger ringer)
         {
             this.mainPageFeatures = mainPageFeatures;
+            this.notificationService = notificationService;
+            this.ringer = ringer;
 
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
@@ -25,6 +30,7 @@ namespace XTravelAlarm.ViewModels
 
         private async void SaveAlarmAsync()
         {
+           
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
                 var geocoder = new Geocoder();

@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Android.Media;
 using Xamarin.Forms;
@@ -10,27 +12,70 @@ namespace XTravelAlarm.Droid.Services
 {
     public class DroidAlarmRinger : IRinger
     {
-        public Task PlaySoundAsync(string filename)
-        {
-            var player = new MediaPlayer();
+        public static MediaPlayer MediaPlayer;
 
+        public Action OnFinishedPlaying { get; set; }
+
+
+        public Task PlaySoundAsync(string filename, Guid alarmId)
+        {
+            MediaPlayer = new MediaPlayer();
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
-            var fileDescriptor = Xamarin.Forms.Forms.Context.Assets.OpenFd(filename);
+            if (MediaPlayer != null)
+            {
+                MediaPlayer.Completion -= MediaPlayer_Completion;
+                MediaPlayer.Stop();
+            }
 
-            player.Prepared += (s, e) => {
-                player.Start();
-            };
+            var path = filename;
+            Android.Content.Res.AssetFileDescriptor assetFileDescriptor = null;
 
-            player.Completion += (sender, e) => {
-                taskCompletionSource.SetResult(true);
-            };
 
-            // Start playing
-            player.SetDataSource(fileDescriptor.FileDescriptor);
-            player.Prepare();
+            try
+            {
+                assetFileDescriptor = Forms.Context.Assets.OpenFd(path);
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error open assetFileDescriptor {ex.Message}");
+            }
+
+            if (assetFileDescriptor != null)
+            {
+               
+                MediaPlayer.Prepared += (sender, args) =>
+                {
+                    MediaPlayer.Start();
+                    MediaPlayer.Completion += MediaPlayer_Completion;
+                };
+
+                MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
+                    assetFileDescriptor.Length);
+                MediaPlayer.PrepareAsync();
+            }
 
             return taskCompletionSource.Task;
+        }
+
+
+        private void MediaPlayer_Completion(object sender, EventArgs e)
+        {
+            OnFinishedPlaying?.Invoke();
+        }
+
+        public static void StopPlayingSound(string alarmId)
+        {
+            try
+            {
+                MediaPlayer.Stop();
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error when sound is stopped: {ex.Message}");
+            }
         }
     }
 }

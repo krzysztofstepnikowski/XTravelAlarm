@@ -46,5 +46,7 @@
 	<string>Zamierzasz użyć lokalizacji!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>To zostanie wywołane, jeśli lokalizacja jest używana za kulisami.</string>
+	<key>CustomProperty</key>
+	<string></string>
 </dict>
 </plist>

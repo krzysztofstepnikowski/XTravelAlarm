@@ -3,8 +3,8 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Util;
 using Android.Widget;
+using Java.IO;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
 using XTravelAlarm.Droid.Services;
@@ -17,6 +17,7 @@ namespace XTravelAlarm.Droid
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.tabs;
@@ -52,8 +53,8 @@ namespace XTravelAlarm.Droid
                             if (extras.ContainsKey("alarmId"))
                             {
                                 string alarmId = extras.GetString("alarmId");
-                                Toast.MakeText(this,$"Alarm wyłączony",ToastLength.Short).Show();
-                                Log.WriteLine(LogPriority.Debug, "LOG", $"AlarmId from NotificationService= {alarmId}");
+                                DroidAlarmRinger.StopPlayingSound(alarmId);
+                                System.Console.WriteLine($"Alarm o id: {alarmId} został wyłączony");
                             }
                         }
                         break;
