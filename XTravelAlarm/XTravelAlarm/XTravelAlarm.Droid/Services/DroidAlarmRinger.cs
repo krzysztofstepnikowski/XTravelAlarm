@@ -14,13 +14,13 @@ namespace XTravelAlarm.Droid.Services
     {
         public static MediaPlayer MediaPlayer;
 
-        public Task PlaySoundAsync(string filename)
+        public Task PlaySoundAsync()
         {
             MediaPlayer = new MediaPlayer();
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
 
-            var path = filename;
+            var path = "Alarm.mp3";
             Android.Content.Res.AssetFileDescriptor assetFileDescriptor = null;
 
 

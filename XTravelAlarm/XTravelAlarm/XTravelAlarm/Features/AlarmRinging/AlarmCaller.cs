@@ -51,7 +51,7 @@ namespace XTravelAlarm.Features.AlarmRinging
         }
 
 
-        public void UpdatePosition(Position position, Guid alarmId)
+        public async void UpdatePosition(Position position, Guid alarmId)
         {
             var alarm = alarmStorage.GetAlarm(alarmId);
 
@@ -60,7 +60,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             if (currentDistance <= alarm.Distance)
             {
                 notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
-                ringer.PlaySoundAsync("Alarm.mp3");
+                await ringer.PlaySoundAsync();
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using AVFoundation;
 using Foundation;
@@ -16,11 +15,11 @@ namespace XTravelAlarm.iOS.Services
     {
         private AVAudioPlayer player;
 
-        public Task PlaySoundAsync(string filename)
+        public Task PlaySoundAsync()
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
-            string path = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(filename),
-                Path.GetExtension(filename));
+            string path = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension("Alarm.mp3"),
+                Path.GetExtension("Alarm.mp3"));
 
             var url = NSUrl.FromString(path);
             player = AVAudioPlayer.FromUrl(url);
