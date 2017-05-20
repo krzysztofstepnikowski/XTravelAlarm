@@ -14,19 +14,11 @@ namespace XTravelAlarm.Droid.Services
     {
         public static MediaPlayer MediaPlayer;
 
-        public Action OnFinishedPlaying { get; set; }
-
-
-        public Task PlaySoundAsync(string filename, Guid alarmId)
+        public Task PlaySoundAsync(string filename)
         {
             MediaPlayer = new MediaPlayer();
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
-            if (MediaPlayer != null)
-            {
-                MediaPlayer.Completion -= MediaPlayer_Completion;
-                MediaPlayer.Stop();
-            }
 
             var path = filename;
             Android.Content.Res.AssetFileDescriptor assetFileDescriptor = null;
@@ -44,12 +36,7 @@ namespace XTravelAlarm.Droid.Services
 
             if (assetFileDescriptor != null)
             {
-               
-                MediaPlayer.Prepared += (sender, args) =>
-                {
-                    MediaPlayer.Start();
-                    MediaPlayer.Completion += MediaPlayer_Completion;
-                };
+                MediaPlayer.Prepared += (sender, args) => { MediaPlayer.Start(); };
 
                 MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
                     assetFileDescriptor.Length);
@@ -59,11 +46,6 @@ namespace XTravelAlarm.Droid.Services
             return taskCompletionSource.Task;
         }
 
-
-        private void MediaPlayer_Completion(object sender, EventArgs e)
-        {
-            OnFinishedPlaying?.Invoke();
-        }
 
         public static void StopPlayingSound(string alarmId)
         {

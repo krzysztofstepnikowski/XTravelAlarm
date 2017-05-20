@@ -140,18 +140,6 @@
       <HintPath>..\..\packages\Splat.1.6.2\lib\monoandroid\Splat.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfAutoComplete.Android, Version=15.2451.0.40, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfAutoComplete.15.2.0.40\lib\MonoAndroid10\Syncfusion.SfAutoComplete.Android.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Syncfusion.SfAutoComplete.XForms, Version=15.2451.0.40, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfAutoComplete.15.2.0.40\lib\MonoAndroid10\Syncfusion.SfAutoComplete.XForms.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Syncfusion.SfAutoComplete.XForms.Android, Version=15.2451.0.40, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfAutoComplete.15.2.0.40\lib\MonoAndroid10\Syncfusion.SfAutoComplete.XForms.Android.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />

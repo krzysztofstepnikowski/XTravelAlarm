@@ -161,18 +161,6 @@
       <HintPath>..\..\packages\Splat.1.6.2\lib\Xamarin.iOS10\Splat.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfAutoComplete.iOS, Version=15.2451.0.40, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfAutoComplete.15.2.0.40\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Syncfusion.SfAutoComplete.XForms, Version=15.2451.0.40, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfAutoComplete.15.2.0.40\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.XForms.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Syncfusion.SfAutoComplete.XForms.iOS, Version=15.2451.0.40, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Syncfusion.Xamarin.SfAutoComplete.15.2.0.40\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.XForms.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />

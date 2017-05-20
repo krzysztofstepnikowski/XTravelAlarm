@@ -18,30 +18,6 @@
     <ScrollView>
         <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
 
-
-            <!--            <autocomplete:SfAutoComplete Watermark="Podaj miejsce docelowe"-->
-            <!--                                         WatermarkColor="Gray"-->
-            <!--                                         Text="{Binding Name}"-->
-            <!--                                         TextSize="14"-->
-            <!--                                         AutoCompleteSource="{Binding AutoCompletePredictions}"-->
-            <!--                                         SuggestionMode="ContainsWithCaseSensitive"-->
-            <!--                                         AutoCompleteMode="Suggest"-->
-            <!--                                         HeightRequest="40"-->
-            <!--                                         MinimumPrefixCharacters="3"-->
-            <!--                                         MaximumDropDownHeight="200"-->
-            <!--                                         x:Name="autoComplete">-->
-            <!--                <autocomplete:SfAutoComplete.IsVisible>-->
-            <!--                    <OnPlatform x:TypeArguments="x:Boolean">-->
-            <!--                        <OnPlatform.Android>True</OnPlatform.Android>-->
-            <!--                        <OnPlatform.iOS>False</OnPlatform.iOS>-->
-            <!--                    </OnPlatform>-->
-            <!---->
-            <!--                </autocomplete:SfAutoComplete.IsVisible>-->
-            <!--                <autocomplete:SfAutoComplete.Behaviors>-->
-            <!--                    <behaviors:EventToCommandBehavior EventName="ValueChanged" Command="{Binding AutoCompleteCommand}" />-->
-            <!--                </autocomplete:SfAutoComplete.Behaviors>-->
-            <!--            </autocomplete:SfAutoComplete>-->
-
             <Entry Placeholder="Podaj miejsce docelowe"
                    PlaceholderColor="Gray"
                    Text="{Binding Name}"

@@ -60,7 +60,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             if (currentDistance <= alarm.Distance)
             {
                 notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
-                ringer.PlaySoundAsync("Alarm.mp3", alarmId);
+                ringer.PlaySoundAsync("Alarm.mp3");
             }
         }
     }

@@ -12,7 +12,7 @@ namespace XTravelAlarm.Services
         private readonly AlarmCaller alarmCaller;
 
 
-        public GPSListener(HashSet<Guid> gpsObservers,AlarmCaller alarmCaller)
+        public GPSListener(HashSet<Guid> gpsObservers, AlarmCaller alarmCaller)
         {
             this.gpsObservers = gpsObservers;
             this.alarmCaller = alarmCaller;
@@ -23,22 +23,18 @@ namespace XTravelAlarm.Services
         {
             foreach (var alarmId in gpsObservers)
             {
-                alarmCaller.UpdatePosition(new Position(e.Position.Latitude,e.Position.Longitude),alarmId);
+                alarmCaller.UpdatePosition(new Position(e.Position.Latitude, e.Position.Longitude), alarmId);
             }
-           
         }
 
         public void AddObserver(Guid alarmLocationId)
         {
             gpsObservers.Add(alarmLocationId);
-           
         }
 
         public void RemoveObserver(Guid alarmLocationId)
         {
             gpsObservers.Remove(alarmLocationId);
         }
-
-
     }
 }
