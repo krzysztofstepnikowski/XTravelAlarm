@@ -40,13 +40,15 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Zamierzasz użyć lokalizacji!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>To zostanie wywołane, jeśli lokalizacja jest używana za kulisami.</string>
 	<key>CustomProperty</key>
 	<string></string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>XSAppIconAssets</key>
+	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
