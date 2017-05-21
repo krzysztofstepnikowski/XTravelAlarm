@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Android.Media;
 using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;

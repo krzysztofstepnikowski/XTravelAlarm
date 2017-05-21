@@ -35,7 +35,6 @@ namespace XTravelAlarm.iOS
     {
         public void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<IRinger, iOSAlarmRinger>();
             container.RegisterType<INotificationService, iOSNotificationService>();
         }
     }
