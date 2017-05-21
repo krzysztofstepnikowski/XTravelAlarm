@@ -3,8 +3,6 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Widget;
-using Java.IO;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;

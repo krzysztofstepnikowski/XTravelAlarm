@@ -12,32 +12,34 @@ namespace XTravelAlarm.Droid.Services
 {
     public class DroidAlarmRinger : IRinger
     {
-        public static MediaPlayer MediaPlayer;
+        private static MediaPlayer MediaPlayer;
 
         public void PlaySound()
         {
-            MediaPlayer = new MediaPlayer();
-             var path = "Alarm.mp3";
-            Android.Content.Res.AssetFileDescriptor assetFileDescriptor = null;
-
+            var path = "Alarm.mp3";
 
             try
             {
-                assetFileDescriptor = Forms.Context.Assets.OpenFd(path);
+                var assetFileDescriptor = Forms.Context.Assets.OpenFd(path);
+
+                if (MediaPlayer == null)
+                {
+                    MediaPlayer = new MediaPlayer();
+                }
+
+                else
+                {
+                    MediaPlayer.Reset();
+                    MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
+                        assetFileDescriptor.Length);
+                    MediaPlayer.Prepare();
+                    MediaPlayer.Start();
+                }
             }
 
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error open assetFileDescriptor {ex.Message}");
-            }
-
-            if (assetFileDescriptor != null)
-            {
-                MediaPlayer.Prepared += (sender, args) => { MediaPlayer.Start(); };
-
-                MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
-                    assetFileDescriptor.Length);
-                MediaPlayer.PrepareAsync();
             }
         }
 

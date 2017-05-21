@@ -69,6 +69,7 @@ namespace XTravelAlarm.Droid
         {
             base.OnTerminate();
             UnregisterActivityLifecycleCallbacks(this);
+            Log.WriteLine(LogPriority.Debug, "ACTIVITY_STATE", "Activity has been terminated");
         }
 
        
