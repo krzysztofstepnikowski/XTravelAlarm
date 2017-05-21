@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Plugin.Geolocator;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging;
@@ -25,6 +26,8 @@ namespace XTravelAlarm.Services
             {
                 alarmCaller.UpdatePosition(new Position(e.Position.Latitude, e.Position.Longitude), alarmId);
             }
+
+            Debug.WriteLine($"Listener: {GetHashCode()}");
         }
 
         public void AddObserver(Guid alarmLocationId)

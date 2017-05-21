@@ -2,10 +2,8 @@ using System;
 using System.Diagnostics;
 using Android.Media;
 using Xamarin.Forms;
-using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features.AlarmRinging;
 
-[assembly: Dependency(typeof(DroidAlarmRinger))]
 
 namespace XTravelAlarm.Droid.Services
 {
@@ -13,20 +11,17 @@ namespace XTravelAlarm.Droid.Services
     {
         private static MediaPlayer MediaPlayer;
 
+
         public void PlaySound()
         {
             var path = "Alarm.mp3";
+            MediaPlayer = new MediaPlayer();
 
             try
             {
                 var assetFileDescriptor = Forms.Context.Assets.OpenFd(path);
 
-                if (MediaPlayer == null)
-                {
-                    MediaPlayer = new MediaPlayer();
-                }
-
-                else
+                if (MediaPlayer != null)
                 {
                     MediaPlayer.Reset();
                     MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,

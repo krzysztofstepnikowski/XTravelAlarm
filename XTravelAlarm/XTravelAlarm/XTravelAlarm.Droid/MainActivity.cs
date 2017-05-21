@@ -72,6 +72,7 @@ namespace XTravelAlarm.Droid
     {
         public void RegisterTypes(IUnityContainer container)
         {
+            container.RegisterType<IRinger, DroidAlarmRinger>();
             container.RegisterType<INotificationService, DroidNotificationService>();
         }
     }

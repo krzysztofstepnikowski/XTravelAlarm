@@ -43,7 +43,7 @@ namespace XTravelAlarm
 
             Container.RegisterType<AlarmCaller>();
             Container.RegisterType<IAlarmStorage, InMemoryAlarmStorage>(new InjectionConstructor(alarmRepository));
-            Container.RegisterType<GPSListener>(new InjectionConstructor(gpsObservers,
+            Container.RegisterType<GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(gpsObservers,
                 new ResolvedParameter<AlarmCaller>()));
 
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();

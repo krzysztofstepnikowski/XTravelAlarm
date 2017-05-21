@@ -15,14 +15,10 @@ namespace XTravelAlarm.ViewModels
     public partial class MainPageViewModel : BindableBase
     {
         private readonly IMainPageFeatures mainPageFeatures;
-        private readonly INotificationService notificationService;
-        private readonly IRinger ringer;
 
-        public MainPageViewModel(IMainPageFeatures mainPageFeatures, INotificationService notificationService, IRinger ringer)
+        public MainPageViewModel(IMainPageFeatures mainPageFeatures)
         {
             this.mainPageFeatures = mainPageFeatures;
-            this.notificationService = notificationService;
-            this.ringer = ringer;
 
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
