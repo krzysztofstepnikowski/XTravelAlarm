@@ -1,4 +1,4 @@
-# <b> XTravel Alarm </b> ![alt tag](https://github.com/krzysztofstepnikowski/XTravelAlarm/blob/master/XTravelAlarm/XTravelAlarm/XTravelAlarm.Droid/Resources/drawable-hdpi/ic_launcher.png) <br />
+# <b> XTravel Alarm </b> ![alt tag](https://github.com/krzysztofstepnikowski/XTravelAlarm/blob/develop/XTravelAlarm/XTravelAlarm/XTravelAlarm.Droid/Resources/drawable-hdpi/ic_launcher.png) <br />
 
 Version 1.0
 
@@ -16,26 +16,16 @@ Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin<
 
 <b>Główne funkcjonalności: </b>
 
+
 <ul>
 <li>Ustawienie budzika w zależności od odległości od miejsca docelowego</li>
 <br/>
 <li>Możliwość zapamiętywania alarmów (dodawanie/usuwanie)</li>
 <br/>
-<li>Wybór i ustawienie dźwięku alarmu</li>
+<li>Wyszukiwanie miejsc (połączenie z Google Maps API)</li>
 <br/>
-<li>Wyszukiwanie miejsc</li>
+<li>Alarm dźwiękowy</li>
 <br/>
-<li>Podpowiadanie punktów zainteresowań</li>
+<li>Powiadomienie za pomocą, którego można wyłączyć budzik.</li>
 </ul>
 <br/>
-
-<b>Może być również dodatkowo:</b><br/>
-<ul>
-<li>Ustawienie poziomu głośności dźwieku</li>
-<br/>
-<li>Ustawienie wibracji</li>
-<br/>
-<li>Praca w trybie offline</li>
-<br />
-<li>Ustawienie odpowiedniej jednostki (kilometry/metry)</li>
-</ul>
