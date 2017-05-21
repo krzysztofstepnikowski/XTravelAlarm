@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace XTravelAlarm.Features.AlarmRinging
+﻿namespace XTravelAlarm.Features.AlarmRinging
 {
     public interface IRinger
     {
-        Task PlaySoundAsync();
+        void PlaySound();
     }
 }

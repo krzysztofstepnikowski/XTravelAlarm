@@ -48,6 +48,15 @@ namespace XTravelAlarm.Droid.Services
             // Publish the notification:
             const int notificationId = 0;
             notificationManager.Notify(notificationId, notification);
+            intent.PutExtra("notifyId", notificationId);
+        }
+
+        public static void CancelNotification(Context ctx, int notifyId)
+        {
+            var activity = Forms.Context as Activity;
+            NotificationManager notificationManager =
+               activity.GetSystemService(Context.NotificationService) as NotificationManager;
+            notificationManager.Cancel(notifyId);
         }
     }
 }

@@ -7,6 +7,7 @@ using Android.Widget;
 using Java.IO;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
+using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features.AlarmRinging;
 
@@ -42,6 +43,7 @@ namespace XTravelAlarm.Droid
 
         private void ProcessIntentAction(Intent intent)
         {
+            
             if (intent.Action != null)
             {
                 switch (intent.Action)
@@ -52,8 +54,12 @@ namespace XTravelAlarm.Droid
                         {
                             if (extras.ContainsKey("alarmId"))
                             {
-                                string alarmId = extras.GetString("alarmId");
+                                var alarmId = extras.GetString("alarmId");
+                                var notifyId = extras.GetInt("notifyId");
+                                var activity = Forms.Context as Activity;
+
                                 DroidAlarmRinger.StopPlayingSound(alarmId);
+                                DroidNotificationService.CancelNotification(activity,notifyId);
                                 System.Console.WriteLine($"Alarm o id: {alarmId} został wyłączony");
                             }
                         }
