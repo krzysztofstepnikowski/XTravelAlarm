@@ -15,20 +15,22 @@ namespace XTravelAlarm.Droid.Services
         public void PlaySound()
         {
             var path = "Alarm.mp3";
-            MediaPlayer = new MediaPlayer();
 
             try
             {
                 var assetFileDescriptor = Forms.Context.Assets.OpenFd(path);
 
-                if (MediaPlayer != null)
+                if (MediaPlayer == null)
                 {
-                    MediaPlayer.Reset();
-                    MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
-                        assetFileDescriptor.Length);
-                    MediaPlayer.Prepare();
-                    MediaPlayer.Start();
+                    MediaPlayer = new MediaPlayer();
                 }
+
+
+                MediaPlayer.Reset();
+                MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
+                    assetFileDescriptor.Length);
+                MediaPlayer.Prepare();
+                MediaPlayer.Start();
             }
 
             catch (Exception ex)
