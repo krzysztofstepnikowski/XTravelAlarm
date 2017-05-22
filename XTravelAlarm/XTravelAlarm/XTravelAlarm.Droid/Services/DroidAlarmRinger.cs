@@ -40,7 +40,7 @@ namespace XTravelAlarm.Droid.Services
         }
 
 
-        public static void StopPlayingSound(string alarmId)
+        public static void StopPlaySound(string alarmId)
         {
             try
             {

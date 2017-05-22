@@ -1,13 +1,8 @@
 ﻿using System.IO;
-using System.Threading.Tasks;
 using AVFoundation;
 using Foundation;
-using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.iOS.Services;
 
-
-[assembly: Dependency(typeof(iOSAlarmRinger))]
 
 namespace XTravelAlarm.iOS.Services
 {

@@ -56,7 +56,7 @@ namespace XTravelAlarm.Droid
                                 var notifyId = extras.GetInt("notifyId");
                                 var activity = Forms.Context as Activity;
 
-                                DroidAlarmRinger.StopPlayingSound(alarmId);
+                                DroidAlarmRinger.StopPlaySound(alarmId);
                                 DroidNotificationService.CancelNotification(activity,notifyId);
                                 System.Console.WriteLine($"Alarm o id: {alarmId} został wyłączony");
                             }
