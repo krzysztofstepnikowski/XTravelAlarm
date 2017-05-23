@@ -4,10 +4,8 @@ using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
-using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Main;
 using Position = XTravelAlarm.Features.Position;
 
@@ -16,12 +14,10 @@ namespace XTravelAlarm.ViewModels
     public partial class MainPageViewModel : BindableBase
     {
         private readonly IMainPageFeatures mainPageFeatures;
-        private readonly INotificationService notificationService;
 
         public MainPageViewModel(IMainPageFeatures mainPageFeatures)
         {
             this.mainPageFeatures = mainPageFeatures;
-            this.notificationService = DependencyService.Get<INotificationService>();
 
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
@@ -29,7 +25,6 @@ namespace XTravelAlarm.ViewModels
 
         private async void SaveAlarmAsync()
         {
-            
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
                 var geocoder = new Geocoder();
@@ -56,8 +51,6 @@ namespace XTravelAlarm.ViewModels
             {
                 UserDialogs.Instance.Toast("Nie można zapisać alarmu.", TimeSpan.FromSeconds(3.0));
             }
-
-            notificationService.Show("Alarm", "Wyłącz", Guid.NewGuid());
         }
     }
 }

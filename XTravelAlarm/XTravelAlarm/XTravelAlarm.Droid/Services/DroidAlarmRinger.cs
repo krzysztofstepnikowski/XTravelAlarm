@@ -35,7 +35,7 @@ namespace XTravelAlarm.Droid.Services
 
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error open assetFileDescriptor {ex.Message}");
+                Debug.WriteLine("File could not be loaded: {0}", ex.Message);
             }
         }
 
