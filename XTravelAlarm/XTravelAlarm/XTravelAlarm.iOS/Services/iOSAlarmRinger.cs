@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using AVFoundation;
 using Foundation;
+using UIKit;
 using XTravelAlarm.Features.AlarmRinging;
 
 
@@ -8,7 +11,7 @@ namespace XTravelAlarm.iOS.Services
 {
     public class iOSAlarmRinger : NSObject, IRinger, IAVAudioPlayerDelegate
     {
-        private AVAudioPlayer player;
+        private static AVAudioPlayer player;
 
         public void PlaySound()
         {

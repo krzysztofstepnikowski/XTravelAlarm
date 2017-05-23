@@ -30,8 +30,7 @@
                       IsShowingUser="true"
                       MapType="Street"
                       HasScrollEnabled="True"
-                      HasZoomEnabled="True"
-                      />
+                      HasZoomEnabled="True" />
 
             <Label Text="Ustaw odległość od miejsca docelowego"
                    FontSize="18"

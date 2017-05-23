@@ -7,13 +7,11 @@ namespace XTravelAlarm.Features.AlarmRinging
     {
         private readonly IRinger ringer;
         private readonly IAlarmStorage alarmStorage;
-        private readonly INotificationService notificationService;
 
-        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage, INotificationService notificationService)
+        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage)
         {
             this.ringer = ringer;
             this.alarmStorage = alarmStorage;
-            this.notificationService = notificationService;
         }
 
 
@@ -59,7 +57,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             var currentDistance = CalculateDistance(position, alarm.Destination);
             if (currentDistance <= alarm.Distance)
             {
-                notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
+//                notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
                 ringer.PlaySound();
             }
         }

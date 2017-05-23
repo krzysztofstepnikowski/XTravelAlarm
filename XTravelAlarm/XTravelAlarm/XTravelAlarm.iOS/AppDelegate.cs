@@ -29,6 +29,15 @@ namespace XTravelAlarm.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
+        public override void ReceivedLocalNotification(UIApplication application, UILocalNotification notification)
+        {
+            UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction,
+                notification.AlertBody, UIAlertControllerStyle.Alert);
+            okayAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true,
+                null);
+        }
     }
 
     public class iOSInitializer : IPlatformInitializer
