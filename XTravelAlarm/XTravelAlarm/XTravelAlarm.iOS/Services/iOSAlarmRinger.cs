@@ -3,7 +3,6 @@ using System.Diagnostics;
 using AudioToolbox;
 using AVFoundation;
 using Foundation;
-using UIKit;
 using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
@@ -56,19 +55,18 @@ namespace XTravelAlarm.iOS.Services
             }
         }
 
-        public static Action<UIAlertAction> StopPlaySound()
+        public static void StopPlaySound()
         {
             try
             {
                 //Stop of any sound effect
                 audioPlayer.Stop();
+                Debug.WriteLine("Alarm został wyłączony");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error when sound is stopped: {ex.Message}");
             }
-
-            return null;
         }
     }
 }

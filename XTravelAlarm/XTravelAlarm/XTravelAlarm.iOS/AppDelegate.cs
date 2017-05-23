@@ -34,7 +34,7 @@ namespace XTravelAlarm.iOS
         {
             UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction,
                 notification.AlertBody, UIAlertControllerStyle.Alert);
-            okayAlertController.AddAction(UIAlertAction.Create("Wyłącz", UIAlertActionStyle.Default, null));
+            okayAlertController.AddAction(UIAlertAction.Create("Wyłącz", UIAlertActionStyle.Default, alertAction=>iOSAlarmRinger.StopPlaySound()));
             UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true,
                 null);
         }
