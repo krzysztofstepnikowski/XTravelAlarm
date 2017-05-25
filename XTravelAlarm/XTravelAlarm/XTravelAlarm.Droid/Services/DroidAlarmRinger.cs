@@ -3,15 +3,17 @@ using System.Diagnostics;
 using Android.Media;
 using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.Droid.Services;
 
+[assembly: Dependency(typeof(DroidAlarmRinger))]
 
 namespace XTravelAlarm.Droid.Services
 {
     public class DroidAlarmRinger : IRinger
     {
-        private static Lazy<MediaPlayer> MediaPlayer;
+        private static Lazy<MediaPlayer> MediaPlayer = new Lazy<MediaPlayer>();
 
-
+      
         public void PlaySound()
         {
             var path = "Alarm.mp3";
@@ -19,12 +21,7 @@ namespace XTravelAlarm.Droid.Services
             try
             {
                 var assetFileDescriptor = Forms.Context.Assets.OpenFd(path);
-
-                if (MediaPlayer == null)
-                {
-                    MediaPlayer = new Lazy<MediaPlayer>();
-                }
-
+                
 
                 MediaPlayer.Value.Reset();
                 MediaPlayer.Value.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,

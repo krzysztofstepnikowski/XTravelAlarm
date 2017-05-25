@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Alarms;
+using Android.Widget;
 
 namespace XTravelAlarm.Droid
 {
@@ -18,7 +19,8 @@ namespace XTravelAlarm.Droid
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private IAlarmPageFeatures alarmPageFeatures;
+        private IUnityContainer container;
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.tabs;
@@ -26,11 +28,16 @@ namespace XTravelAlarm.Droid
 
             base.OnCreate(bundle);
 
+            
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
             UserDialogs.Init(this);
-            LoadApplication(new App(new AndroidInitializer()));
+
+            var application = new App(new AndroidInitializer());
+            container = application.Container;
+
+            LoadApplication(application);
 
             ProcessIntentAction(Intent);
         }
@@ -43,9 +50,11 @@ namespace XTravelAlarm.Droid
 
         private void ProcessIntentAction(Intent intent)
         {
-               
+           
+
             if (intent.Action != null)
             {
+
                 switch (intent.Action)
                 {
                     case "TURN_OFF_ALARM_ACTION":
@@ -58,11 +67,13 @@ namespace XTravelAlarm.Droid
                                 var notifyId = extras.GetInt("notifyId");
                                 var activity = Forms.Context as Activity;
                                 var droidAlarmRinger = new DroidAlarmRinger();
+                                var alarmPageFeatures = container.Resolve<IAlarmPageFeatures>();
 
                                 droidAlarmRinger.StopPlaySound(alarmId);
                                 DroidNotificationService.CancelNotification(activity,notifyId);
-//                                alarmPageFeatures.Disable(Guid.Parse(alarmId));
-                                Console.WriteLine($"Alarm o id: {alarmId} został wyłączony");
+                                alarmPageFeatures.Disable(Guid.Parse(alarmId));
+
+                                Toast.MakeText(activity, "Alarm wyłączony", ToastLength.Short).Show();
                             }
                         }
                         break;
@@ -74,6 +85,7 @@ namespace XTravelAlarm.Droid
 
     public class AndroidInitializer : IPlatformInitializer
     {
+        
         public void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IRinger, DroidAlarmRinger>();
