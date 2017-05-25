@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SQLite.Net.Attributes;
+using System;
 
 namespace XTravelAlarm.Features
 {
     public class AlarmLocation
     {
+        [PrimaryKey]
         public Guid Id { get; set; }
         public string Name { get; set; }
 

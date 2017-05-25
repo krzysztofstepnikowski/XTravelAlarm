@@ -230,6 +230,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DroidAlarmRinger.cs" />
+    <Compile Include="Services\DroidDatabaseService.cs" />
     <Compile Include="Services\DroidNotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
