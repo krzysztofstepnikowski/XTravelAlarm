@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using SQLite.Net;
 using XTravelAlarm.Features;
 using System.Linq;
@@ -13,50 +12,50 @@ namespace XTravelAlarm.Repository
         {
         }
 
-        public Task Add(AlarmLocation alarmLocation)
+        public void Add(AlarmLocation alarmLocation)
         {
-            return Task.Run(() =>
+
+            lock (databaseLock)
             {
-                lock (databaseLock)
-                {
-                    DbConnection.Insert(alarmLocation);
-                }
-            });
+                DbConnection.Insert(alarmLocation);
+            }
+
         }
 
-        public Task<List<AlarmLocation>> GetAll()
-        {
-            List<AlarmLocation> alarms;
 
-            lock(databaseLock)
+
+        public IEnumerable<AlarmLocation> GetAll()
+        {
+            IEnumerable<AlarmLocation> alarms;
+
+            lock (databaseLock)
             {
                 alarms = DbConnection.Table<AlarmLocation>().ToList();
             }
 
-            return Task.FromResult(alarms);
+            return alarms;
         }
 
-        public Task<AlarmLocation> GetById(Guid id)
+        public AlarmLocation GetById(Guid id)
         {
             AlarmLocation alarmLocation;
 
-            lock(databaseLock)
+            lock (databaseLock)
             {
                 alarmLocation = DbConnection.Table<AlarmLocation>().FirstOrDefault(x => x.Id == id);
             }
 
-            return Task.FromResult(alarmLocation);
+            return alarmLocation;
         }
 
-        public Task Remove(Guid id)
+        public void Remove(Guid id)
         {
-            return Task.Run(() =>
+
+            lock (databaseLock)
             {
-                lock (databaseLock)
-                {
-                    DbConnection.Delete<AlarmLocation>(id);
-                }
-            });
+                DbConnection.Delete<AlarmLocation>(id);
+            }
+
         }
     }
 }
