@@ -230,9 +230,6 @@
     <BundleResource Include="Resources\ic_alarm_off%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Alarm.mp3" />
-  </ItemGroup>
-  <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>

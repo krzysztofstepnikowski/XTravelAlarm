@@ -18,6 +18,7 @@ namespace XTravelAlarm.ViewModels
         private readonly IPageDialogService pageDialogService;
 
 
+
         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures, IPageDialogService pageDialogService)
         {
             this.alarmPageFeatures = alarmPageFeatures;

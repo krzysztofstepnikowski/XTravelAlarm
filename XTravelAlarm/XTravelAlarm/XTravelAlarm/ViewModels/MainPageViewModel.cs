@@ -18,7 +18,7 @@ namespace XTravelAlarm.ViewModels
         public MainPageViewModel(IMainPageFeatures mainPageFeatures)
         {
             this.mainPageFeatures = mainPageFeatures;
-
+        
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
 
