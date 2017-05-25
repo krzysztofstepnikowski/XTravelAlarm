@@ -5,6 +5,9 @@ using Microsoft.Practices.Unity;
 using Xamarin;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
+using XTravelAlarm.Views.Alarms;
+using System;
+using XTravelAlarm.Services;
 
 namespace XTravelAlarm.iOS
 {
@@ -21,11 +24,17 @@ namespace XTravelAlarm.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+
+        private IUnityContainer container;
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
             FormsMaps.Init();
-            LoadApplication(new App(new iOSInitializer()));
+
+            var application = new App(new iOSInitializer());
+            container = application.Container;
+
+            LoadApplication(application);
 
             return base.FinishedLaunching(app, options);
         }
@@ -34,10 +43,19 @@ namespace XTravelAlarm.iOS
         {
             UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction,
                 notification.AlertBody, UIAlertControllerStyle.Alert);
-            okayAlertController.AddAction(UIAlertAction.Create("Wyłącz", UIAlertActionStyle.Default, alertAction=>iOSAlarmRinger.StopPlaySound()));
+            okayAlertController.AddAction(UIAlertAction.Create("Wyłącz", UIAlertActionStyle.Default, alertAction=>TurnOffAlarm()));
             UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true,
                 null);
         }
+
+        private void TurnOffAlarm()
+        {
+            var alarmPageFeatures = container.Resolve<IAlarmPageFeatures>();
+            var iOSAlarmRinger = new iOSAlarmRinger();
+
+        }
+
+
     }
 
     public class iOSInitializer : IPlatformInitializer
@@ -46,6 +64,7 @@ namespace XTravelAlarm.iOS
         {
             container.RegisterType<IRinger, iOSAlarmRinger>();
             container.RegisterType<INotificationService, iOSNotificationService>();
+            container.RegisterType<IDatabaseService, iOSDatabaseService>();
         }
     }
 }

@@ -6,6 +6,7 @@ using Foundation;
 using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
+using XTravelAlarm.Views.Alarms;
 
 [assembly: Dependency(typeof(iOSAlarmRinger))]
 
@@ -55,7 +56,7 @@ namespace XTravelAlarm.iOS.Services
             }
         }
 
-        public static void StopPlaySound()
+        public void StopPlaySound(string alarmId)
         {
             try
             {

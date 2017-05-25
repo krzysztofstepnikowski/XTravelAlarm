@@ -12,7 +12,6 @@ namespace XTravelAlarm.Droid.Services
     public class DroidAlarmRinger : IRinger
     {
         private static Lazy<MediaPlayer> MediaPlayer = new Lazy<MediaPlayer>();
-
       
         public void PlaySound()
         {

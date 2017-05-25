@@ -11,6 +11,7 @@ using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Alarms;
 using Android.Widget;
+using XTravelAlarm.Services;
 
 namespace XTravelAlarm.Droid
 {
@@ -90,6 +91,7 @@ namespace XTravelAlarm.Droid
         {
             container.RegisterType<IRinger, DroidAlarmRinger>();
             container.RegisterType<INotificationService, DroidNotificationService>();
+            container.RegisterType<IDatabaseService, DroidDatabaseService>();
         }
     }
 }

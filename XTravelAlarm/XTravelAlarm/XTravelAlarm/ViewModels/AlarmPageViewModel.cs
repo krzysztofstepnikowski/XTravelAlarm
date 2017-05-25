@@ -79,6 +79,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
+           
         }
 
         public void OnNavigatedTo(NavigationParameters parameters)
@@ -89,6 +90,7 @@ namespace XTravelAlarm.ViewModels
 
         public void OnInternalNavigatedFrom(NavigationParameters navParams)
         {
+          
         }
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
