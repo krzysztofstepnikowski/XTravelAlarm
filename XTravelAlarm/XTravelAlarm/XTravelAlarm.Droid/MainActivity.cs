@@ -1,4 +1,5 @@
-﻿using Acr.UserDialogs;
+﻿using System;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -8,6 +9,7 @@ using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.Views.Alarms;
 
 namespace XTravelAlarm.Droid
 {
@@ -16,7 +18,7 @@ namespace XTravelAlarm.Droid
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-
+        private IAlarmPageFeatures alarmPageFeatures;
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.tabs;
@@ -41,7 +43,7 @@ namespace XTravelAlarm.Droid
 
         private void ProcessIntentAction(Intent intent)
         {
-            
+               
             if (intent.Action != null)
             {
                 switch (intent.Action)
@@ -55,10 +57,12 @@ namespace XTravelAlarm.Droid
                                 var alarmId = extras.GetString("alarmId");
                                 var notifyId = extras.GetInt("notifyId");
                                 var activity = Forms.Context as Activity;
+                                var droidAlarmRinger = new DroidAlarmRinger();
 
-                                DroidAlarmRinger.StopPlaySound(alarmId);
+                                droidAlarmRinger.StopPlaySound(alarmId);
                                 DroidNotificationService.CancelNotification(activity,notifyId);
-                                System.Console.WriteLine($"Alarm o id: {alarmId} został wyłączony");
+//                                alarmPageFeatures.Disable(Guid.Parse(alarmId));
+                                Console.WriteLine($"Alarm o id: {alarmId} został wyłączony");
                             }
                         }
                         break;

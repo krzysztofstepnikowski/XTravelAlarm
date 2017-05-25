@@ -9,7 +9,7 @@ namespace XTravelAlarm.Droid.Services
 {
     public class DroidAlarmRinger : IRinger
     {
-        private static MediaPlayer MediaPlayer;
+        private static Lazy<MediaPlayer> MediaPlayer;
 
 
         public void PlaySound()
@@ -22,15 +22,15 @@ namespace XTravelAlarm.Droid.Services
 
                 if (MediaPlayer == null)
                 {
-                    MediaPlayer = new MediaPlayer();
+                    MediaPlayer = new Lazy<MediaPlayer>();
                 }
 
 
-                MediaPlayer.Reset();
-                MediaPlayer.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
+                MediaPlayer.Value.Reset();
+                MediaPlayer.Value.SetDataSource(assetFileDescriptor.FileDescriptor, assetFileDescriptor.StartOffset,
                     assetFileDescriptor.Length);
-                MediaPlayer.Prepare();
-                MediaPlayer.Start();
+                MediaPlayer.Value.Prepare();
+                MediaPlayer.Value.Start();
             }
 
             catch (Exception ex)
@@ -40,11 +40,14 @@ namespace XTravelAlarm.Droid.Services
         }
 
 
-        public static void StopPlaySound(string alarmId)
+        public void StopPlaySound(string alarmId)
         {
             try
             {
-                MediaPlayer.Stop();
+                if (MediaPlayer.Value.IsPlaying)
+                {
+                    MediaPlayer.Value.Stop();
+                }
             }
 
             catch (Exception ex)
