@@ -40,10 +40,6 @@
     <Compile Include="Features\AlarmRinging\INotificationService.cs" />
     <Compile Include="Features\AlarmRinging\Storage\Alarm.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
-    <Compile Include="Repository\AlarmDbRepository.cs" />
-    <Compile Include="Repository\BaseDbRepository.cs" />
-    <Compile Include="Repository\IAlarmRepository.cs" />
-    <Compile Include="Services\IDatabaseService.cs" />
     <Compile Include="Services\InMemoryAlarmStorage.cs" />
     <Compile Include="Features\AlarmRinging\Storage\IAlarmStorage.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />

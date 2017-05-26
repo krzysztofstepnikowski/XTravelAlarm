@@ -95,7 +95,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\iOSAlarmRinger.cs" />
-    <Compile Include="Services\iOSDatabaseService.cs" />
     <Compile Include="Services\iOSNotificationService.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />

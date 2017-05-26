@@ -3,12 +3,8 @@ using System.Diagnostics;
 using AudioToolbox;
 using AVFoundation;
 using Foundation;
-using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.iOS.Services;
-using XTravelAlarm.Views.Alarms;
 
-[assembly: Dependency(typeof(iOSAlarmRinger))]
 
 namespace XTravelAlarm.iOS.Services
 {

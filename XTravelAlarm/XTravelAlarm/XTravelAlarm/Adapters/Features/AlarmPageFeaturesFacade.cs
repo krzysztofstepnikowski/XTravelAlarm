@@ -47,6 +47,7 @@ namespace XTravelAlarm.Adapters.Features
         public void Remove(Guid alarmId)
         {
             alarmStorage.Remove(alarmId);
+            gpsListener.RemoveObserver(alarmId);
         }
     }
 }

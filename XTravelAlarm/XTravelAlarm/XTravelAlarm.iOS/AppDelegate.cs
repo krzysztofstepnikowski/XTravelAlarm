@@ -6,8 +6,6 @@ using Xamarin;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
 using XTravelAlarm.Views.Alarms;
-using System;
-using XTravelAlarm.Services;
 
 namespace XTravelAlarm.iOS
 {
@@ -64,7 +62,6 @@ namespace XTravelAlarm.iOS
         {
             container.RegisterType<IRinger, iOSAlarmRinger>();
             container.RegisterType<INotificationService, iOSNotificationService>();
-            container.RegisterType<IDatabaseService, iOSDatabaseService>();
         }
     }
 }
