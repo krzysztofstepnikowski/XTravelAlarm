@@ -8,12 +8,12 @@ namespace XTravelAlarm.Features.AlarmRinging
     {
         private readonly IRinger ringer;
         private readonly INotificationService notificationService;
-        private readonly IAlarmStorage alarmStorage;
+        private readonly IAlarmDatabaseService alarmDatabase;
 
-        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage)
+        public AlarmCaller(IRinger ringer, IAlarmDatabaseService alarmDatabase)
         {
             this.ringer = ringer;
-            this.alarmStorage = alarmStorage;
+            this.alarmDatabase = alarmDatabase;
             notificationService = DependencyService.Get<INotificationService>();
         }
 
@@ -54,11 +54,11 @@ namespace XTravelAlarm.Features.AlarmRinging
 
         public void UpdatePosition(Position position, Guid alarmId)
         {
-            var alarm = alarmStorage.GetAlarm(alarmId);
+            var alarm = alarmDatabase.GetAlarmAsync(alarmId);
 
 
-            var currentDistance = CalculateDistance(position, alarm.Destination);
-            if (currentDistance <= alarm.Distance)
+            var currentDistance = CalculateDistance(position, alarm.Result.Position);
+            if (currentDistance <= alarm.Result.Distance)
             {
                 notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
                 ringer.PlaySound();

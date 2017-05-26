@@ -9,18 +9,18 @@ namespace XTravelAlarm.Adapters.Features
 {
     public class AlarmPageFeaturesFacade : IAlarmPageFeatures
     {
-        private readonly InMemoryAlarmStorage alarmStorage;
+        private readonly AlarmDatabaseService alarmDatabase;
         private readonly GPSListener gpsListener;
 
-        public AlarmPageFeaturesFacade(GPSListener gpsListener, InMemoryAlarmStorage alarmStorage)
+        public AlarmPageFeaturesFacade(GPSListener gpsListener, AlarmDatabaseService alarmDatabase)
         {
             this.gpsListener = gpsListener;
-            this.alarmStorage = alarmStorage;
+            this.alarmDatabase = alarmDatabase;
         }
 
-        public IEnumerable<AlarmLocationViewModel> GetAll()
+        public  IEnumerable<AlarmLocationViewModel> GetAll()
         {
-            return alarmStorage.GetAll().Select(x => new AlarmLocationViewModel()
+            return alarmDatabase.GetAllAsync().Result.Select(x => new AlarmLocationViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -29,24 +29,24 @@ namespace XTravelAlarm.Adapters.Features
             }).ToList();
         }
 
-        public void Enable(Guid alarmId)
+        public async void Enable(Guid alarmId)
         {
-            var alarm = alarmStorage.GetById(alarmId);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
             alarm.IsRunning = true;
             gpsListener.AddObserver(alarmId);
         }
 
 
-        public void Disable(Guid alarmId)
+        public async void Disable(Guid alarmId)
         {
-            var alarm = alarmStorage.GetById(alarmId);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
             alarm.IsRunning = false;
             gpsListener.RemoveObserver(alarmId);
         }
 
-        public void Remove(Guid alarmId)
+        public async void Remove(Guid alarmId)
         {
-            alarmStorage.Remove(alarmId);
+            await alarmDatabase.RemoveAlarmAsync(alarmId);
             gpsListener.RemoveObserver(alarmId);
         }
     }

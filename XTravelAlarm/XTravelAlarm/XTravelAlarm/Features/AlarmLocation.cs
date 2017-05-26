@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SQLite;
+using System;
 
 namespace XTravelAlarm.Features
 {
     public class AlarmLocation
     {
-
+        [PrimaryKey]
         public Guid Id { get; set; }
         public string Name { get; set; }
 
@@ -18,6 +19,7 @@ namespace XTravelAlarm.Features
 
         public AlarmLocation(string name, double distance, Position position, bool isRunning) : this()
         {
+            Id = Guid.NewGuid();
             Name = name;
             Distance = distance;
             Position = position;
@@ -26,7 +28,8 @@ namespace XTravelAlarm.Features
 
         public AlarmLocation()
         {
-            Id = Guid.NewGuid();
+           
         }
+
     }
 }

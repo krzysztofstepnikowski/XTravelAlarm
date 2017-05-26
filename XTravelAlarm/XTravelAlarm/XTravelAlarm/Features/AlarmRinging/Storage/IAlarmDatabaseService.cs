@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace XTravelAlarm.Features.AlarmRinging.Storage
+{
+    public interface IAlarmDatabaseService
+    {
+        Task<List<AlarmLocation>> GetAllAsync();
+        Task<AlarmLocation> GetAlarmAsync(Guid id);
+        Task AddAlarmAsync(AlarmLocation alarmlocation);
+        Task RemoveAlarmAsync(Guid id);
+
+    }
+}
