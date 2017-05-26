@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.Practices.ObjectBuilder2;
 using XTravelAlarm.Models;
 
 namespace XTravelAlarm.ViewModels
@@ -22,9 +21,14 @@ namespace XTravelAlarm.ViewModels
         {
             get { return _isAlarmListPlaceholderVisible; }
             set { SetProperty(ref _isAlarmListPlaceholderVisible, value); }
+        }
 
-       
+        private bool _isStopped;
+
+        public bool IsStopped
+        {
+            get { return _isStopped; }
+            set { SetProperty(ref _isStopped, value); }
+        }
     }
-}
-
 }

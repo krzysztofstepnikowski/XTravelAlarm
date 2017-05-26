@@ -9,11 +9,6 @@
              Title="Moje alarmy">
 
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Ustawienia"
-                     Order="Secondary" />
-    </ContentPage.ToolbarItems>
-
     <StackLayout Orientation="Vertical" Padding="8,8,8,0">
 
         <Label Text="Brak alarmów"

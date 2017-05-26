@@ -1,7 +1,7 @@
-﻿namespace XTravelAlarm.Features
+﻿namespace XTravelAlarm.Features.AlarmRinging
 {
     public interface IRinger
     {
-        void Ring();
+        void PlaySound();
     }
 }

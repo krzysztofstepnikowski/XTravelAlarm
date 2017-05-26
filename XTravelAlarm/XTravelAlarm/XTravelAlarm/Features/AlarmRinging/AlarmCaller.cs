@@ -1,17 +1,20 @@
 ﻿using System;
-using XTravelAlarm.Features.AlarmRinging.Storage;
+using Xamarin.Forms;
+using XTravelAlarm.Repository;
 
 namespace XTravelAlarm.Features.AlarmRinging
 {
     public class AlarmCaller
     {
         private readonly IRinger ringer;
-        private readonly IAlarmStorage alarmStorage;
+        private readonly INotificationService notificationService;
+        private readonly IAlarmRepository alarmRepository;
 
-        public AlarmCaller(IRinger ringer, IAlarmStorage alarmStorage)
+        public AlarmCaller(IRinger ringer, IAlarmRepository alarmRepository)
         {
             this.ringer = ringer;
-            this.alarmStorage = alarmStorage;
+            this.alarmRepository = alarmRepository;
+            notificationService = DependencyService.Get<INotificationService>();
         }
 
 
@@ -51,13 +54,14 @@ namespace XTravelAlarm.Features.AlarmRinging
 
         public void UpdatePosition(Position position, Guid alarmId)
         {
-            var alarm = alarmStorage.GetAlarm(alarmId);
+            var alarm = alarmRepository.GetById(alarmId);
 
 
-            var currentDistance = CalculateDistance(position, alarm.Destination);
+            var currentDistance = CalculateDistance(position, alarm.Position);
             if (currentDistance <= alarm.Distance)
             {
-                ringer.Ring();
+                notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
+                ringer.PlaySound();
             }
         }
     }

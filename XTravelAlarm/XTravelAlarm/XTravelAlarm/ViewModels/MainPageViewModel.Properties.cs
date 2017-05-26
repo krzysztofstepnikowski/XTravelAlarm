@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace XTravelAlarm.ViewModels
+﻿namespace XTravelAlarm.ViewModels
 {
     public partial class MainPageViewModel
     {
@@ -19,14 +16,6 @@ namespace XTravelAlarm.ViewModels
         {
             get { return _distance; }
             set { SetProperty(ref _distance, value); }
-        }
-
-        private List<string> autoCompletePredictions = new List<string>();
-
-        public List<string> AutoCompletePredictions
-        {
-            get { return autoCompletePredictions; }
-            set { SetProperty(ref autoCompletePredictions, value); }
         }
     }
 }
