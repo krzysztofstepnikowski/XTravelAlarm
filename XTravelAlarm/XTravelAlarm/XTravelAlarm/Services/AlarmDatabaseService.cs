@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging.Storage;
 
@@ -10,14 +11,15 @@ namespace XTravelAlarm.Services
     public class AlarmDatabaseService : IAlarmDatabaseService
     {
         protected SQLiteAsyncConnection DbConnection { get; set; }
-        public AlarmDatabaseService(SQLiteAsyncConnection connection)
+        public AlarmDatabaseService()
         {
-            DbConnection = connection;
+            DbConnection = DependencyService.Get<IDatabaseService>().GetConnection();
+            DbConnection.CreateTableAsync<AlarmLocation>();
         }
 
-        public Task<List<AlarmLocation>> GetAllAsync()
+        public async Task<IEnumerable<AlarmLocation>> GetAllAsync()
         {
-            return DbConnection.Table<AlarmLocation>().ToListAsync();
+            return await DbConnection.Table<AlarmLocation>().ToListAsync();
         }
 
         public Task<AlarmLocation> GetAlarmAsync(Guid id)
@@ -35,5 +37,9 @@ namespace XTravelAlarm.Services
             return DbConnection.DeleteAsync(id);
         }
 
+        public SQLiteAsyncConnection GetConnection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

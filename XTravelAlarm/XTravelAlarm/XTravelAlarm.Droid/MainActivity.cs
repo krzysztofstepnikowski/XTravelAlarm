@@ -91,7 +91,6 @@ namespace XTravelAlarm.Droid
         {
             container.RegisterType<IRinger, DroidAlarmRinger>();
             container.RegisterType<INotificationService, DroidNotificationService>();
-            container.RegisterType<ILocalFileHelper, DroidLocalFileHelper>((new ContainerControlledLifetimeManager()));
         }
     }
 }

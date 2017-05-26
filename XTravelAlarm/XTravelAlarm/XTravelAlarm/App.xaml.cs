@@ -13,7 +13,6 @@ using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Views.Main;
-using XTravelAlarm.Features;
 
 namespace XTravelAlarm
 {
@@ -34,8 +33,6 @@ namespace XTravelAlarm
         {
 
             var gpsObservers = new HashSet<Guid>();
-            var database = DependencyService.Get<ILocalFileHelper>();
-            database.Connection.CreateTableAsync<AlarmLocation>();
 
 
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
@@ -44,7 +41,7 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<NavigationPage>();
 
             Container.RegisterType<AlarmCaller>();
-            Container.RegisterType<IAlarmDatabaseService, AlarmDatabaseService>(new InjectionConstructor(database.Connection));
+            Container.RegisterType<IAlarmDatabaseService, AlarmDatabaseService>();
             Container.RegisterType<GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(gpsObservers,
                 new ResolvedParameter<AlarmCaller>()));
 
