@@ -1,4 +1,5 @@
-﻿using XTravelAlarm.Features;
+﻿using System.Threading.Tasks;
+using XTravelAlarm.Features;
 using XTravelAlarm.Services;
 using XTravelAlarm.Views.Main;
 
@@ -15,7 +16,7 @@ namespace XTravelAlarm.Adapters.Features
             this.alarmDatabase = alarmDatabase;
         }
 
-        public async void Add(AlarmLocation alarmLocation)
+        public async Task AddAlarmAsync(AlarmLocation alarmLocation)
         {
             gpsListener.AddObserver(alarmLocation.Id);
             await alarmDatabase.AddAlarmAsync(alarmLocation);

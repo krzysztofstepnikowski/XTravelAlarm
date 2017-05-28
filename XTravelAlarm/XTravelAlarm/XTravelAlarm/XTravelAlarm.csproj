@@ -42,8 +42,6 @@
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmRinging\Storage\IAlarmDatabaseService.cs" />
     <Compile Include="Services\AlarmDatabaseService.cs" />
-    <Compile Include="Services\InMemoryAlarmStorage.cs" />
-    <Compile Include="Features\AlarmRinging\Storage\IAlarmStorage.cs" />
     <Compile Include="Features\AlarmRinging\IRinger.cs" />
     <Compile Include="Features\AlarmLocation.cs" />
     <Compile Include="Services\GPSListener.cs" />

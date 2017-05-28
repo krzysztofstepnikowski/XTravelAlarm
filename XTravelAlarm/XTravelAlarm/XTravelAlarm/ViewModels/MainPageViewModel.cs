@@ -7,7 +7,6 @@ using Prism.Mvvm;
 using Xamarin.Forms.Maps;
 using XTravelAlarm.Features;
 using XTravelAlarm.Views.Main;
-using Position = XTravelAlarm.Features.Position;
 
 namespace XTravelAlarm.ViewModels
 {
@@ -39,12 +38,12 @@ namespace XTravelAlarm.ViewModels
 
 
                 var newLocationAlarm = new AlarmLocation(Name, Distance,
-                    new Position(targetPlace.Latitude, targetPlace.Longitude), true);
+                    targetPlace.Latitude, targetPlace.Longitude, true);
 
 
-                mainPageFeatures.Add(newLocationAlarm);
+                await mainPageFeatures.AddAlarmAsync(newLocationAlarm);
                 UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
-                Debug.WriteLine(newLocationAlarm.Position.ToString());
+                Debug.WriteLine(newLocationAlarm.ToString());
             }
 
             else

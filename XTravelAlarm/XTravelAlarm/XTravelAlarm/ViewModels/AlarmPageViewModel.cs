@@ -28,9 +28,9 @@ namespace XTravelAlarm.ViewModels
         }
 
 
-        private void GetAlarms()
+        private async void GetAlarms()
         {
-            var alarms = alarmPageFeatures.GetAll();
+            var alarms = await alarmPageFeatures.GetAllAsync();
 
             Alarms = new ObservableCollection<AlarmLocationViewModel>(alarms);
 
@@ -52,7 +52,7 @@ namespace XTravelAlarm.ViewModels
                 return;
             }
 
-            alarmPageFeatures.Remove(alarmLocation.Id);
+            await alarmPageFeatures.RemoveAlarmAsync(alarmLocation.Id);
             GetAlarms();
         }
 

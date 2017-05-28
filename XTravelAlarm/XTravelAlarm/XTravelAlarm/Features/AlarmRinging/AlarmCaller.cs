@@ -18,20 +18,20 @@ namespace XTravelAlarm.Features.AlarmRinging
         }
 
 
-        private double CalculateDistance(Position position, Position alarmPosition)
+        private double CalculateDistance(Position position, AlarmLocation alarmLocation)
         {
-            return CalculateWithHaversine(position, alarmPosition);
+            return CalculateWithHaversine(position, alarmLocation);
         }
 
-        private double CalculateWithHaversine(Position position, Position alarmPosition)
+        private double CalculateWithHaversine(Position position, AlarmLocation alarmLocation)
         {
             var R = 6371d;
             var currentLatitude = position.Latitude;
             var currentLongitude = position.Longitude;
 
 
-            var alarmLatitude = alarmPosition.Latitude;
-            var alarmLongitude = alarmPosition.Longitude;
+            var alarmLatitude = alarmLocation.Latitude;
+            var alarmLongitude = alarmLocation.Longitude;
 
             var differenceLatitudes = ToRadius(alarmLatitude - currentLatitude);
             var differenceLongitudes = ToRadius(alarmLongitude - currentLongitude);
@@ -57,7 +57,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             var alarm = alarmDatabase.GetAlarmAsync(alarmId);
 
 
-            var currentDistance = CalculateDistance(position, alarm.Result.Position);
+            var currentDistance = CalculateDistance(position, alarm.Result);
             if (currentDistance <= alarm.Result.Distance)
             {
                 notificationService.Show("Alarm", "Wyłącz alarm", alarmId);

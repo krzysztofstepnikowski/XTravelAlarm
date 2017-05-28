@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using XTravelAlarm.Models;
 using XTravelAlarm.Services;
 using XTravelAlarm.Views.Alarms;
@@ -18,9 +19,10 @@ namespace XTravelAlarm.Adapters.Features
             this.alarmDatabase = alarmDatabase;
         }
 
-        public  IEnumerable<AlarmLocationViewModel> GetAll()
+        public async Task<IEnumerable<AlarmLocationViewModel>> GetAllAsync()
         {
-            return alarmDatabase.GetAllAsync().Result.Select(x => new AlarmLocationViewModel()
+            var alarms = await alarmDatabase.GetAllAsync();
+            return alarms.Select(x => new AlarmLocationViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -44,10 +46,10 @@ namespace XTravelAlarm.Adapters.Features
             gpsListener.RemoveObserver(alarmId);
         }
 
-        public async void Remove(Guid alarmId)
+        public async Task RemoveAlarmAsync(Guid id)
         {
-            await alarmDatabase.RemoveAlarmAsync(alarmId);
-            gpsListener.RemoveObserver(alarmId);
+            await alarmDatabase.RemoveAlarmAsync(id);
+            gpsListener.RemoveObserver(id);
         }
     }
 }

@@ -11,35 +11,34 @@ namespace XTravelAlarm.Services
     public class AlarmDatabaseService : IAlarmDatabaseService
     {
         protected SQLiteAsyncConnection DbConnection { get; set; }
+
         public AlarmDatabaseService()
         {
             DbConnection = DependencyService.Get<IDatabaseService>().GetConnection();
-            DbConnection.CreateTableAsync<AlarmLocation>();
         }
 
         public async Task<IEnumerable<AlarmLocation>> GetAllAsync()
         {
+            await  DbConnection.CreateTableAsync<AlarmLocation>();
             return await DbConnection.Table<AlarmLocation>().ToListAsync();
         }
 
-        public Task<AlarmLocation> GetAlarmAsync(Guid id)
+        public async Task<AlarmLocation> GetAlarmAsync(Guid id)
         {
-            return DbConnection.Table<AlarmLocation>().Where(x => x.Id == id).FirstOrDefaultAsync();
+            await DbConnection.CreateTableAsync<AlarmLocation>();
+            return await DbConnection.Table<AlarmLocation>().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task AddAlarmAsync(AlarmLocation alarmlocation)
+        public async Task AddAlarmAsync(AlarmLocation alarmlocation)
         {
-            return DbConnection.InsertAsync(alarmlocation);
+            await DbConnection.CreateTableAsync<AlarmLocation>();
+            await DbConnection.InsertAsync(alarmlocation);
         }
 
-        public Task RemoveAlarmAsync(Guid id)
+        public async Task RemoveAlarmAsync(Guid id)
         {
-            return DbConnection.DeleteAsync(id);
-        }
-
-        public SQLiteAsyncConnection GetConnection()
-        {
-            throw new NotImplementedException();
+            await DbConnection.CreateTableAsync<AlarmLocation>();
+            await DbConnection.DeleteAsync(id);
         }
     }
 }

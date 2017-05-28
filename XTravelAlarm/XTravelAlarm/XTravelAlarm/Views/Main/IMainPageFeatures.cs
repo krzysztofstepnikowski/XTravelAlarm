@@ -1,9 +1,10 @@
-﻿using XTravelAlarm.Features;
+﻿using System.Threading.Tasks;
+using XTravelAlarm.Features;
 
 namespace XTravelAlarm.Views.Main
 {
     public interface IMainPageFeatures
     {
-        void Add(AlarmLocation alarmLocation);
+        Task AddAlarmAsync(AlarmLocation alarmLocation);
     }
 }

@@ -10,7 +10,9 @@ namespace XTravelAlarm.Features
     
         public string Name { get; set; }
        
-        public Position Position { get; set; }
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
 
       
         public double Distance { get; set; }
@@ -19,17 +21,23 @@ namespace XTravelAlarm.Features
         public bool IsRunning { get; set; }
 
 
-        public AlarmLocation(string name, int distance, Position position, bool isRunning) : this()
+        public AlarmLocation(string name, int distance, double latitude, double longitude, bool isRunning) : this()
         {
             Name = name;
             Distance = distance;
-            Position = position;
+            Latitude = latitude;
+            Longitude = longitude;
             IsRunning = isRunning;
         }
 
         public AlarmLocation()
         {
             Id = Guid.NewGuid();
+        }
+
+        public override string ToString()
+        {
+            return $"Position= ({Latitude};{Longitude})";
         }
 
     }
