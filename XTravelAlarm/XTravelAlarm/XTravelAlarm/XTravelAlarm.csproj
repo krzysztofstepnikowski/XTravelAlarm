@@ -38,7 +38,6 @@
     <Compile Include="Adapters\Features\AlarmPageFeaturesFacade.cs" />
     <Compile Include="Adapters\Features\MainPageFeaturesFacade.cs" />
     <Compile Include="Features\AlarmRinging\INotificationService.cs" />
-    <Compile Include="Features\AlarmRinging\Storage\Alarm.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
     <Compile Include="Features\AlarmRinging\Storage\IAlarmDatabaseService.cs" />
     <Compile Include="Services\AlarmDatabaseService.cs" />

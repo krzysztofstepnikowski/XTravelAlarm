@@ -20,11 +20,11 @@ namespace XTravelAlarm.Services
             CrossGeolocator.Current.PositionChanged += CurrentPositionChanged;
         }
 
-        private void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
+        private async void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
             foreach (var alarmId in gpsObservers)
             {
-                alarmCaller.UpdatePosition(new Position(e.Position.Latitude, e.Position.Longitude), alarmId);
+                await alarmCaller.UpdatePosition(new Position(e.Position.Latitude, e.Position.Longitude), alarmId);
             }
 
             Debug.WriteLine($"Listener: {GetHashCode()}");
