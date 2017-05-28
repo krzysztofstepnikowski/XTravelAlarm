@@ -35,6 +35,7 @@ namespace XTravelAlarm.Adapters.Features
         {
             var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
             alarm.IsRunning = true;
+            await alarmDatabase.UpdateAlarmAsync(alarm);
             gpsListener.AddObserver(alarmId);
         }
 
@@ -43,13 +44,20 @@ namespace XTravelAlarm.Adapters.Features
         {
             var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
             alarm.IsRunning = false;
+            await alarmDatabase.UpdateAlarmAsync(alarm);
             gpsListener.RemoveObserver(alarmId);
         }
 
-        public async Task RemoveAlarmAsync(Guid id)
+
+        public async Task RemoveAlarmAsync(Guid alarmId)
         {
-            await alarmDatabase.RemoveAlarmAsync(id);
-            gpsListener.RemoveObserver(id);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
+
+            if (alarm != null)
+            {
+                await alarmDatabase.RemoveAlarmAsync(alarm);
+                gpsListener.RemoveObserver(alarmId);
+            }
         }
     }
 }

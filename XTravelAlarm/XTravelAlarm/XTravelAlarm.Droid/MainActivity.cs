@@ -11,7 +11,6 @@ using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Alarms;
 using Android.Widget;
-using XTravelAlarm.Services;
 
 namespace XTravelAlarm.Droid
 {

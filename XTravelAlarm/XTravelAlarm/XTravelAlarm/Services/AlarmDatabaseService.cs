@@ -29,16 +29,24 @@ namespace XTravelAlarm.Services
             return await DbConnection.Table<AlarmLocation>().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task AddAlarmAsync(AlarmLocation alarmlocation)
+        public async Task AddAlarmAsync(AlarmLocation alarmLocation)
         {
             await DbConnection.CreateTableAsync<AlarmLocation>();
-            await DbConnection.InsertAsync(alarmlocation);
+            await DbConnection.InsertAsync(alarmLocation);
         }
 
-        public async Task RemoveAlarmAsync(Guid id)
+        public async Task UpdateAlarmAsync(AlarmLocation alarmLocation)
         {
             await DbConnection.CreateTableAsync<AlarmLocation>();
-            await DbConnection.DeleteAsync(id);
+            await DbConnection.UpdateAsync(alarmLocation);
         }
+
+        public async Task RemoveAlarmAsync(AlarmLocation alarmlocation)
+        {
+            await DbConnection.CreateTableAsync<AlarmLocation>();
+            await DbConnection.DeleteAsync(alarmlocation);
+        }
+
+      
     }
 }
