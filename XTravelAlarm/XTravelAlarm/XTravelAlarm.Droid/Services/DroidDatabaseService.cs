@@ -1,16 +1,16 @@
 using System.IO;
 using SQLite;
 using Xamarin.Forms;
-using XamarinForms.SQLite.Droid.SQLite;
 using XTravelAlarm.Services;
+using XTravelAlarm.Droid.Services;
 
-[assembly: Dependency(typeof(SQLite_Android))]
+[assembly: Dependency(typeof(DroidDatabaseService))]
 
-namespace XamarinForms.SQLite.Droid.SQLite
+namespace XTravelAlarm.Droid.Services
 {
-    public class SQLite_Android : IDatabaseService
+    public class DroidDatabaseService : IDatabaseService
     {
-        public SQLite_Android() { }
+        public DroidDatabaseService() { }
         public SQLiteAsyncConnection GetConnection()
         {
             var sqliteFilename = "alarms.db3";

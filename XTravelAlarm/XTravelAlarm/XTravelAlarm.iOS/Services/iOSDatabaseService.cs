@@ -2,18 +2,18 @@
 using System.IO;
 using SQLite;
 using Xamarin.Forms;
-using XamarinForms.SQLite.iOS.SQLite;
 using XTravelAlarm.Services;
+using XTravelAlarm.iOS.Services;
 
-[assembly: Dependency(typeof(SQLite_iOS))]
+[assembly: Dependency(typeof(iOSDatabaseService))]
 
-namespace XamarinForms.SQLite.iOS.SQLite
+namespace XTravelAlarm.iOS.Services
 {
 
-    public class SQLite_iOS : IDatabaseService
+    public class iOSDatabaseService : IDatabaseService
     {
 
-        public SQLite_iOS()
+        public iOSDatabaseService()
         {
         }
 

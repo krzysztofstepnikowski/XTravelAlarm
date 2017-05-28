@@ -1,6 +1,4 @@
-﻿using Prism.Mvvm;
-
-namespace XTravelAlarm.Features
+﻿namespace XTravelAlarm.Features
 {
     public class Position
     {
@@ -12,15 +10,6 @@ namespace XTravelAlarm.Features
         {
             Latitude = latitude;
             Longitude = longitude;
-        }
-
-        public Position()
-        {
-        }
-
-        public override string ToString()
-        {
-            return $"Position= ({Latitude};{Longitude})";
         }
     }
 }
