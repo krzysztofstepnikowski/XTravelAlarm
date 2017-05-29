@@ -1,9 +1,9 @@
-﻿using SQLite.Net;
+﻿using SQLite;
 
 namespace XTravelAlarm.Services
 {
     public interface IDatabaseService
     {
-        SQLiteConnection Connection { get; }
+        SQLiteAsyncConnection GetConnection();
     }
 }

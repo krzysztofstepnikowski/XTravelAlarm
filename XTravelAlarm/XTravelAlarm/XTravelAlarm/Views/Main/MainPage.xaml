@@ -21,8 +21,8 @@
             <Entry Placeholder="Podaj miejsce docelowe"
                    PlaceholderColor="Gray"
                    Text="{Binding Name}"
-                   FontSize="14"
-                   HeightRequest="40" />
+                   FontSize="16"
+                    />
 
 
             <maps:Map WidthRequest="350" HeightRequest="220"

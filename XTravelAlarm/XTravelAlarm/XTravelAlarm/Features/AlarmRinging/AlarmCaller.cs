@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using XTravelAlarm.Repository;
+using XTravelAlarm.Features.AlarmRinging.Storage;
 
 namespace XTravelAlarm.Features.AlarmRinging
 {
@@ -8,30 +9,30 @@ namespace XTravelAlarm.Features.AlarmRinging
     {
         private readonly IRinger ringer;
         private readonly INotificationService notificationService;
-        private readonly IAlarmRepository alarmRepository;
+        private readonly IAlarmDatabaseService alarmDatabase;
 
-        public AlarmCaller(IRinger ringer, IAlarmRepository alarmRepository)
+        public AlarmCaller(IRinger ringer, IAlarmDatabaseService alarmDatabase, INotificationService notificationService)
         {
             this.ringer = ringer;
-            this.alarmRepository = alarmRepository;
-            notificationService = DependencyService.Get<INotificationService>();
+            this.alarmDatabase = alarmDatabase;
+            this.notificationService = notificationService;
         }
 
 
-        private double CalculateDistance(Position position, Position alarmPosition)
+        private double CalculateDistance(Position position, AlarmLocation alarmLocation)
         {
-            return CalculateWithHaversine(position, alarmPosition);
+            return CalculateWithHaversine(position, alarmLocation);
         }
 
-        private double CalculateWithHaversine(Position position, Position alarmPosition)
+        private double CalculateWithHaversine(Position position, AlarmLocation alarmLocation)
         {
             var R = 6371d;
             var currentLatitude = position.Latitude;
             var currentLongitude = position.Longitude;
 
 
-            var alarmLatitude = alarmPosition.Latitude;
-            var alarmLongitude = alarmPosition.Longitude;
+            var alarmLatitude = alarmLocation.Latitude;
+            var alarmLongitude = alarmLocation.Longitude;
 
             var differenceLatitudes = ToRadius(alarmLatitude - currentLatitude);
             var differenceLongitudes = ToRadius(alarmLongitude - currentLongitude);
@@ -52,12 +53,12 @@ namespace XTravelAlarm.Features.AlarmRinging
         }
 
 
-        public void UpdatePosition(Position position, Guid alarmId)
+        public async Task UpdatePosition(Position position, Guid alarmId)
         {
-            var alarm = alarmRepository.GetById(alarmId);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
 
 
-            var currentDistance = CalculateDistance(position, alarm.Position);
+            var currentDistance = CalculateDistance(position, alarm);
             if (currentDistance <= alarm.Distance)
             {
                 notificationService.Show("Alarm", "Wyłącz alarm", alarmId);

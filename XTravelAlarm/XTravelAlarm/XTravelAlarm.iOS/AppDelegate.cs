@@ -5,9 +5,6 @@ using Microsoft.Practices.Unity;
 using Xamarin;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
-using XTravelAlarm.Views.Alarms;
-using System;
-using XTravelAlarm.Services;
 
 namespace XTravelAlarm.iOS
 {
@@ -43,19 +40,10 @@ namespace XTravelAlarm.iOS
         {
             UIAlertController okayAlertController = UIAlertController.Create(notification.AlertAction,
                 notification.AlertBody, UIAlertControllerStyle.Alert);
-            okayAlertController.AddAction(UIAlertAction.Create("Wyłącz", UIAlertActionStyle.Default, alertAction=>TurnOffAlarm()));
+            okayAlertController.AddAction(UIAlertAction.Create("Wyłącz", UIAlertActionStyle.Default, null));
             UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true,
                 null);
         }
-
-        private void TurnOffAlarm()
-        {
-            var alarmPageFeatures = container.Resolve<IAlarmPageFeatures>();
-            var iOSAlarmRinger = new iOSAlarmRinger();
-
-        }
-
-
     }
 
     public class iOSInitializer : IPlatformInitializer
@@ -64,7 +52,6 @@ namespace XTravelAlarm.iOS
         {
             container.RegisterType<IRinger, iOSAlarmRinger>();
             container.RegisterType<INotificationService, iOSNotificationService>();
-            container.RegisterType<IDatabaseService, iOSDatabaseService>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using XTravelAlarm.Models;
 using XTravelAlarm.Services;
 using XTravelAlarm.Views.Alarms;
@@ -9,18 +10,19 @@ namespace XTravelAlarm.Adapters.Features
 {
     public class AlarmPageFeaturesFacade : IAlarmPageFeatures
     {
-        private readonly InMemoryAlarmStorage alarmStorage;
+        private readonly AlarmDatabaseService alarmDatabase;
         private readonly GPSListener gpsListener;
 
-        public AlarmPageFeaturesFacade(GPSListener gpsListener, InMemoryAlarmStorage alarmStorage)
+        public AlarmPageFeaturesFacade(GPSListener gpsListener, AlarmDatabaseService alarmDatabase)
         {
             this.gpsListener = gpsListener;
-            this.alarmStorage = alarmStorage;
+            this.alarmDatabase = alarmDatabase;
         }
 
-        public IEnumerable<AlarmLocationViewModel> GetAll()
+        public async Task<IEnumerable<AlarmLocationViewModel>> GetAllAsync()
         {
-            return alarmStorage.GetAll().Select(x => new AlarmLocationViewModel()
+            var alarms = await alarmDatabase.GetAllAsync();
+            return alarms.Select(x => new AlarmLocationViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -29,24 +31,33 @@ namespace XTravelAlarm.Adapters.Features
             }).ToList();
         }
 
-        public void Enable(Guid alarmId)
+        public async void Enable(Guid alarmId)
         {
-            var alarm = alarmStorage.GetById(alarmId);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
             alarm.IsRunning = true;
+            await alarmDatabase.UpdateAlarmAsync(alarm);
             gpsListener.AddObserver(alarmId);
         }
 
 
-        public void Disable(Guid alarmId)
+        public async void Disable(Guid alarmId)
         {
-            var alarm = alarmStorage.GetById(alarmId);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
             alarm.IsRunning = false;
+            await alarmDatabase.UpdateAlarmAsync(alarm);
             gpsListener.RemoveObserver(alarmId);
         }
 
-        public void Remove(Guid alarmId)
+
+        public async Task RemoveAlarmAsync(Guid alarmId)
         {
-            alarmStorage.Remove(alarmId);
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
+
+            if (alarm != null)
+            {
+                await alarmDatabase.RemoveAlarmAsync(alarm);
+                gpsListener.RemoveObserver(alarmId);
+            }
         }
     }
 }

@@ -6,7 +6,6 @@ using Plugin.Geolocator;
 using Prism.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Adapters.Features;
-using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Features.AlarmRinging.Storage;
 using XTravelAlarm.Services;
@@ -32,7 +31,7 @@ namespace XTravelAlarm
 
         protected override void RegisterTypes()
         {
-            var alarmRepository = new HashSet<AlarmLocation>();
+
             var gpsObservers = new HashSet<Guid>();
 
 
@@ -42,12 +41,14 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<NavigationPage>();
 
             Container.RegisterType<AlarmCaller>();
-            Container.RegisterType<IAlarmStorage, InMemoryAlarmStorage>(new InjectionConstructor(alarmRepository));
+            Container.RegisterType<IAlarmDatabaseService, AlarmDatabaseService>();
             Container.RegisterType<GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(gpsObservers,
                 new ResolvedParameter<AlarmCaller>()));
 
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();
             Container.RegisterType<IAlarmPageFeatures, AlarmPageFeaturesFacade>();
+
+           
         }
 
         protected override async void OnStart()

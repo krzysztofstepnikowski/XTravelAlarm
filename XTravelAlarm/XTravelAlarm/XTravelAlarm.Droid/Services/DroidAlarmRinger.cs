@@ -3,9 +3,7 @@ using System.Diagnostics;
 using Android.Media;
 using Xamarin.Forms;
 using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.Droid.Services;
 
-[assembly: Dependency(typeof(DroidAlarmRinger))]
 
 namespace XTravelAlarm.Droid.Services
 {

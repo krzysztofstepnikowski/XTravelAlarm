@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using XTravelAlarm.Models;
 
 namespace XTravelAlarm.Views.Alarms
 {
     public interface IAlarmPageFeatures
     {
-        IEnumerable<AlarmLocationViewModel> GetAll();
+        Task<IEnumerable<AlarmLocationViewModel>> GetAllAsync();
         void Enable(Guid alarmId);
         void Disable(Guid alarmId);
-        void Remove(Guid alarmId);
+        Task RemoveAlarmAsync(Guid id);
     }
 }

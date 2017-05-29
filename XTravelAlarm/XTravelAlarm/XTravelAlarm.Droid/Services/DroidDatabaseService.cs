@@ -1,31 +1,25 @@
-using System;
-using SQLite.Net;
-using XTravelAlarm.Services;
 using System.IO;
-using SQLite.Net.Platform.XamarinAndroid;
-using XTravelAlarm.Droid.Services;
+using SQLite;
 using Xamarin.Forms;
+using XTravelAlarm.Services;
+using XTravelAlarm.Droid.Services;
 
 [assembly: Dependency(typeof(DroidDatabaseService))]
+
 namespace XTravelAlarm.Droid.Services
 {
     public class DroidDatabaseService : IDatabaseService
     {
-        private SQLiteConnection connection;
-        public SQLiteConnection Connection
+        public DroidDatabaseService() { }
+        public SQLiteAsyncConnection GetConnection()
         {
-            get
-            {
-                if (connection == null)
-                {
-                    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                                            "alarms.sqlite");
-
-                    connection = new SQLiteConnection(new SQLitePlatformAndroid(), path);
-                }
-
-                return connection;
-            }
+            var sqliteFilename = "alarms.db3";
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
+            var path = Path.Combine(documentsPath, sqliteFilename);
+            // Create the connection
+            var conn = new SQLiteAsyncConnection(path);
+            // Return the database connection
+            return conn;
         }
     }
 }

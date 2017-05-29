@@ -1,4 +1,4 @@
-﻿using SQLite.Net.Attributes;
+﻿using SQLite;
 using System;
 
 namespace XTravelAlarm.Features
@@ -7,21 +7,26 @@ namespace XTravelAlarm.Features
     {
         [PrimaryKey]
         public Guid Id { get; set; }
+    
         public string Name { get; set; }
+       
+        public double Latitude { get; set; }
 
-        public Position Position { get; set; }
+        public double Longitude { get; set; }
 
+      
         public double Distance { get; set; }
 
-
+        
         public bool IsRunning { get; set; }
 
 
-        public AlarmLocation(string name, double distance, Position position, bool isRunning) : this()
+        public AlarmLocation(string name, int distance, double latitude, double longitude, bool isRunning) : this()
         {
             Name = name;
             Distance = distance;
-            Position = position;
+            Latitude = latitude;
+            Longitude = longitude;
             IsRunning = isRunning;
         }
 
@@ -29,5 +34,11 @@ namespace XTravelAlarm.Features
         {
             Id = Guid.NewGuid();
         }
+
+        public override string ToString()
+        {
+            return $"Position= ({Latitude};{Longitude})";
+        }
+
     }
 }
