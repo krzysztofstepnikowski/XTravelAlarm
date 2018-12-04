@@ -27,9 +27,6 @@ namespace XTravelAlarm.Droid
             ToolbarResource = Resource.Layout.toolbar;
 
             base.OnCreate(bundle);
-
-            
-
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
             UserDialogs.Init(this);
@@ -38,7 +35,6 @@ namespace XTravelAlarm.Droid
             container = application.Container;
 
             LoadApplication(application);
-
             ProcessIntentAction(Intent);
         }
 
@@ -50,11 +46,8 @@ namespace XTravelAlarm.Droid
 
         private void ProcessIntentAction(Intent intent)
         {
-           
-
             if (intent.Action != null)
             {
-
                 switch (intent.Action)
                 {
                     case "TURN_OFF_ALARM_ACTION":
@@ -82,7 +75,6 @@ namespace XTravelAlarm.Droid
         }
     }
 
-
     public class AndroidInitializer : IPlatformInitializer
     {
         
@@ -93,4 +85,3 @@ namespace XTravelAlarm.Droid
         }
     }
 }
-
