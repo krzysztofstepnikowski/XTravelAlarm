@@ -12,12 +12,21 @@ namespace XTravelAlarm.Features.GPS
         private readonly HashSet<Guid> gpsObservers;
         private readonly IAlarmCaller alarmCaller;
 
-
         public GPSListener(HashSet<Guid> gpsObservers, IAlarmCaller alarmCaller)
         {
             this.gpsObservers = gpsObservers;
             this.alarmCaller = alarmCaller;
             CrossGeolocator.Current.PositionChanged += CurrentPositionChanged;
+        }
+        
+        public void AddObserver(Guid alarmLocationId)
+        {
+            gpsObservers.Add(alarmLocationId);
+        }
+
+        public void RemoveObserver(Guid alarmLocationId)
+        {
+            gpsObservers.Remove(alarmLocationId);
         }
 
         private async void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
@@ -28,16 +37,6 @@ namespace XTravelAlarm.Features.GPS
             }
 
             Debug.WriteLine($"Listener: {GetHashCode()}");
-        }
-
-        public void AddObserver(Guid alarmLocationId)
-        {
-            gpsObservers.Add(alarmLocationId);
-        }
-
-        public void RemoveObserver(Guid alarmLocationId)
-        {
-            gpsObservers.Remove(alarmLocationId);
         }
     }
 }
