@@ -40,7 +40,6 @@ namespace XTravelAlarm.Facades
             gpsListener.AddObserver(alarmId);
         }
 
-
         public async void Disable(Guid alarmId)
         {
             var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
@@ -48,7 +47,6 @@ namespace XTravelAlarm.Facades
             await alarmDatabase.UpdateAlarmAsync(alarm);
             gpsListener.RemoveObserver(alarmId);
         }
-
 
         public async Task RemoveAlarmAsync(Guid alarmId)
         {
