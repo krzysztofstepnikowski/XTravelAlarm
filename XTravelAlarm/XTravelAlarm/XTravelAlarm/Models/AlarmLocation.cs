@@ -7,19 +7,11 @@ namespace XTravelAlarm.Models
     {
         [PrimaryKey]
         public Guid Id { get; set; }
-    
         public string Name { get; set; }
-       
         public double Latitude { get; set; }
-
         public double Longitude { get; set; }
-
-      
         public double Distance { get; set; }
-
-        
         public bool IsRunning { get; set; }
-
 
         public AlarmLocation(string name, int distance, double latitude, double longitude, bool isRunning) : this()
         {
@@ -39,6 +31,5 @@ namespace XTravelAlarm.Models
         {
             return $"Position= ({Latitude};{Longitude})";
         }
-
     }
 }
