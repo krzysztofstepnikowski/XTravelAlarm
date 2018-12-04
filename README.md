@@ -1,4 +1,4 @@
-# <b> XTravel Alarm </b> ![alt tag](https://github.com/krzysztofstepnikowski/XTravelAlarm/blob/develop/XTravelAlarm/XTravelAlarm/XTravelAlarm.Droid/Resources/drawable-hdpi/ic_launcher.png) <br />
+# <b> XTravel Alarm </b> ![alt tag](https://github.com/krzysztofstepnikowski/XTravelAlarm/blob/master/XTravelAlarm/XTravelAlarm/XTravelAlarm.Droid/Resources/drawable/ic_launcher.png?raw=true) <br />
 
 Version 1.0
 
