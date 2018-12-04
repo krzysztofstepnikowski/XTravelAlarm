@@ -16,9 +16,7 @@ namespace XTravelAlarm.ViewModels
     {
         private readonly IAlarmPageFeatures alarmPageFeatures;
         private readonly IPageDialogService pageDialogService;
-
-
-
+        
         public AlarmPageViewModel(IAlarmPageFeatures alarmPageFeatures, IPageDialogService pageDialogService)
         {
             this.alarmPageFeatures = alarmPageFeatures;
@@ -26,7 +24,6 @@ namespace XTravelAlarm.ViewModels
 
             RemoveAlarm = new DelegateCommand<AlarmLocationViewModel>(DeleteAlarm);
         }
-
 
         private async void GetAlarms()
         {
@@ -76,10 +73,8 @@ namespace XTravelAlarm.ViewModels
             }
         }
 
-
         public void OnNavigatedFrom(NavigationParameters parameters)
-        {
-           
+        { 
         }
 
         public void OnNavigatedTo(NavigationParameters parameters)
@@ -87,10 +82,8 @@ namespace XTravelAlarm.ViewModels
             GetAlarms();
         }
 
-
         public void OnInternalNavigatedFrom(NavigationParameters navParams)
         {
-          
         }
 
         public void OnInternalNavigatedTo(NavigationParameters navParams)
