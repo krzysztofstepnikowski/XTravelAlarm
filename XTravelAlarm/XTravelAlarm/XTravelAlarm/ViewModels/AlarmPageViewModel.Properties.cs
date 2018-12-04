@@ -7,8 +7,6 @@ namespace XTravelAlarm.ViewModels
     partial class AlarmPageViewModel
     {
         private ObservableCollection<AlarmLocationViewModel> _alarms;
-
-
         public ObservableCollection<AlarmLocationViewModel> Alarms
         {
             get { return _alarms; }
@@ -17,7 +15,6 @@ namespace XTravelAlarm.ViewModels
         }
 
         private bool _isAlarmListPlaceholderVisible;
-
         public bool IsAlarmListPlaceholderVisible
         {
             get { return _isAlarmListPlaceholderVisible; }
@@ -25,7 +22,6 @@ namespace XTravelAlarm.ViewModels
         }
 
         private bool _isStopped;
-
         public bool IsStopped
         {
             get { return _isStopped; }
