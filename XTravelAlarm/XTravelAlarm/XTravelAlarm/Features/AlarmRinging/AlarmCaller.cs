@@ -22,9 +22,8 @@ namespace XTravelAlarm.Features.AlarmRinging
         public async Task UpdatePosition(Position position, Guid alarmId)
         {
             var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
-
-
             var currentDistance = CalculateDistance(position, alarm);
+            
             if (currentDistance <= alarm.Distance)
             {
                 notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
