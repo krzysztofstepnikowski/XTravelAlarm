@@ -4,7 +4,7 @@ Version 1.0
 
 Copyright ⓒ 2017 Krzysztof Stepnikowski
 
-Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin</b> z wykorzystaniem frameworka Prism. 
+Wieloplatformowa aplikacja zostanie stworzona za pomocą technologii <b>Xamarin.Forms</b> z wykorzystaniem frameworka Prism. 
 
 <br/>
 
