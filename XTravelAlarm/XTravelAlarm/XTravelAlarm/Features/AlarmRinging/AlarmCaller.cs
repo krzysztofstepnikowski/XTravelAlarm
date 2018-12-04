@@ -43,7 +43,6 @@ namespace XTravelAlarm.Features.AlarmRinging
             var currentLatitude = position.Latitude;
             var currentLongitude = position.Longitude;
 
-
             var alarmLatitude = alarmLocation.Latitude;
             var alarmLongitude = alarmLocation.Longitude;
 
@@ -55,7 +54,6 @@ namespace XTravelAlarm.Features.AlarmRinging
                     Math.Sin(differenceLongitudes / 2d) * Math.Sin(differenceLongitudes / 2d);
 
             var c = 2d * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1d - a));
-
 
             return R * c;
         }
