@@ -21,7 +21,6 @@ namespace XTravelAlarm.ViewModels
             SaveAlarmCommand = new DelegateCommand(SaveAlarmAsync);
         }
 
-
         private async void SaveAlarmAsync()
         {
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
