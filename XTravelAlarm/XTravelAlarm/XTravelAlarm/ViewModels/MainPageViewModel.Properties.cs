@@ -3,7 +3,6 @@
     public partial class MainPageViewModel
     {
         private string _name;
-
         public string Name
         {
             get { return _name; }
@@ -11,7 +10,6 @@
         }
 
         private int _distance;
-
         public int Distance
         {
             get { return _distance; }
