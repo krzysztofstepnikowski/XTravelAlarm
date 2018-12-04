@@ -12,6 +12,5 @@ namespace XTravelAlarm.Services.Interfaces
         Task AddAlarmAsync(AlarmLocation alarmLocation);
         Task UpdateAlarmAsync(AlarmLocation alarmLocation);
         Task RemoveAlarmAsync(AlarmLocation alarmlocation);
-
     }
 }
