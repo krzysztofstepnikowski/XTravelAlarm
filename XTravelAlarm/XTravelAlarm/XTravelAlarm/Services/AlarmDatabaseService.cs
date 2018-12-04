@@ -47,7 +47,5 @@ namespace XTravelAlarm.Services
             await DbConnection.CreateTableAsync<AlarmLocation>();
             await DbConnection.DeleteAsync(alarmlocation);
         }
-
-      
     }
 }
