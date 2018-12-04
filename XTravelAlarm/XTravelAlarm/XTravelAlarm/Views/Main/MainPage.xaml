@@ -8,7 +8,6 @@
              x:Class="XTravelAlarm.Views.Main.MainPage"
              Title="Budzik">
 
-
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Zapisz"
                      Order="Primary"
@@ -17,21 +16,16 @@
 
     <ScrollView>
         <StackLayout Orientation="Vertical" Spacing="10" Padding="10">
-
             <Entry Placeholder="Podaj miejsce docelowe"
                    PlaceholderColor="Gray"
                    Text="{Binding Name}"
-                   FontSize="16"
-                    />
-
-
+                   FontSize="16"/>
             <maps:Map WidthRequest="350" HeightRequest="220"
                       x:Name="MyMap"
                       IsShowingUser="true"
                       MapType="Street"
                       HasScrollEnabled="True"
                       HasZoomEnabled="True" />
-
             <Label Text="Ustaw odległość od miejsca docelowego"
                    FontSize="18"
                    FontAttributes="Italic"
@@ -41,29 +35,21 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                 <Image Source="ic_notifications_active.png" />
                 <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
-
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                         <Label
                             FontSize="24"
                             HorizontalOptions="Center"
                             Text="{Binding Distance}" />
-
                         <Label Text="Km"
                                FontAttributes="Bold"
                                FontSize="24"
                                HorizontalOptions="Center" />
                     </StackLayout>
-
-
                     <Slider Minimum="0"
                             Maximum="50"
                             Value="{Binding Distance}" />
-
-
                 </StackLayout>
             </StackLayout>
-
-
         </StackLayout>
     </ScrollView>
 </ContentPage>
