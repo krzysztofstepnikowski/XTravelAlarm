@@ -8,28 +8,21 @@
              x:Name="ContentPage"
              Title="Moje alarmy">
 
-
     <StackLayout Orientation="Vertical" Padding="8,8,8,0">
-
         <Label Text="Brak alarmów"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand"
                IsVisible="{Binding IsAlarmListPlaceholderVisible}" />
-
         <ListView x:Name="AlarmsListView"
                   RowHeight="80"
                   ItemsSource="{Binding Alarms}">
-
             <ListView.SeparatorColor>
                 <OnPlatform x:TypeArguments="Color"
                             iOS="Transparent"
                             Android="Silver" />
             </ListView.SeparatorColor>
-
             <ListView.ItemTemplate>
                 <DataTemplate>
-
-
                     <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem
@@ -44,11 +37,9 @@
                                        TextColor="Black" />
                                 <Switch IsToggled="{Binding IsRunning, Mode=TwoWay}"
                                         HorizontalOptions="EndAndExpand" />
-
                             </StackLayout>
 
                             <StackLayout Orientation="Horizontal" Padding="12,0,12,5">
-
                                 <Label Text="Dystans:"
                                        FontSize="14"
                                        TextColor="Gray" />
@@ -56,18 +47,14 @@
                                        FontSize="14"
                                        TextColor="Gray"
                                        Margin="0" />
-
                                 <Label Text="km"
                                        FontSize="14"
                                        TextColor="Gray" />
                             </StackLayout>
-
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </StackLayout>
-
 </ContentPage>
