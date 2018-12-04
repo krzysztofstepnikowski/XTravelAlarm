@@ -18,7 +18,19 @@ namespace XTravelAlarm.Features.AlarmRinging
             this.alarmDatabase = alarmDatabase;
             this.notificationService = notificationService;
         }
+        
+        public async Task UpdatePosition(Position position, Guid alarmId)
+        {
+            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
 
+
+            var currentDistance = CalculateDistance(position, alarm);
+            if (currentDistance <= alarm.Distance)
+            {
+                notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
+                ringer.PlaySound();
+            }
+        }
 
         private double CalculateDistance(Position position, AlarmLocation alarmLocation)
         {
@@ -51,20 +63,6 @@ namespace XTravelAlarm.Features.AlarmRinging
         private double ToRadius(double deg)
         {
             return deg * (Math.PI / 180d);
-        }
-
-
-        public async Task UpdatePosition(Position position, Guid alarmId)
-        {
-            var alarm = await alarmDatabase.GetAlarmAsync(alarmId);
-
-
-            var currentDistance = CalculateDistance(position, alarm);
-            if (currentDistance <= alarm.Distance)
-            {
-                notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
-                ringer.PlaySound();
-            }
         }
     }
 }
