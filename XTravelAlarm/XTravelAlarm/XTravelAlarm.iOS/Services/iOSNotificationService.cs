@@ -6,7 +6,6 @@ using XTravelAlarm.iOS.Services;
 using XTravelAlarm.PlatformServices;
 
 [assembly: Dependency(typeof(iOSNotificationService))]
-
 namespace XTravelAlarm.iOS.Services
 {
     public class iOSNotificationService : INotificationService
