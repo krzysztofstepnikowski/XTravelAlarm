@@ -9,7 +9,6 @@ using XTravelAlarm.PlatformServices;
 
 namespace XTravelAlarm.iOS.Services
 {
-
     public class iOSDatabaseService : IDatabaseService
     {
         public SQLiteAsyncConnection GetConnection()
