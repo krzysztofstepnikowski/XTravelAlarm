@@ -32,10 +32,6 @@ namespace XTravelAlarm
 
         protected override void RegisterTypes()
         {
-
-            var gpsObservers = new HashSet<Guid>();
-
-
             Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
             Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
             Container.RegisterTypeForNavigation<MainTabbedPage>();
@@ -43,7 +39,7 @@ namespace XTravelAlarm
 
             Container.RegisterType<IAlarmCaller,AlarmCaller>();
             Container.RegisterType<IAlarmDatabaseService, AlarmDatabaseService>();
-            Container.RegisterType<IGPSListener,GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(gpsObservers, new ResolvedParameter<IAlarmCaller>()));
+            Container.RegisterType<IGPSListener,GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(new HashSet<Guid>(), new ResolvedParameter<IAlarmCaller>()));
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();
             Container.RegisterType<IAlarmPageFeatures, AlarmPageFeaturesFacade>();
         }
