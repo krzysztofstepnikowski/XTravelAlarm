@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XTravelAlarm.Features.AlarmRinging
+namespace XTravelAlarm.PlatformServices
 {
    public interface INotificationService
    {

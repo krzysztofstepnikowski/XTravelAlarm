@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XTravelAlarm.Features;
-using XTravelAlarm.Features.AlarmRinging.Storage;
+using XTravelAlarm.Models;
+using XTravelAlarm.PlatformServices;
+using XTravelAlarm.Services.Interfaces;
 
 namespace XTravelAlarm.Services
 {

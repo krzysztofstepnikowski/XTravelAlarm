@@ -1,4 +1,4 @@
-﻿namespace XTravelAlarm.Features.AlarmRinging
+﻿namespace XTravelAlarm.PlatformServices
 {
     public interface IRinger
     {

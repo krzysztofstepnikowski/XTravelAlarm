@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using XTravelAlarm.Features;
+using XTravelAlarm.Models;
 
 namespace XTravelAlarm.Views.Main
 {

@@ -1,7 +1,7 @@
-﻿using SQLite;
-using System;
+﻿using System;
+using SQLite;
 
-namespace XTravelAlarm.Features
+namespace XTravelAlarm.Models
 {
     public class AlarmLocation
     {

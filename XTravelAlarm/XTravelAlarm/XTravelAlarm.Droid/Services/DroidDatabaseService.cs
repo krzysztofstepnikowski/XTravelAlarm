@@ -1,8 +1,8 @@
 using System.IO;
 using SQLite;
 using Xamarin.Forms;
-using XTravelAlarm.Services;
 using XTravelAlarm.Droid.Services;
+using XTravelAlarm.PlatformServices;
 
 [assembly: Dependency(typeof(DroidDatabaseService))]
 
@@ -10,7 +10,6 @@ namespace XTravelAlarm.Droid.Services
 {
     public class DroidDatabaseService : IDatabaseService
     {
-        public DroidDatabaseService() { }
         public SQLiteAsyncConnection GetConnection()
         {
             var sqliteFilename = "alarms.db3";

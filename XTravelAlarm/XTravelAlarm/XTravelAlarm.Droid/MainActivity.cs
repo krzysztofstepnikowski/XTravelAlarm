@@ -8,9 +8,9 @@ using Prism.Unity;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
-using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Views.Alarms;
 using Android.Widget;
+using XTravelAlarm.PlatformServices;
 
 namespace XTravelAlarm.Droid
 {

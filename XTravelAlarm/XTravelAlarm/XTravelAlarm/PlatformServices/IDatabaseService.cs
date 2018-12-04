@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace XTravelAlarm.Services
+namespace XTravelAlarm.PlatformServices
 {
     public interface IDatabaseService
     {

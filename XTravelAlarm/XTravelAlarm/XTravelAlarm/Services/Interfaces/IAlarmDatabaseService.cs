@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XTravelAlarm.Models;
 
-namespace XTravelAlarm.Features.AlarmRinging.Storage
+namespace XTravelAlarm.Services.Interfaces
 {
     public interface IAlarmDatabaseService
     {

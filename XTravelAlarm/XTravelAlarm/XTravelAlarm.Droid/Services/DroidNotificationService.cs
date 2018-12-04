@@ -1,11 +1,11 @@
-using System;
+ï»¿using System;
 using Android.App;
 using Android.Content;
 using Android.Support.V4.App;
 using Android.Util;
 using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
-using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.PlatformServices;
 
 [assembly: Dependency(typeof(DroidNotificationService))]
 
@@ -13,7 +13,6 @@ namespace XTravelAlarm.Droid.Services
 {
     public class DroidNotificationService : INotificationService
     {
-        
         public void Show(string title, string message, Guid alarmId)
         {
             var activity = Forms.Context as Activity;
@@ -35,7 +34,7 @@ namespace XTravelAlarm.Droid.Services
                 .SetContentIntent(pendingIntent)
                 .SetAutoCancel(true)
                 .AddAction(new NotificationCompat.Action(Resource.Drawable.ic_alarm_off,
-                    "Wy³¹cz",
+                    "WyÅ‚Ä…cz",
                     PendingIntent.GetActivity(activity, 0, intent, PendingIntentFlags.UpdateCurrent)))
                 .Build();
 

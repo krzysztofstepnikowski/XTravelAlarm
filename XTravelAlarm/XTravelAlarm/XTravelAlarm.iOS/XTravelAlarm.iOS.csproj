@@ -254,43 +254,43 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Contents.json">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-29x29@1x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-29x29@2x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-29x29@3x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-40x40@1x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-40x40@2x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-40x40@3x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-60x60@2x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-60x60@3x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-76x76@1x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-76x76@2x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\Icon-App-83.5x83.5@2x.png">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
-      <InProject>false</InProject>
+      <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>

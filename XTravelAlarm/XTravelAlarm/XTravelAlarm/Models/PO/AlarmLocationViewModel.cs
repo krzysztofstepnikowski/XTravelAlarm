@@ -1,18 +1,16 @@
-﻿﻿using System;
+﻿using System;
 using System.Windows.Input;
 using Prism.Mvvm;
 
-namespace XTravelAlarm.Models
+namespace XTravelAlarm.Models.PO
 {
     public class AlarmLocationViewModel : BindableBase
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-
-        public double Distance { get; set; }
-
         private bool _isRunning;
 
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public double Distance { get; set; }
         public bool IsRunning
         {
             get { return _isRunning; }

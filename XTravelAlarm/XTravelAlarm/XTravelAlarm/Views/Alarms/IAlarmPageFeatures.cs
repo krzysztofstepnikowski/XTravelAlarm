@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using XTravelAlarm.Models;
+using XTravelAlarm.Models.PO;
 
 namespace XTravelAlarm.Views.Alarms
 {

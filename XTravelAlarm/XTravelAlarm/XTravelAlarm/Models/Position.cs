@@ -1,4 +1,4 @@
-﻿namespace XTravelAlarm.Features
+﻿namespace XTravelAlarm.Models
 {
     public class Position
     {

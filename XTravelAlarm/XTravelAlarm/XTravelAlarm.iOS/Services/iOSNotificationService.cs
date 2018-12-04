@@ -2,8 +2,8 @@
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
-using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
+using XTravelAlarm.PlatformServices;
 
 [assembly: Dependency(typeof(iOSNotificationService))]
 

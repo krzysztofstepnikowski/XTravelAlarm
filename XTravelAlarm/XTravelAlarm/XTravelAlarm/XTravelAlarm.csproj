@@ -35,19 +35,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Adapters\Features\AlarmPageFeaturesFacade.cs" />
-    <Compile Include="Adapters\Features\MainPageFeaturesFacade.cs" />
-    <Compile Include="Features\AlarmRinging\INotificationService.cs" />
+    <Compile Include="Facades\AlarmPageFeaturesFacade.cs" />
+    <Compile Include="Facades\MainPageFeaturesFacade.cs" />
+    <Compile Include="Features\AlarmRinging\IAlarmCaller.cs" />
+    <Compile Include="Features\GPS\IGPSListener.cs" />
+    <Compile Include="PlatformServices\INotificationService.cs" />
     <Compile Include="Features\AlarmRinging\AlarmCaller.cs" />
-    <Compile Include="Features\AlarmRinging\Storage\IAlarmDatabaseService.cs" />
+    <Compile Include="Services\Interfaces\IAlarmDatabaseService.cs" />
     <Compile Include="Services\AlarmDatabaseService.cs" />
-    <Compile Include="Features\AlarmRinging\IRinger.cs" />
-    <Compile Include="Features\AlarmLocation.cs" />
-    <Compile Include="Services\GPSListener.cs" />
-    <Compile Include="Features\Position.cs" />
-    <Compile Include="Models\AlarmLocationViewModel.cs" />
+    <Compile Include="PlatformServices\IRinger.cs" />
+    <Compile Include="Models\AlarmLocation.cs" />
+    <Compile Include="Features\GPS\GPSListener.cs" />
+    <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\PO\AlarmLocationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IDatabaseService.cs" />
+    <Compile Include="PlatformServices\IDatabaseService.cs" />
     <Compile Include="Utils\MultipageNavigationBehavior.cs" />
     <Compile Include="ViewModels\AlarmPageViewModel.Commands.cs">
       <DependentUpon>AlarmPageViewModel.cs</DependentUpon>
@@ -198,6 +200,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

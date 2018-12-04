@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using XTravelAlarm.Models;
-using XTravelAlarm.Services;
+using XTravelAlarm.Features.GPS;
+using XTravelAlarm.Models.PO;
+using XTravelAlarm.Services.Interfaces;
 using XTravelAlarm.Views.Alarms;
 
-namespace XTravelAlarm.Adapters.Features
+namespace XTravelAlarm.Facades
 {
     public class AlarmPageFeaturesFacade : IAlarmPageFeatures
     {
-        private readonly AlarmDatabaseService alarmDatabase;
-        private readonly GPSListener gpsListener;
+        private readonly IAlarmDatabaseService alarmDatabase;
+        private readonly IGPSListener gpsListener;
 
-        public AlarmPageFeaturesFacade(GPSListener gpsListener, AlarmDatabaseService alarmDatabase)
+        public AlarmPageFeaturesFacade(IGPSListener gpsListener, IAlarmDatabaseService alarmDatabase)
         {
             this.gpsListener = gpsListener;
             this.alarmDatabase = alarmDatabase;

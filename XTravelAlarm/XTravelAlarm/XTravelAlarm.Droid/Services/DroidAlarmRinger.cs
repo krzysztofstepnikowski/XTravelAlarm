@@ -2,14 +2,14 @@ using System;
 using System.Diagnostics;
 using Android.Media;
 using Xamarin.Forms;
-using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.PlatformServices;
 
 
 namespace XTravelAlarm.Droid.Services
 {
     public class DroidAlarmRinger : IRinger
     {
-        private static Lazy<MediaPlayer> MediaPlayer = new Lazy<MediaPlayer>();
+        private static readonly Lazy<MediaPlayer> MediaPlayer = new Lazy<MediaPlayer>();
       
         public void PlaySound()
         {

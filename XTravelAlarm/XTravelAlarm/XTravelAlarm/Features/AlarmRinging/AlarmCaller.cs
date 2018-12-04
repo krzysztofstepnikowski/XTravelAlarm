@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using XTravelAlarm.Features.AlarmRinging.Storage;
+using XTravelAlarm.Models;
+using XTravelAlarm.PlatformServices;
+using XTravelAlarm.Services.Interfaces;
 
 namespace XTravelAlarm.Features.AlarmRinging
 {
-    public class AlarmCaller
+    public class AlarmCaller : IAlarmCaller
     {
         private readonly IRinger ringer;
         private readonly INotificationService notificationService;

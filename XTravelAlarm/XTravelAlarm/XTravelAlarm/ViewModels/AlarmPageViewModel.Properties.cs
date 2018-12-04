@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using XTravelAlarm.Models;
+using XTravelAlarm.Models.PO;
 
 namespace XTravelAlarm.ViewModels
 {

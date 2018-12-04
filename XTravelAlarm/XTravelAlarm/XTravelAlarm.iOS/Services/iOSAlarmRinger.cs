@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using AudioToolbox;
 using AVFoundation;
 using Foundation;
-using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.PlatformServices;
 
 
 namespace XTravelAlarm.iOS.Services
@@ -49,20 +48,6 @@ namespace XTravelAlarm.iOS.Services
                 {
                     Debug.WriteLine("File could not be loaded: {0}", mp3URL.FilePathUrl);
                 }
-            }
-        }
-
-        public void StopPlaySound(string alarmId)
-        {
-            try
-            {
-                //Stop of any sound effect
-                audioPlayer.Stop();
-                Debug.WriteLine("Alarm został wyłączony");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error when sound is stopped: {ex.Message}");
             }
         }
     }

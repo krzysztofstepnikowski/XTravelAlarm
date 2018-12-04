@@ -3,8 +3,8 @@ using UIKit;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
 using Xamarin;
-using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.iOS.Services;
+using XTravelAlarm.PlatformServices;
 
 namespace XTravelAlarm.iOS
 {

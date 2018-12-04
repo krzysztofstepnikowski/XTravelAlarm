@@ -5,7 +5,7 @@ using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
 using Xamarin.Forms.Maps;
-using XTravelAlarm.Features;
+using XTravelAlarm.Models;
 using XTravelAlarm.Views.Main;
 
 namespace XTravelAlarm.ViewModels

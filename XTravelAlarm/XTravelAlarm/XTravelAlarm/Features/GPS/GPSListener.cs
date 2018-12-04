@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Plugin.Geolocator;
-using XTravelAlarm.Features;
 using XTravelAlarm.Features.AlarmRinging;
+using XTravelAlarm.Models;
 
-namespace XTravelAlarm.Services
+namespace XTravelAlarm.Features.GPS
 {
-    public class GPSListener
+    public class GPSListener : IGPSListener
     {
         private readonly HashSet<Guid> gpsObservers;
-        private readonly AlarmCaller alarmCaller;
+        private readonly IAlarmCaller alarmCaller;
 
 
-        public GPSListener(HashSet<Guid> gpsObservers, AlarmCaller alarmCaller)
+        public GPSListener(HashSet<Guid> gpsObservers, IAlarmCaller alarmCaller)
         {
             this.gpsObservers = gpsObservers;
             this.alarmCaller = alarmCaller;

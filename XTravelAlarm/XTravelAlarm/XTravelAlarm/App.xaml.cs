@@ -5,10 +5,11 @@ using Microsoft.Practices.Unity;
 using Plugin.Geolocator;
 using Prism.Unity;
 using Xamarin.Forms;
-using XTravelAlarm.Adapters.Features;
+using XTravelAlarm.Facades;
 using XTravelAlarm.Features.AlarmRinging;
-using XTravelAlarm.Features.AlarmRinging.Storage;
+using XTravelAlarm.Features.GPS;
 using XTravelAlarm.Services;
+using XTravelAlarm.Services.Interfaces;
 using XTravelAlarm.ViewModels;
 using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
@@ -40,15 +41,11 @@ namespace XTravelAlarm
             Container.RegisterTypeForNavigation<MainTabbedPage>();
             Container.RegisterTypeForNavigation<NavigationPage>();
 
-            Container.RegisterType<AlarmCaller>();
+            Container.RegisterType<IAlarmCaller,AlarmCaller>();
             Container.RegisterType<IAlarmDatabaseService, AlarmDatabaseService>();
-            Container.RegisterType<GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(gpsObservers,
-                new ResolvedParameter<AlarmCaller>()));
-
+            Container.RegisterType<IGPSListener,GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(gpsObservers, new ResolvedParameter<IAlarmCaller>()));
             Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();
             Container.RegisterType<IAlarmPageFeatures, AlarmPageFeaturesFacade>();
-
-           
         }
 
         protected override async void OnStart()
