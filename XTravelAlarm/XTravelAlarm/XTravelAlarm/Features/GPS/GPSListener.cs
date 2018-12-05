@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using Plugin.Geolocator;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Models;
+using XTravelAlarm.Services.Interfaces;
 
 namespace XTravelAlarm.Features.GPS
 {
     public class GPSListener : IGPSListener
     {
-        private readonly HashSet<Guid> gpsObservers;
+        private readonly IHashSetCollection gpsObservers;
         private readonly IAlarmCaller alarmCaller;
 
-        public GPSListener(HashSet<Guid> gpsObservers, IAlarmCaller alarmCaller)
+        public GPSListener(IHashSetCollection gpsObservers, IAlarmCaller alarmCaller)
         {
             this.gpsObservers = gpsObservers;
             this.alarmCaller = alarmCaller;
@@ -31,7 +31,7 @@ namespace XTravelAlarm.Features.GPS
 
         private async void CurrentPositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
-            foreach (var alarmId in gpsObservers)
+            foreach (var alarmId in gpsObservers.InitalizeCollection())
             {
                 await alarmCaller.UpdatePosition(new Position(e.Position.Latitude, e.Position.Longitude), alarmId);
             }

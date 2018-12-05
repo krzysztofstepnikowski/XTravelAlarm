@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Practices.Unity;
 using Plugin.Geolocator;
-using Prism.Unity;
+using Prism;
+using Prism.Ioc;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using XTravelAlarm.Facades;
 using XTravelAlarm.Features.AlarmRinging;
 using XTravelAlarm.Features.GPS;
@@ -15,12 +17,26 @@ using XTravelAlarm.Views;
 using XTravelAlarm.Views.Alarms;
 using XTravelAlarm.Views.Main;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XTravelAlarm
 {
-    public partial class App : PrismApplication
+    public partial class App
     {
-        public App(IPlatformInitializer initializer = null) : base(initializer)
+        public App(IPlatformInitializer initializer) : base(initializer) { }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<AlarmsPage, AlarmPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+
+            containerRegistry.Register<IAlarmCaller, AlarmCaller>();
+            containerRegistry.Register<IAlarmDatabaseService, AlarmDatabaseService>();
+            containerRegistry.Register<IHashSetCollection,HashSetCollection>();
+            containerRegistry.Register<IGPSListener, GPSListener>();
+            containerRegistry.Register<IMainPageFeatures, MainPageFeaturesFacade>();
+            containerRegistry.Register<IAlarmPageFeatures, AlarmPageFeaturesFacade>();
         }
 
         protected override void OnInitialized()
@@ -30,26 +46,12 @@ namespace XTravelAlarm
             NavigationService.NavigateAsync("NavigationPage/MainTabbedPage/");
         }
 
-        protected override void RegisterTypes()
-        {
-            Container.RegisterTypeForNavigation<MainPage, MainPageViewModel>();
-            Container.RegisterTypeForNavigation<AlarmsPage, AlarmPageViewModel>();
-            Container.RegisterTypeForNavigation<MainTabbedPage>();
-            Container.RegisterTypeForNavigation<NavigationPage>();
-
-            Container.RegisterType<IAlarmCaller,AlarmCaller>();
-            Container.RegisterType<IAlarmDatabaseService, AlarmDatabaseService>();
-            Container.RegisterType<IGPSListener,GPSListener>(new ContainerControlledLifetimeManager(),new InjectionConstructor(new HashSet<Guid>(), new ResolvedParameter<IAlarmCaller>()));
-            Container.RegisterType<IMainPageFeatures, MainPageFeaturesFacade>();
-            Container.RegisterType<IAlarmPageFeatures, AlarmPageFeaturesFacade>();
-        }
-
         protected override async void OnStart()
         {
             base.OnStart();
             if (!CrossGeolocator.Current.IsListening)
             {
-                await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 100);
+                await CrossGeolocator.Current.StartListeningAsync(new TimeSpan(1000), 100);
                 Debug.WriteLine("OnStart");
             }
         }
@@ -60,7 +62,7 @@ namespace XTravelAlarm
             base.OnResume();
             if (!CrossGeolocator.Current.IsListening)
             {
-                await CrossGeolocator.Current.StartListeningAsync(minTime: 1000, minDistance: 100);
+                await CrossGeolocator.Current.StartListeningAsync(new TimeSpan(1000), 100);
                 Debug.WriteLine("OnResume");
             }
         }

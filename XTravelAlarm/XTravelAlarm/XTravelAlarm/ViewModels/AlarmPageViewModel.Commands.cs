@@ -1,6 +1,4 @@
-﻿using Prism.Commands;
-using System.Windows.Input;
-using XTravelAlarm.Features;
+﻿using System.Windows.Input;
 
 namespace XTravelAlarm.ViewModels
 {

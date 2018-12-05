@@ -73,15 +73,6 @@ namespace XTravelAlarm.ViewModels
             }
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        { 
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
-        {
-            GetAlarms();
-        }
-
         public void OnInternalNavigatedFrom(NavigationParameters navParams)
         {
         }
@@ -89,6 +80,19 @@ namespace XTravelAlarm.ViewModels
         public void OnInternalNavigatedTo(NavigationParameters navParams)
         {
             GetAlarms();
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            GetAlarms();
+        }
+
+        public void OnNavigatingTo(INavigationParameters parameters)
+        {
         }
     }
 }

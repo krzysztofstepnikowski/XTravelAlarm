@@ -4,12 +4,14 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Prism.Unity;
-using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using XTravelAlarm.Droid.Services;
 using XTravelAlarm.Views.Alarms;
 using Android.Widget;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
+using Prism;
+using Prism.Ioc;
 using XTravelAlarm.PlatformServices;
 
 namespace XTravelAlarm.Droid
@@ -17,9 +19,9 @@ namespace XTravelAlarm.Droid
     [Activity(Label = "XTravel Alarm", Icon = "@drawable/ic_launcher", MainLauncher = true,
         ScreenOrientation = ScreenOrientation.Portrait,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IPlatformInitializer
     {
-        private IUnityContainer container;
+        private IContainerProvider _container;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,12 +32,21 @@ namespace XTravelAlarm.Droid
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
             UserDialogs.Init(this);
+            CrossCurrentActivity.Current.Init(this,bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
-            var application = new App(new AndroidInitializer());
-            container = application.Container;
+            var application = new App(this);
+            _container = application.Container;
 
             LoadApplication(application);
             ProcessIntentAction(Intent);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -60,7 +71,7 @@ namespace XTravelAlarm.Droid
                                 var notifyId = extras.GetInt("notifyId");
                                 var activity = Forms.Context as Activity;
                                 var droidAlarmRinger = new DroidAlarmRinger();
-                                var alarmPageFeatures = container.Resolve<IAlarmPageFeatures>();
+                                var alarmPageFeatures = _container.Resolve<IAlarmPageFeatures>();
 
                                 droidAlarmRinger.StopPlaySound(alarmId);
                                 DroidNotificationService.CancelNotification(activity,notifyId);
@@ -73,15 +84,12 @@ namespace XTravelAlarm.Droid
                 }
             }
         }
-    }
 
-    public class AndroidInitializer : IPlatformInitializer
-    {
-        
-        public void RegisterTypes(IUnityContainer container)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            container.RegisterType<IRinger, DroidAlarmRinger>();
-            container.RegisterType<INotificationService, DroidNotificationService>();
+            containerRegistry.RegisterInstance(CrossCurrentActivity.Current);
+            containerRegistry.Register<IRinger, DroidAlarmRinger>();
+            containerRegistry.Register<INotificationService, DroidNotificationService>();
         }
     }
 }

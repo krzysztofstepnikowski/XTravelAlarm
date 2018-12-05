@@ -20,7 +20,7 @@ namespace XTravelAlarm.Services
 
         public async Task<IEnumerable<AlarmLocation>> GetAllAsync()
         {
-            await  DbConnection.CreateTableAsync<AlarmLocation>();
+            await DbConnection.CreateTableAsync<AlarmLocation>();
             return await DbConnection.Table<AlarmLocation>().ToListAsync();
         }
 

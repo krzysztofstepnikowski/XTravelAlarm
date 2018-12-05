@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using UIKit;
-using Prism.Unity;
-using Microsoft.Practices.Unity;
+using Prism;
+using Prism.Ioc;
 using Xamarin;
 using XTravelAlarm.iOS.Services;
 using XTravelAlarm.PlatformServices;
@@ -12,7 +12,7 @@ namespace XTravelAlarm.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IPlatformInitializer
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -21,17 +21,11 @@ namespace XTravelAlarm.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
-
-        private IUnityContainer container;
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
             FormsMaps.Init();
-
-            var application = new App(new iOSInitializer());
-            container = application.Container;
-
-            LoadApplication(application);
+            LoadApplication(new App(this));
 
             return base.FinishedLaunching(app, options);
         }
@@ -44,14 +38,11 @@ namespace XTravelAlarm.iOS
             UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(okayAlertController, true,
                 null);
         }
-    }
 
-    public class iOSInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IUnityContainer container)
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            container.RegisterType<IRinger, iOSAlarmRinger>();
-            container.RegisterType<INotificationService, iOSNotificationService>();
+            containerRegistry.Register<IRinger, iOSAlarmRinger>();
+            containerRegistry.Register<INotificationService, iOSNotificationService>();
         }
     }
 }

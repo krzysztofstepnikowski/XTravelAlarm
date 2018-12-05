@@ -4,7 +4,7 @@ using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Mvvm;
-using Xamarin.Forms.Maps;
+using Xamarin.Essentials;
 using XTravelAlarm.Models;
 using XTravelAlarm.Views.Main;
 
@@ -25,24 +25,34 @@ namespace XTravelAlarm.ViewModels
         {
             if (!string.IsNullOrEmpty(Name) && Distance > 0)
             {
-                var geocoder = new Geocoder();
 
-                var targetPlace = (await geocoder.GetPositionsForAddressAsync(Name)).FirstOrDefault();
-
-
-                if (targetPlace == default(Xamarin.Forms.Maps.Position))
+                try
                 {
-                    return;
+                    var location = (await Geocoding.GetLocationsAsync(Name)).FirstOrDefault();
+
+                    if (location != null)
+                    {
+                        var newLocationAlarm = new AlarmLocation(Name, Distance,
+                            location.Latitude, location.Longitude, true);
+
+                        await mainPageFeatures.AddAlarmAsync(newLocationAlarm);
+                        UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
+                        Debug.WriteLine(newLocationAlarm.ToString());
+                    }
+
+                    else
+                    {
+                        UserDialogs.Instance.Toast("Nie można zapisać alarmu. Sprawdź miejsce docelowe.", TimeSpan.FromSeconds(3.0));
+                    }
                 }
-
-
-                var newLocationAlarm = new AlarmLocation(Name, Distance,
-                    targetPlace.Latitude, targetPlace.Longitude, true);
-
-
-                await mainPageFeatures.AddAlarmAsync(newLocationAlarm);
-                UserDialogs.Instance.Toast("Zapisano alarm.", TimeSpan.FromSeconds(3.0));
-                Debug.WriteLine(newLocationAlarm.ToString());
+                catch (FeatureNotSupportedException fnsEx)
+                {
+                    Debug.WriteLine(fnsEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
 
             else
