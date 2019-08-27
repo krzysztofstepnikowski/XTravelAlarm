@@ -13,6 +13,7 @@ using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
 using XTravelAlarm.PlatformServices;
+using Android.Runtime;
 
 namespace XTravelAlarm.Droid
 {
@@ -39,57 +40,18 @@ namespace XTravelAlarm.Droid
             _container = application.Container;
 
             LoadApplication(application);
-            ProcessIntentAction(Intent);
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        protected override void OnNewIntent(Intent intent)
-        {
-            ProcessIntentAction(intent);
-            base.OnNewIntent(intent);
-        }
-
-        private void ProcessIntentAction(Intent intent)
-        {
-            if (intent.Action != null)
-            {
-                switch (intent.Action)
-                {
-                    case "TURN_OFF_ALARM_ACTION":
-                        Bundle extras = intent.Extras;
-                        if (extras != null)
-                        {
-                            if (extras.ContainsKey("alarmId"))
-                            {
-                                var alarmId = extras.GetString("alarmId");
-                                var notifyId = extras.GetInt("notifyId");
-                                var activity = Forms.Context as Activity;
-                                var droidAlarmRinger = new DroidAlarmRinger();
-                                var alarmPageFeatures = _container.Resolve<IAlarmPageFeatures>();
-
-                                droidAlarmRinger.StopPlaySound(alarmId);
-                                DroidNotificationService.CancelNotification(activity,notifyId);
-                                alarmPageFeatures.Disable(Guid.Parse(alarmId));
-
-                                Toast.MakeText(activity, "Alarm wyłączony", ToastLength.Short).Show();
-                            }
-                        }
-                        break;
-                }
-            }
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance(CrossCurrentActivity.Current);
-            containerRegistry.Register<IRinger, DroidAlarmRinger>();
-            containerRegistry.Register<INotificationService, DroidNotificationService>();
+            containerRegistry.Register<ILocalNotificationService, DroidLocalNotificationService>();
         }
     }
 }

@@ -8,13 +8,11 @@ namespace XTravelAlarm.Features.AlarmRinging
 {
     public class AlarmCaller : IAlarmCaller
     {
-        private readonly IRinger ringer;
-        private readonly INotificationService notificationService;
+        private readonly ILocalNotificationService notificationService;
         private readonly IAlarmDatabaseService alarmDatabase;
 
-        public AlarmCaller(IRinger ringer, IAlarmDatabaseService alarmDatabase, INotificationService notificationService)
+        public AlarmCaller(IAlarmDatabaseService alarmDatabase, ILocalNotificationService notificationService)
         {
-            this.ringer = ringer;
             this.alarmDatabase = alarmDatabase;
             this.notificationService = notificationService;
         }
@@ -26,8 +24,7 @@ namespace XTravelAlarm.Features.AlarmRinging
             
             if (currentDistance <= alarm.Distance)
             {
-                notificationService.Show("Alarm", "Wyłącz alarm", alarmId);
-                ringer.PlaySound();
+                notificationService.LocalNotification("Alarm", "Wyłącz alarm", alarmId);
             }
         }
 

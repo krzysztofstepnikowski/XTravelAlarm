@@ -5,6 +5,7 @@ using Prism.Ioc;
 using Xamarin;
 using XTravelAlarm.iOS.Services;
 using XTravelAlarm.PlatformServices;
+using UserNotifications;
 
 namespace XTravelAlarm.iOS
 {
@@ -25,6 +26,23 @@ namespace XTravelAlarm.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FormsMaps.Init();
+
+            //If the device is running iOS 8, if so we are required to ask for the user's permission to receive notifications       
+            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Alert
+                                           | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+
+                app.RegisterUserNotificationSettings(notificationSettings);
+            }
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                    (approved, error) => { });
+                UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
+            }
+
             LoadApplication(new App(this));
 
             return base.FinishedLaunching(app, options);
@@ -41,8 +59,7 @@ namespace XTravelAlarm.iOS
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IRinger, iOSAlarmRinger>();
-            containerRegistry.Register<INotificationService, iOSNotificationService>();
+            containerRegistry.Register<ILocalNotificationService, iOSLocalNotificationService>();
         }
     }
 }
